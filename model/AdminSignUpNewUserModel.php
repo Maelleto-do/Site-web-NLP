@@ -6,7 +6,24 @@ define("DATABASE", "tdesbarat001"); // The database name
 
 class AdminSignUpNewUserModel{
 
+    private $PW_HASH;
+    private $EMAIL_HASH;
     public function SignUpUser(){
+
+        //On récupère l'ID, l'E-Mail et le PW que l'utilisateur a tapé dans le formulaire
+        $ID = $_POST['ID_USER'];
+        $MAIL = $_POST['MAIL_USER'];
+        $PW = $_POST['PW_USER'];
+        $PW_REPEAT = $_POST['PW_USER_REPEAT'];
+
+        //Connexion raté car ID ou PW ou MAIL est vide :
+        if (empty($ID) || empty($PW) || empty($MAIL) ){
+            return 1;
+        }
+
+        if ($PW != $PW_REPEAT){
+            return 4;
+        }
 
         //Connection to PDO
         try {
@@ -18,29 +35,18 @@ class AdminSignUpNewUserModel{
             exit();
         }
 
-
-        //On récupère l'ID, l'E-Mail et le PW que l'utilisateur a tapé dans le formulaire
-        $ID = $_POST['ID_USER'];
-        $MAIL = $_POST['MAIL_USER'];
-        $PW = $_POST['PW_USER'];
-        $PW_REPEAT = $_POST['PW_USER_REPEAT'];
-
-
-        // echo '$ID = ' . $ID . '<br/>';
-        // echo '$PW = ' . $PW . '<br/>';
-        // echo '$MAIL = ' . $MAIL . '<br/>';
-        // echo '$_POST[\'ID_USER\'] = ' . $_POST['ID_USER'] . '<br/>';
-        // echo '$_POST[\'MAIL_USER\'] = ' . $_POST['MAIL_USER'] . '<br/>';
-        // echo '$_POST[\'PW_USER\'] = ' . $_POST['PW_USER'] . '<br/>';
-
-        //Connexion raté car ID ou PW est vide :
-        if (empty($ID) || empty($PW) || empty($MAIL) ){
-            return 1;
-        }
+        //Hash
+        $options = [
+          'cost' => 12,
+        ];
+        $this->PW_HASH = password_hash($PW, PASSWORD_BCRYPT, $options);
+        $this->EMAIL_HASH = password_hash($MAIL, PASSWORD_BCRYPT, $options);
+        echo $this->PW_HASH;
+        echo $this->EMAIL_HASH;
 
 
         //Vérification si l'ID n'est pas déjà dans la BDD :
-        $req = $bdd->prepare("SELECT ID FROM utilisateurs WHERE ID = ?");
+        $req = $bdd->prepare("SELECT USERNAME FROM users WHERE USERNAME = ?");
         $req->execute(array($ID));
         $res = $req->fetch();
         if($res['ID']){
@@ -48,26 +54,27 @@ class AdminSignUpNewUserModel{
         }
 
         //Vérification si l'EMAIL n'est pas déjà dans la BDD :
-        $req = $bdd->prepare("SELECT EMAIL FROM utilisateurs WHERE EMAIL = ?");
-        $req->execute(array($MAIL));
-        $res = $req->fetch();
-        if($res['EMAIL']){
-            return 3;
+        $req = $bdd->prepare("SELECT EMAIL FROM users");
+        $req->execute();
+
+        while ($res = $req->fetch()){
+            if(password_verify($MAIL,$res['EMAIL'])){
+                return 3; //EMAIL DEJA DANS LA BDD
+            }
         }
 
-        if ($PW != $PW_REPEAT){
-            return 4;
-        }
 
-        //Recherche du mot de passe dans la BDD SI la connexion a marché en PDO
-        $req = $bdd->prepare("INSERT INTO utilisateurs(ID, EMAIL, MDP)VALUES(:ID, :EMAIL, :MDP)");
+        //Insertion dans la BD
+        $req = $bdd->prepare("INSERT INTO users(USERNAME, EMAIL, PWD)VALUES(:USERNAME, :EMAIL, :PWD)");
         if($req){
-            $req->execute(array('ID' => $ID, 'EMAIL' => $MAIL, 'MDP' => $PW));
-            return 0;
+            $req->execute(array('USERNAME' => $ID, 'EMAIL' => $this->EMAIL_HASH, 'PWD' => $this->PW_HASH));
+            //return 0;
         }else{
             $req->errorInfo();
             return 5;
         }
+
+
 
     }
 }

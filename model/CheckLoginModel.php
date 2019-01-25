@@ -30,24 +30,34 @@ class CheckLoginModel{
             return $checkLogin;
         }
 
+        //Hash
+        $options = [
+            'cost' => 12,
+        ];
+
         //Recherche du mot de passe dans la BDD SI la connexion a marché en PDO
-      $req = $bdd->prepare('SELECT MDP FROM utilisateurs WHERE ID = ? LIMIT 1');
-      $req->execute(array($ID));
-      $res = $req->fetch();
+        $req = $bdd->prepare('SELECT PWD FROM users WHERE USERNAME = ?');
+        $req->execute(array($ID));
+        $res = $req->fetch();
+
+
 
         //On test si le PW de la BDD correspond au PW de l'utilisateur
-      if($res['MDP']){
-        if($PW === $res['MDP']){
-            $checkLogin = 0;
-        }else{
+        if($res['PWD']){
+            if(password_verify($PW,$res['PWD'])){
+                $checkLogin = 0;
+            }else{
                 //Incorrect password
-            $checkLogin = 2;
-        }
-    }else{
+                $checkLogin = 2;
+            }
+        }else{
             //The username does not exist
-        $checkLogin = 3;
+            $checkLogin = 3;
+        }
+
+
+        return $checkLogin;
     }
-    return $checkLogin;
-}
+
 }
 ?>

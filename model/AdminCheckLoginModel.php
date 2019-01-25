@@ -20,11 +20,8 @@ class AdminCheckLoginModel{
 
 
         //On récupère l'ID et le PW que l'utilisateur a tapé dans le formulaire
-        $ID = "ADMIN";
+        $ID = "Admin";
         $PW = $_POST['Admin_PW'];
-        // echo '$ID = ' . $ID . '<br/>';
-        // echo '$PW = ' . $PW . '<br/>';
-        // echo '$_POST[\'Admin_PW\'] = ' . $_POST['Admin_PW'] . '<br/>';
 
         //Connexion raté car ID ou PW est vide -> LoginNotOk
         if (empty($PW)){
@@ -32,18 +29,24 @@ class AdminCheckLoginModel{
         }
 
         //Recherche du mot de passe dans la BDD SI la connexion a marché en PDO
-        $req = $bdd->prepare("SELECT MDP FROM utilisateurs WHERE ID = ?");
+        $req = $bdd->prepare('SELECT PWD FROM users WHERE USERNAME = ?');
         $req->execute(array($ID));
         $res = $req->fetch();
 
         //On test si le PW de la BDD correspond au PW de l'utilisateur
-        if($res['MDP']){
-            if($PW === $res['MDP']){
+        if($res['PWD']){
+            if(password_verify($PW,$res['PWD'])){
                 $checkLogin = 0;
             }else{
+                //Incorrect password
                 $checkLogin = 2;
             }
+        }else{
+            //The username does not exist
+            $checkLogin = 3;
         }
+
+
         return $checkLogin;
     }
 }
