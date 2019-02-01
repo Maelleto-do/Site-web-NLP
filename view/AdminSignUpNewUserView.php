@@ -5,7 +5,7 @@ class AdminSignUpNewUserView{
 
 
   public function launch(){
-    $this->username = 'Admin';
+    $this->username = $_SESSION['USERNAME'];
 
 
     echo <<<VIEW

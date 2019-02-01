@@ -1,7 +1,7 @@
 <?php
 
 
-class LoginSuccessful{
+class InfoView{
   private $username;
 
   public function launch(){
@@ -55,7 +55,6 @@ class LoginSuccessful{
    <input id="Main_Form_TASK" type="hidden" name="TASK" value="">
    </form>
 
-
    <nav class="navbar navbar-inverse">
    <div class="container-fluid">
    <div class="navbar-header">
@@ -64,7 +63,7 @@ class LoginSuccessful{
    </div>
    <div class="collapse navbar-collapse" id="myNavbar">
    <ul class="nav navbar-nav">
-   <li><a data-toggle="modal">Bonjour $this->username </a></li>
+   <li><a data-target="#inscriptionModal" href="#inscriptionModal" data-toggle="modal">Bonjour $this->username </a></li>
    <li><a href="#" onclick="$('#Main_Form_TASK').val('Info'); $('#Main_Form').submit();">Informations</a></li>
    <li><a href="#" onclick="$('#Main_Form_TASK').val('Contact'); $('#Main_Form').submit();">Contacter un administrateur</a></li>
    <li><a href="#" onclick="$('#Main_Form_TASK').val('Deconnexion'); $('#Main_Form').submit();">Se déconnecter</a></li>
@@ -80,8 +79,9 @@ class LoginSuccessful{
    <p><a href="#"></a></p>
    </div>
    <div class="col-sm-8 text-left">
-   <h1>Bienvenue sur le forum</h1>
-   Connexion réussie.
+   <h1>Informations</h1>
+   Vous êtes sur le forum dédié au enfant de l'école.
+   Vous pouvez accéder aux différents sous forums, poser vos questions ou répondre à vos camarades.
    </div>
    <div class="col-sm-2 sidenav">
 
@@ -95,4 +95,3 @@ VIEW;
  }
 }
 ?>
-<!-- input type="hidden" name="TASK" value="Deconnexion" //input type="hidden" name="TASK" value="Info" //input type="hidden" name="TASK" value="Contact" -->

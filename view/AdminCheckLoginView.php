@@ -28,7 +28,7 @@ class AdminCheckLoginView{
 
 
   public function launch(){
-    $this->username = 'Admin';
+    $this->username = $_SESSION['USERNAME'];
     $this->MESSAGE_SIGNUP = array(
       'Veuillez saisir des données',
       'Le prénom.nom que vous avez tenté d\'ajouter fais déjà parti de la base de données !',

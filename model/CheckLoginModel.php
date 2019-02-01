@@ -46,6 +46,9 @@ class CheckLoginModel{
         if($res['PWD']){
             if(password_verify($PW,$res['PWD'])){
                 $checkLogin = 0;
+                $_SESSION['logged'] = 1;
+                $_SESSION['USERNAME'] = $ID;
+                $_SESSION['last_action'] = time();
             }else{
                 //Incorrect password
                 $checkLogin = 2;
