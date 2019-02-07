@@ -13,12 +13,12 @@ class CheckLoginController{
         $this->model = new CheckLoginModel();
         $this->checkLoginAnswer = $this->model->checkLogin();
 
-        //Si checkLogin() renvoie faux, pas d'erreurs
+        //Si checkLogin() renvoie 0, pas d'erreurs
         if(!$this->checkLoginAnswer){
             $this -> view = new LoginSuccessful();
         }else{
             $this -> view = new Welcome();
-            $this -> view -> setMessageNumberLogin($this -> checkLoginAnswer); //On donne le message d'erreur à afficher à la vue     
+            $this -> view -> setMessageNumberLogin($this -> checkLoginAnswer); //On donne le message d'erreur à afficher à la vue
 
         }
     }

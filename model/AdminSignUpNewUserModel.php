@@ -10,14 +10,14 @@ class AdminSignUpNewUserModel{
     private $EMAIL_HASH;
     public function SignUpUser(){
 
-        //On récupère l'ID, l'E-Mail et le PW que l'utilisateur a tapé dans le formulaire
-        $ID = $_POST['ID_USER'];
+        //On récupère l'USERNAME, l'E-Mail et le PW que l'utilisateur a tapé dans le formulaire
+        $USERNAME = $_POST['USERNAME_USER'];
         $MAIL = $_POST['MAIL_USER'];
         $PW = $_POST['PW_USER'];
         $PW_REPEAT = $_POST['PW_USER_REPEAT'];
 
-        //Connexion raté car ID ou PW ou MAIL est vide :
-        if (empty($ID) || empty($PW) || empty($MAIL) ){
+        //Connexion raté car USERNAME ou PW ou MAIL est vide :
+        if (empty($USERNAME) || empty($PW) || empty($MAIL) ){
             return 1;
         }
 
@@ -41,15 +41,12 @@ class AdminSignUpNewUserModel{
         ];
         $this->PW_HASH = password_hash($PW, PASSWORD_BCRYPT, $options);
         $this->EMAIL_HASH = password_hash($MAIL, PASSWORD_BCRYPT, $options);
-        echo $this->PW_HASH;
-        echo $this->EMAIL_HASH;
 
-
-        //Vérification si l'ID n'est pas déjà dans la BDD :
+        //Vérification si l'USERNAME n'est pas déjà dans la BDD :
         $req = $bdd->prepare("SELECT USERNAME FROM users WHERE USERNAME = ?");
-        $req->execute(array($ID));
+        $req->execute(array($USERNAME));
         $res = $req->fetch();
-        if($res['ID']){
+        if($res['USERNAME']){
             return 2;
         }
 
@@ -67,7 +64,7 @@ class AdminSignUpNewUserModel{
         //Insertion dans la BD
         $req = $bdd->prepare("INSERT INTO users(USERNAME, EMAIL, PWD)VALUES(:USERNAME, :EMAIL, :PWD)");
         if($req){
-            $req->execute(array('USERNAME' => $ID, 'EMAIL' => $this->EMAIL_HASH, 'PWD' => $this->PW_HASH));
+            $req->execute(array('USERNAME' => $USERNAME, 'EMAIL' => $this->EMAIL_HASH, 'PWD' => $this->PW_HASH));
             //return 0;
         }else{
             $req->errorInfo();

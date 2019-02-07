@@ -20,12 +20,12 @@ class CheckLoginModel{
         }
 
 
-        //On récupère l'ID et le PW que l'utilisateur a tapé dans le formulaire
-        $ID = $_POST['ID'];
+        //On récupère l'USERNAME et le PW que l'utilisateur a tapé dans le formulaire
+        $USERNAME = $_POST['USERNAME'];
         $PW = $_POST['PW'];
 
 
-        if (empty($ID) || empty($PW)){
+        if (empty($USERNAME) || empty($PW)){
             $checkLogin = 1;
             return $checkLogin;
         }
@@ -37,7 +37,7 @@ class CheckLoginModel{
 
         //Recherche du mot de passe dans la BDD SI la connexion a marché en PDO
         $req = $bdd->prepare('SELECT PWD FROM users WHERE USERNAME = ?');
-        $req->execute(array($ID));
+        $req->execute(array($USERNAME));
         $res = $req->fetch();
 
 
@@ -47,7 +47,7 @@ class CheckLoginModel{
             if(password_verify($PW,$res['PWD'])){
                 $checkLogin = 0;
                 $_SESSION['logged'] = 1;
-                $_SESSION['USERNAME'] = $ID;
+                $_SESSION['USERNAME'] = $USERNAME;
                 $_SESSION['last_action'] = time();
             }else{
                 //Incorrect password

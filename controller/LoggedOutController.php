@@ -1,12 +1,12 @@
 <?php
-include_once 'view/SessionExpiredView.php';
+include_once 'view/LoggedOutView.php';
 
 
-class SessionExpiredController{
+class LoggedOutController{
     private $view;
 
     function __construct(){
-        $this -> view = new SessionExpiredView();
+        $this -> view = new LoggedOutView();
     }
 
     function launch(){

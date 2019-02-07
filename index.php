@@ -15,75 +15,57 @@ session_start();
 
 <?php
 
+if(isset($_POST['TASK'])){
+    switch($_POST['TASK']){
+
+        case 'Deconnexion':
+        $class_name = 'LoggedOutController';
+        session_unset();
+        session_destroy();
+        break;
+
+        case 'CheckLogin':
+        $class_name = 'CheckLoginController';
+        break;
+
+        case 'AdminCheckLogin':
+        $class_name = 'AdminCheckLoginController';
+        break;
+
+        case 'AdminSignUpNewUser':
+        $class_name = 'AdminSignUpNewUserController';
+        break;
+
+        case 'Info':
+        $class_name = 'InfoController';
+        break;
+
+        case 'Contact':
+        $class_name = 'ContactController';
+        break;
+
+        default:
+        $class_name = 'WelcomeController';
+        break;
+    }
+}else{
+    $class_name = 'WelcomeController';
+}
+
 if(isset($_SESSION['logged']) and $_SESSION['logged'] == 1){
     if( (time() - $_SESSION['last_action']) > SESSION_MAXLIFETIME ){
         session_destroy();
+        unset($_SESSION['logged']);
+        unset($_SESSION['last_action']);
+        unset($_SESSION['USERNAME']);
         $class_name = 'SessionExpiredController';
     }else{
         $_SESSION['last_action'] = time();
-        if(isset($_POST['TASK'])){
-            switch($_POST['TASK']){
-
-                case 'CheckLogin':
-                $class_name = 'CheckLoginController';
-                break;
-
-                case 'AdminCheckLogin':
-                $class_name = 'AdminCheckLoginController';
-                break;
-
-                case 'AdminSignUpNewUser':
-                $class_name = 'AdminSignUpNewUserController';
-                break;
-
-                case 'Contact':
-                $class_name = 'ContactController';
-                break;
-
-                case 'Info':
-                $class_name = 'InfoController';
-                break;
-
-                default:
-                $class_name = 'WelcomeController';
-                break;
-            }
-        }else{
-            $class_name = 'WelcomeController';
-        }
-    }
-}else{
-    if(isset($_POST['TASK'])){
-        switch($_POST['TASK']){
-
-            case 'CheckLogin':
-            $class_name = 'CheckLoginController';
-            break;
-
-            case 'AdminCheckLogin':
-            $class_name = 'AdminCheckLoginController';
-            break;
-
-            case 'AdminSignUpNewUser':
-            $class_name = 'AdminSignUpNewUserController';
-            break;
-
-            default:
-            $class_name = 'WelcomeController';
-            break;
-
-            case 'Info':
-            $class_name = 'InfoController';
-            break;
-
-            default:
-            $class_name = 'WelcomeController';
-            break;
-        }
-    }else{
-        $class_name = 'WelcomeController';
     }
 }
+
+
+
 
 
 

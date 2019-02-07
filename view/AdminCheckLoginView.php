@@ -1,17 +1,7 @@
 <?php
 
-//Tableau des messages d'erreur en cas de mauvaise inscription
-// define('MESSAGE_SIGNUP', array(
-//   'Veuillez saisir des données',
-//   'Le prénom.nom que vous avez tenté d\'ajouter fais déjà parti de la base de données !',
-//   'L\'E-MAIL que vous avez tenté d\'ajouter fais déjà parti de la base de données !',
-//   'Les mots de passe ne correspondent pas',
-//   'Erreur de connexion à la base de données !'
-// ));
-
 class AdminCheckLoginView{
 
-  //Numéro d'erreur dans le cas d'une erreur d'inscription de la part de l'administrateur
   private $messageNumberSignup;
   private $username;
   private $messageNumberLogin;
@@ -48,16 +38,11 @@ class AdminCheckLoginView{
     }
 
     echo <<<VIEW
-    <head>
-    <title>Bootstrap Example</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    
-   </head>
    <body>
+
+   <form id="Main_Form" action="index.php" method="POST">
+   <input id="Main_Form_TASK" type="hidden" name="TASK" value="">
+   </form>
 
    <nav class="navbar navbar-inverse">
    <div class="container-fluid">
@@ -69,7 +54,7 @@ class AdminCheckLoginView{
    <ul class="nav navbar-nav">
    <li><a data-target="#" data-toggle="modal">Bonjour $this->username </a></li>
    <li><a data-target="#inscriptionModal" href="#inscriptionModal" data-toggle="modal">Inscrire un utilisateur</a></li>
-   <li><a href="index.php">Se déconnecter</a></li>
+   <li><a href="#" onclick="$('#Main_Form_TASK').val('Deconnexion'); $('#Main_Form').submit();">Se déconnecter</a></li>
    </ul>
    </div>
    </div>
@@ -94,7 +79,7 @@ class AdminCheckLoginView{
    </div>
    <div class="form-group">
    <label for="username">Username</label>
-   <input type="text" name="ID_USER" class="form-control" id="username" aria-describedby="username" placeholder="Enter Username">
+   <input type="text" name="USERNAME_USER" class="form-control" id="username" aria-describedby="username" placeholder="Enter Username">
    </div>
    <div class="form-group">
    <label for="password">Password</label>
