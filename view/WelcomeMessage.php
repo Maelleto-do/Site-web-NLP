@@ -103,18 +103,6 @@ class WelcomeMessage{
     <div class="container-fluid text-center">
     <div class="row content">
     <div class="col-sm-2 sidenav">
-    <div class="well">
-        <p><a href="#">My Profile</a></p>
-        <img src="img/bird.jpg" class="img-circle" height="65" width="65" alt="Avatar">
-      </div>
-      <div class="well">
-        <p><a href="#">Interests</a></p>
-        <p>
-          <span class="label label-default">Aya Nakamura</span>
-          <span class="label label-primary">Norman fait des vidéos</span>
-          <span class="label label-success">Mentir</span>
-        </p>
-      </div>
     <p><a href="#"></a></p>
     </div>
 
@@ -127,7 +115,7 @@ class WelcomeMessage{
     <script>
     var text = "";
     for(var i = 0; i < 10; i++){
-        text += '<div class="panel panel-default"> <div class="panel-body"> <div class="row"> <div class="col-sm-3"> <div class="well"> <p>John</p> <img src="img/bird.jpg" class="img-circle" height="55" width="55" alt="Avatar"> </div> </div> <div class="col-sm-9"> <div class="well"> <p>Message randomMessage randomMessage randomMessage randomMessage randomMessage randomMessage randomMessage randomMessage randomMessage randomMessage randomMessage random</p> </div> </div> </div> </div> </div>';
+        text += '<div class="panel panel-default"> <div class="panel-body"> <div class="row"> <div class="col-sm-3"> <div class="well"> <p>John</p> <img src="img/bird.jpg" class="img-circle" height="55" width="55" alt="Avatar"> </div> </div> <div class="col-sm-9"> <div class="well"> <p>Message randomMessage randomMessage randomMessage randomMessage randomMessage randomMessage randomMessage randomMessage randomMessage randomMessage random</p> </div> </div> </div> </div> </div>';
     }
     document.getElementById("test").innerHTML = text;
     </script>
@@ -135,7 +123,7 @@ class WelcomeMessage{
     <div class="row">
         <div class="col-sm-4  text-center">
         <form action = "/cgi-bin/hello_get.cgi" method = "get">
-             <textarea rows = "5" cols = "124.5" name = "description"> Enter text here... </textarea>
+             <textarea rows = "5" cols = "124" name = "description"> Enter text here... </textarea>
 
              <input type = "submit" value = "submit" />
           </form>
