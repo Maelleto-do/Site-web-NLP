@@ -6,7 +6,7 @@ define("PASSWORD", "Tristan29!"); // The database password
 define("DATABASE", "tdesbarat001"); // The database name
 
 class AdminCheckLoginModel{
-    public function checkLoginAdmin(){
+    public function checkLoginAdmin($post){
 
         //Connection to PDO
         try {
@@ -21,7 +21,7 @@ class AdminCheckLoginModel{
 
         //On récupère l'USERNAME et le PW que l'utilisateur a tapé dans le formulaire
         $USERNAME = "Admin";
-        $PW = $_POST['Admin_PW'];
+        $PW = $post['Admin_PW'];
 
         //Connexion raté car USERNAME ou PW est vide -> LoginNotOk
         if (empty($PW)){

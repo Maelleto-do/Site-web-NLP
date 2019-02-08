@@ -10,10 +10,10 @@ class AdminSignUpNewUserController{
     private $model;
     private $ADD_DB;
 
-    function __construct(){
+    function __construct($post){
         $this->ADD_DB = false;
         $this->model = new AdminSignUpNewUserModel();
-        $this->ADD_DB = $this->model->SignUpUser();
+        $this->ADD_DB = $this->model->SignUpUser($post);
 
         //Si SignUpUser() renvoie 0, pas d'erreurs
         if(!$this->ADD_DB){

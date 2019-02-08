@@ -7,7 +7,8 @@ define("DATABASE", "tdesbarat001"); // The database name
 
 
 class CheckLoginModel{
-    public function checkLogin(){
+
+    public function checkLogin($post){
 
         // Establishement of connexion to the database
         try {
@@ -21,8 +22,8 @@ class CheckLoginModel{
 
 
         //On récupère l'USERNAME et le PW que l'utilisateur a tapé dans le formulaire
-        $USERNAME = $_POST['USERNAME'];
-        $PW = $_POST['PW'];
+        $USERNAME = $post['USERNAME'];
+        $PW = $post['PW'];
 
 
         if (empty($USERNAME) || empty($PW)){

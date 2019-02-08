@@ -15,62 +15,92 @@ session_start();
 
 <?php
 
-if(isset($_POST['TASK'])){
-    switch($_POST['TASK']){
+$file = fopen('log/messages.log','a');
 
-        case 'Deconnexion':
-        $class_name = 'LoggedOutController';
-        session_unset();
-        session_destroy();
-        break;
 
-        case 'CheckLogin':
-        $class_name = 'CheckLoginController';
-        break;
+if($_SERVER['REQUEST_METHOD'] == 'GET'){
+    fputs($file, __FILE__.'('.__LINE__.')'."\n");
+    if( isset($_SESSION['POST']) ){
 
-        case 'AdminCheckLogin':
-        $class_name = 'AdminCheckLoginController';
-        break;
+        $post = $_SESSION['POST'];
+        $task = $post['TASK'];
+        unset($_SESSION['POST']);
+        fputs($file, __FILE__.'('.__LINE__.')'."\n");
+        switch($task){
 
-        case 'AdminSignUpNewUser':
-        $class_name = 'AdminSignUpNewUserController';
-        break;
+            case 'Deconnexion':
+            fputs($file, __FILE__.'('.__LINE__.')'."\n");
+            $class_name = 'LoggedOutController';
+            session_unset();
+            session_destroy();
+            break;
 
-        case 'Info':
-        $class_name = 'InfoController';
-        break;
+            case 'CheckLogin':
+            fputs($file, __FILE__.'('.__LINE__.')'."\n");
+            $class_name = 'CheckLoginController';
+            break;
 
-        case 'Contact':
-        $class_name = 'ContactController';
-        break;
+            case 'AdminCheckLogin':
+            fputs($file, __FILE__.'('.__LINE__.')'."\n");
+            $class_name = 'AdminCheckLoginController';
+            break;
 
-        default:
-        $class_name = 'WelcomeController';
-        break;
+            case 'AdminSignUpNewUser':
+            fputs($file, __FILE__.'('.__LINE__.')'."\n");
+            $class_name = 'AdminSignUpNewUserController';
+            break;
+
+            case 'Info':
+            fputs($file, __FILE__.'('.__LINE__.')'."\n");
+            $class_name = 'InfoController';
+            break;
+
+            case 'Contact':
+            fputs($file, __FILE__.'('.__LINE__.')'."\n");
+            $class_name = 'ContactController';
+            break;
+
+            default:
+            fputs($file, __FILE__.'('.__LINE__.')'."\n");
+            $class_name = 'WelcomeController';
+            break;
+        }
+    }else{
+        $post = NULL;
+        if($_SESSION['logged'] == 1){
+            fputs($file, __FILE__.'('.__LINE__.')'."Already Logged.\n");
+            $class_name = 'AlreadyLoggedController';
+        }else{
+            fputs($file, __FILE__.'('.__LINE__.')'."\n");
+            $class_name = 'WelcomeController';
+        }
+    }
+
+    if(isset($_SESSION['logged']) and $_SESSION['logged'] == 1){
+        if( (time() - $_SESSION['last_action']) > SESSION_MAXLIFETIME ){
+            session_destroy();
+            unset($_SESSION['logged']);
+            unset($_SESSION['last_action']);
+            unset($_SESSION['USERNAME']);
+            $class_name = 'SessionExpiredController';
+            fputs($file, __FILE__.'('.__LINE__.')'."\n");
+        }else{
+            $_SESSION['last_action'] = time();
+            fputs($file, __FILE__.'('.__LINE__.')'."\n");
+        }
     }
 }else{
-    $class_name = 'WelcomeController';
-}
-
-if(isset($_SESSION['logged']) and $_SESSION['logged'] == 1){
-    if( (time() - $_SESSION['last_action']) > SESSION_MAXLIFETIME ){
-        session_destroy();
-        unset($_SESSION['logged']);
-        unset($_SESSION['last_action']);
-        unset($_SESSION['USERNAME']);
-        $class_name = 'SessionExpiredController';
-    }else{
-        $_SESSION['last_action'] = time();
-    }
+    fputs($file, __FILE__.'('.__LINE__.')'."\n");
+    $_SESSION['POST'] = $_POST;
+    header('Location: index.php');
+    die;
 }
 
 
 
-
-
-
+fputs($file, __FILE__.'('.__LINE__.')'."\n");
 include_once 'controller/'.$class_name.'.php';
-$controller = new $class_name();
+$controller = new $class_name($post);
 $controller->launch();
 
 

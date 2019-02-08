@@ -5,7 +5,7 @@ include_once 'view/ContactView.php';
 class ContactController{
     private $view;
 
-    function __construct(){
+    function __construct($post){
         $this -> view = new ContactView();
     }
 

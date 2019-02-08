@@ -8,10 +8,10 @@ class CheckLoginController{
     private $model;
     private $checkLoginAnswer;
 
-    function __construct(){
+    function __construct($post){
         $checkLoginAnswer = false;
         $this->model = new CheckLoginModel();
-        $this->checkLoginAnswer = $this->model->checkLogin();
+        $this->checkLoginAnswer = $this->model->checkLogin($post);
 
         //Si checkLogin() renvoie 0, pas d'erreurs
         if(!$this->checkLoginAnswer){

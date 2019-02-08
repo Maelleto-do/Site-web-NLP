@@ -8,13 +8,13 @@ class AdminSignUpNewUserModel{
 
     private $PW_HASH;
     private $EMAIL_HASH;
-    public function SignUpUser(){
+    public function SignUpUser($post){
 
         //On récupère l'USERNAME, l'E-Mail et le PW que l'utilisateur a tapé dans le formulaire
-        $USERNAME = $_POST['USERNAME_USER'];
-        $MAIL = $_POST['MAIL_USER'];
-        $PW = $_POST['PW_USER'];
-        $PW_REPEAT = $_POST['PW_USER_REPEAT'];
+        $USERNAME = $post['USERNAME_USER'];
+        $MAIL = $post['MAIL_USER'];
+        $PW = $post['PW_USER'];
+        $PW_REPEAT = $post['PW_USER_REPEAT'];
 
         //Connexion raté car USERNAME ou PW ou MAIL est vide :
         if (empty($USERNAME) || empty($PW) || empty($MAIL) ){

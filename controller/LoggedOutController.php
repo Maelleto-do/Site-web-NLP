@@ -5,7 +5,7 @@ include_once 'view/LoggedOutView.php';
 class LoggedOutController{
     private $view;
 
-    function __construct(){
+    function __construct($post){
         $this -> view = new LoggedOutView();
     }
 

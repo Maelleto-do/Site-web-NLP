@@ -9,10 +9,10 @@ class AdminCheckLoginController{
     private $model;
     private $checkLoginAdminAnswer;
 
-    function __construct(){
+    function __construct($post){
         $this->checkLoginAdminAnswer = 0;
         $this->model = new AdminCheckLoginModel();
-        $this->checkLoginAdminAnswer = $this->model->checkLoginAdmin();
+        $this->checkLoginAdminAnswer = $this->model->checkLoginAdmin($post);
 
         //Si checkLoginAdmin() renvoie 0, pas d'erreurs
         if(!$this->checkLoginAdminAnswer){
