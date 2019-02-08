@@ -103,8 +103,21 @@ class WelcomeMessage{
     <div class="container-fluid text-center">
     <div class="row content">
     <div class="col-sm-2 sidenav">
+    <div class="well">
+        <p><a href="#">My Profile</a></p>
+        <img src="img/bird.jpg" class="img-circle" height="65" width="65" alt="Avatar">
+      </div>
+      <div class="well">
+        <p><a href="#">Interests</a></p>
+        <p>
+          <span class="label label-default">Aya Nakamura</span>
+          <span class="label label-primary">Norman fait des vidéos</span>
+          <span class="label label-success">Mentir</span>
+        </p>
+      </div>
     <p><a href="#"></a></p>
     </div>
+
     <div class="col-sm-8 text-left">
     <p>Veuillez vous connecter pour continuer.</p>
     $this->messagetoprint
@@ -118,6 +131,17 @@ class WelcomeMessage{
     }
     document.getElementById("test").innerHTML = text;
     </script>
+
+    <div class="row">
+        <div class="col-sm-4  text-center">
+        <form action = "/cgi-bin/hello_get.cgi" method = "get">
+             <textarea rows = "5" cols = "124" name = "description"> Enter text here... </textarea>
+
+             <input type = "submit" value = "submit" />
+          </form>
+        </div>
+    </div>
+
 
     </div>
     <div class="col-sm-2 sidenav">
