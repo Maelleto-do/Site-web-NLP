@@ -127,7 +127,7 @@ class WelcomeMessage{
     <script>
     var text = "";
     for(var i = 0; i < 10; i++){
-        text += '<div class="row"> <div class="col-sm-3"> <div class="well"> <p>John</p> <img src="img/bird.jpg" class="img-circle" height="55" width="55" alt="Avatar"> </div> </div> <div class="col-sm-9"> <div class="well"> <p>Message random</p> </div> </div> </div> </div>';
+        text += '<div class="panel panel-default"> <div class="panel-body"> <div class="row"> <div class="col-sm-3"> <div class="well"> <p>John</p> <img src="img/bird.jpg" class="img-circle" height="55" width="55" alt="Avatar"> </div> </div> <div class="col-sm-9"> <div class="well"> <p>Message randomMessage randomMessage randomMessage randomMessage randomMessage randomMessage randomMessage randomMessage randomMessage randomMessage randomMessage random</p> </div> </div> </div> </div> </div>';
     }
     document.getElementById("test").innerHTML = text;
     </script>
@@ -135,7 +135,7 @@ class WelcomeMessage{
     <div class="row">
         <div class="col-sm-4  text-center">
         <form action = "/cgi-bin/hello_get.cgi" method = "get">
-             <textarea rows = "5" cols = "124" name = "description"> Enter text here... </textarea>
+             <textarea rows = "5" cols = "124.5" name = "description"> Enter text here... </textarea>
 
              <input type = "submit" value = "submit" />
           </form>
