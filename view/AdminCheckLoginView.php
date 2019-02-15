@@ -17,8 +17,8 @@ class AdminCheckLoginView{
   }
 
 
-  public function launch(){
-    $this->username = $_SESSION['USERNAME'];
+  public function launch($post){
+    $this->username = $post['USERNAME'];
     $this->MESSAGE_SIGNUP = array(
       'Veuillez saisir des données',
       'Le prénom.nom que vous avez tenté d\'ajouter fais déjà parti de la base de données !',
@@ -44,7 +44,7 @@ class AdminCheckLoginView{
    <input id="Main_Form_TASK" type="hidden" name="TASK" value="">
    </form>
 
-   <nav class="navbar navbar-inverse">
+   <nav class="navbar navbar-default">
    <div class="container-fluid">
    <div class="navbar-header">
    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">

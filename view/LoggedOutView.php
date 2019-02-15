@@ -2,7 +2,7 @@
 
 class LoggedOutView{
 
-  public function launch(){
+  public function launch($post){
 
     echo <<<VIEW
     <body>

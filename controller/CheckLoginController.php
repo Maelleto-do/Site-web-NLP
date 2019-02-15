@@ -14,7 +14,7 @@ class CheckLoginController{
         $this->checkLoginAnswer = $this->model->checkLogin($post);
 
         //Si checkLogin() renvoie 0, pas d'erreurs
-        if(!$this->checkLoginAnswer){
+        if($this->checkLoginAnswer == 0){
             $this -> view = new LoginSuccessful();
         }else{
             $this -> view = new Welcome();
@@ -23,8 +23,8 @@ class CheckLoginController{
         }
     }
 
-    function launch(){
-        $this->view->launch();
+    function launch($post){
+        $this->view->launch($post);
     }
 }
 ?>

@@ -46,10 +46,10 @@ class CheckLoginModel{
         //On test si le PW de la BDD correspond au PW de l'utilisateur
         if($res['PWD']){
             if(password_verify($PW,$res['PWD'])){
-                $checkLogin = 0;
                 $_SESSION['logged'] = 1;
                 $_SESSION['USERNAME'] = $USERNAME;
                 $_SESSION['last_action'] = time();
+                return 0;
             }else{
                 //Incorrect password
                 $checkLogin = 2;

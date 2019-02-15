@@ -9,8 +9,8 @@ class SessionExpiredController{
         $this -> view = new SessionExpiredView();
     }
 
-    function launch(){
-        $this->view->launch();
+    function launch($post){
+        $this->view->launch($post);
     }
 }
 ?>

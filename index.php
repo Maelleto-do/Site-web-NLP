@@ -21,8 +21,10 @@ $file = fopen('log/messages.log','a');
 if($_SERVER['REQUEST_METHOD'] == 'GET'){
     fputs($file, __FILE__.'('.__LINE__.')'."\n");
     if( isset($_SESSION['POST']) ){
-
         $post = $_SESSION['POST'];
+        if(isset($_SESSION['USERNAME'])){
+            $post['USERNAME'] = $_SESSION['USERNAME'];
+        }
         $task = $post['TASK'];
         unset($_SESSION['POST']);
         fputs($file, __FILE__.'('.__LINE__.')'."\n");
@@ -67,7 +69,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
         }
     }else{
         $post = NULL;
-        if($_SESSION['logged'] == 1){
+        if(isset($_SESSION['logged']) && $_SESSION['logged'] == 1){
             fputs($file, __FILE__.'('.__LINE__.')'."Already Logged.\n");
             $class_name = 'AlreadyLoggedController';
         }else{
@@ -101,7 +103,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
 fputs($file, __FILE__.'('.__LINE__.')'."\n");
 include_once 'controller/'.$class_name.'.php';
 $controller = new $class_name($post);
-$controller->launch();
+$controller->launch($post);
 
 
 ?>

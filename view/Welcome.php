@@ -11,7 +11,7 @@ class Welcome{
   }
 
 
-  public function launch(){
+  public function launch($post){
       $this->MESSAGE_LOGIN = array(
         'Veuillez saisir des données',
         'Le mot de passe que vous avez tapé est incorrect',

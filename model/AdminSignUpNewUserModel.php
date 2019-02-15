@@ -65,7 +65,7 @@ class AdminSignUpNewUserModel{
         $req = $bdd->prepare("INSERT INTO users(USERNAME, EMAIL, PWD)VALUES(:USERNAME, :EMAIL, :PWD)");
         if($req){
             $req->execute(array('USERNAME' => $USERNAME, 'EMAIL' => $this->EMAIL_HASH, 'PWD' => $this->PW_HASH));
-            //return 0;
+            return 0;
         }else{
             $req->errorInfo();
             return 5;

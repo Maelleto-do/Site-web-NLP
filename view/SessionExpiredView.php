@@ -2,11 +2,11 @@
 
 class SessionExpiredView{
 
-  public function launch(){
+  public function launch($post){
     echo <<<VIEW
     <body>
 
-    <nav class="navbar navbar-inverse">
+    <nav class="navbar navbar-default">
     <div class="container-fluid">
     <div class="navbar-header">
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">

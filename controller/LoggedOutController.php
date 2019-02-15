@@ -9,8 +9,8 @@ class LoggedOutController{
         $this -> view = new LoggedOutView();
     }
 
-    function launch(){
-        $this->view->launch();
+    function launch($post){
+        $this->view->launch($post);
     }
 }
 ?>

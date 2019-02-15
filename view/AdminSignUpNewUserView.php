@@ -4,8 +4,8 @@
 class AdminSignUpNewUserView{
 
 
-  public function launch(){
-    $this->username = $_SESSION['USERNAME'];
+  public function launch($post){
+    $this->username = $post['USERNAME'];
 
 
     echo <<<VIEW
@@ -15,7 +15,7 @@ class AdminSignUpNewUserView{
    <input id="Main_Form_TASK" type="hidden" name="TASK" value="">
    </form>
 
-   <nav class="navbar navbar-inverse">
+   <nav class="navbar navbar-default">
    <div class="container-fluid">
    <div class="navbar-header">
    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
