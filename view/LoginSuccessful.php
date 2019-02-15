@@ -21,6 +21,7 @@ class LoginSuccessful{
    <li><a href="#" onclick="$('#Main_Form_TASK').val('Info'); $('#Main_Form').submit();">Informations</a></li>
    <li><a href="#" onclick="$('#Main_Form_TASK').val('Contact'); $('#Main_Form').submit();">Contacter un administrateur</a></li>
    <li><a href="#" onclick="$('#Main_Form_TASK').val('Deconnexion'); $('#Main_Form').submit();">Se déconnecter</a></li>
+   <li><a href="#" onclick="$('#Main_Form_TASK').val('TestSujet'); $('#Main_Form').submit();">Test Sujet</a></li>
    </ul>
    </div>
    </div>
