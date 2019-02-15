@@ -22,9 +22,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
     fputs($file, __FILE__.'('.__LINE__.')'."\n");
     if( isset($_SESSION['POST']) ){
         $post = $_SESSION['POST'];
-        if(isset($_SESSION['USERNAME'])){
-            $post['USERNAME'] = $_SESSION['USERNAME'];
-        }
+
         $task = $post['TASK'];
         unset($_SESSION['POST']);
         fputs($file, __FILE__.'('.__LINE__.')'."\n");
@@ -103,6 +101,9 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
 fputs($file, __FILE__.'('.__LINE__.')'."\n");
 include_once 'controller/'.$class_name.'.php';
 $controller = new $class_name($post);
+if(isset($_SESSION['USERNAME'])){
+    $post['USERNAME'] = $_SESSION['USERNAME'];
+}
 $controller->launch($post);
 
 

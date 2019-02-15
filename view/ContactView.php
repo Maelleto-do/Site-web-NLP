@@ -9,11 +9,6 @@ class ContactView{
 
     echo <<<VIEW
    <body>
-
-   <form id="Main_Form" action="index.php" method="POST">
-   <input id="Main_Form_TASK" type="hidden" name="TASK" value="">
-   </form>
-
    <nav class="navbar navbar-default">
    <div class="container-fluid">
    <div class="navbar-header">
@@ -46,7 +41,9 @@ class ContactView{
    </div>
    </div>
    </div>
-
+   <form id="Main_Form" action="index.php" method="POST">
+   <input id="Main_Form_TASK" type="hidden" name="TASK" value="">
+   </form>
    </body>
 VIEW;
 
