@@ -12,8 +12,10 @@ class WelcomeController{
         $this -> view = new Welcome();
     }
 
-    function launch($post){
-        $this->view->launch($post);
+    function launch(){
+        $this->view->launch();
     }
 }
+
+
 ?>
