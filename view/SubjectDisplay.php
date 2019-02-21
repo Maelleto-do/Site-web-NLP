@@ -23,7 +23,7 @@ class SubjectDisplay{
    <body>
 
    <form id="Main_Form" action="index.php" method="POST">
-   <input id="Main_Form_TASK" type="hidden" name="TASK" value="">
+    <input id="Main_Form_TASK" type="hidden" name="TASK" value="">
    </form>
 
    <nav class="navbar navbar-default">
@@ -85,11 +85,10 @@ class SubjectDisplay{
 
    <div class="row">
        <div class="col-sm-4  text-center">
-       <form action = "/cgi-bin/hello_get.cgi" method = "get">
-            <textarea rows = "5" cols = "124" name = "description"> Enter text here... </textarea>
-
-            <input type = "submit" value = "submit" />
-         </form>
+            <form action = "index.php" method = "POST">
+                <textarea rows = "5" cols = "124" name = "MESSAGE"></textarea>
+                <input type="submit" name="TASK" value="SendMessage">
+            </form>
        </div>
    </div>
    </div>

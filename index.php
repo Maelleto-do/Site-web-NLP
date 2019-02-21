@@ -55,6 +55,11 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
             $class_name = 'AdminSignUpNewUserController';
             break;
 
+            case 'SendMessage':
+            fputs($file, __FILE__.'('.__LINE__.')'."\n");
+            $class_name = 'SendMessageController';
+            break;
+
             case 'Info':
             fputs($file, __FILE__.'('.__LINE__.')'."\n");
             $class_name = 'InfoController';
