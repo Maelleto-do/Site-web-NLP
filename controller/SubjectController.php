@@ -1,6 +1,7 @@
 <?php
 include_once 'view/SubjectDisplay.php';
 include_once 'model/SubjectModel.php';
+include_once 'controller/MessageController.php';
 include_once 'view/Welcome.php';
 
 class SubjectController{
@@ -14,6 +15,7 @@ class SubjectController{
 
         //Si checkLogin() renvoie 0, pas d'erreurs
         if(!$this->checkSubject){
+            $controller = new MessageController($post);
             $this -> view = new SubjectDisplay();
         }else{
             $this -> view = new Welcome();

@@ -106,9 +106,15 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
 fputs($file, __FILE__.'('.__LINE__.')'."\n");
 include_once 'controller/'.$class_name.'.php';
 $controller = new $class_name($post);
+
 if(isset($_SESSION['USERNAME'])){
     $post['USERNAME'] = $_SESSION['USERNAME'];
 }
+
+/*if(isset($_SESSION['IDSUBJECT'])){
+    $post['IDSUBJECT'] = $_SESSION['IDSUBJECT'];
+}*/
+
 $controller->launch($post);
 
 

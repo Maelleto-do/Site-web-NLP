@@ -8,6 +8,7 @@ class SubjectDisplay{
   private $nbMessages;
   private $isResolved;
   private $creationDate;
+  private $message_list;
 
   public function launch(){
     $this->username = $_SESSION['USERNAME'];
@@ -16,6 +17,7 @@ class SubjectDisplay{
     $this->nbMessages = $_SESSION['NBMESSAGES'];
     $this->isResolved = $_SESSION['ISRESOLVED'];
     $this->creationDate = $_SESSION['CREATIONDATE'];
+    $this->message_list = $_SESSION['MESSAGE_LIST'];
 
     echo <<<VIEW
    <body>
@@ -75,6 +77,10 @@ class SubjectDisplay{
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="panel panel-default">
+        $this->message_list
     </div>
 
    <div class="row">
