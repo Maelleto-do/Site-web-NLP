@@ -1,4 +1,8 @@
 <?php
+
+include("bdd_connection.php");
+
+
 class SubjectModel{
     public function checkSubject($post){
 

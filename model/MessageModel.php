@@ -1,5 +1,7 @@
 <?php
 
+include("bdd_connection.php");
+
 class MessageModel{
     public function getMessages($post){
 

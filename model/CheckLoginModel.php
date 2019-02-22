@@ -1,6 +1,6 @@
-<?
-
+<?php
 include("bdd_connection.php");
+
 
 class CheckLoginModel{
 
