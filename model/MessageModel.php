@@ -1,17 +1,13 @@
 <?php
 
+include_once 'DBConnection.php';
+
 class MessageModel{
     public function getMessages($post){
 
         //Connection to PDO
-        try {
-            $dsn = "mysql:host=".HOST.";dbname=".DATABASE;
-            $bdd = new PDO($dsn, USER, PASSWORD);
-            $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        } catch (PDOException $e) {
-            echo "La connexion à la base de données a echoué".$e->getMessage();
-            exit();
-        }
+        $DBConnection = new DBConnection();
+        $bdd = $DBConnection->getDB();
 
         //$IDSUBJECT = $post['IDSUBJECT'];
         $message_list_string = "";
@@ -40,4 +36,3 @@ class MessageModel{
         return $checkMessages;
     }
 }
-?>

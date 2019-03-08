@@ -1,25 +1,14 @@
 <?php
 
-define("HOST", "dbserver"); // The host to connect to
-define("USER", "tdesbarat001"); // The database username
-define("PASSWORD", "Tristan29!"); // The database password
-define("DATABASE", "tdesbarat001"); // The database name
-
+include("DBConnection.php");
 
 class CheckLoginModel{
 
     public function checkLogin($post){
 
-        // Establishement of connexion to the database
-        try {
-            $dsn = "mysql:host=".HOST.";dbname=".DATABASE;
-            $bdd = new PDO($dsn, USER, PASSWORD);
-            $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        } catch (PDOException $e) {
-            echo "La connexion à la base de données a echoué".$e->getMessage();
-            exit();
-        }
-
+        //Connection to pdo
+        $DBConnection = new DBConnection();
+        $bdd = $DBConnection->getDB();
 
         //On récupère l'USERNAME et le PW que l'utilisateur a tapé dans le formulaire
         $USERNAME = $post['USERNAME'];
@@ -64,4 +53,3 @@ class CheckLoginModel{
     }
 
 }
-?>

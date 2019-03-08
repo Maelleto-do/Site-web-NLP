@@ -1,22 +1,13 @@
 <?php
 
-define("HOST", "dbserver"); // The host to connect to
-define("USER", "tdesbarat001"); // The database username
-define("PASSWORD", "Tristan29!"); // The database password
-define("DATABASE", "tdesbarat001"); // The database name
+include("DBConnection.php");
 
 class SendMessageModel{
     public function sendMessage($post){
 
-        //Connection to PDO
-        try {
-            $dsn = "mysql:host=".HOST.";dbname=".DATABASE;
-            $bdd = new PDO($dsn, USER, PASSWORD);
-            $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        } catch (PDOException $e) {
-            echo "La connexion à la base de données a echoué".$e->sendMessage();
-            exit();
-        }
+        //Connection to pdo
+        $DBConnection = new DBConnection();
+        $bdd = $DBConnection->getDB();
 
         //$IDSUBJECT = $post['IDSUBJECT'];
         $message= $post['MESSAGE'];
@@ -50,4 +41,3 @@ class SendMessageModel{
         return $checkMessageSent;
     }
 }
-?>
