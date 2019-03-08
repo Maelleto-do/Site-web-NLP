@@ -35,9 +35,14 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
             session_destroy();
             break;
 
-            case 'TestSujet':
+            case 'MessageSujet':
             fputs($file, __FILE__.'('.__LINE__.')'."\n");
             $class_name = 'SubjectController';
+            break;
+
+            case 'TestMultipleSubjets':
+            fputs($file, __FILE__.'('.__LINE__.')'."\n");
+            $class_name = 'MultipleSubjectsController';
             break;
 
             case 'CheckLogin':

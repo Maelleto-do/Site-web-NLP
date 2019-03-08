@@ -9,13 +9,12 @@ class MessageModel{
         $DBConnection = new DBConnection();
         $bdd = $DBConnection->getDB();
 
-        //$IDSUBJECT = $post['IDSUBJECT'];
+        $subjectID = $post['IDSUBJECT'];
         $message_list_string = "";
 
         //Recherche des infos du sujet selectionné (actuellement le sujet avec subjectID=1)
         $req = $bdd->prepare('SELECT * FROM Message WHERE subjectID = ?');
-        //$req->execute($IDSUBJECT);
-        $req->execute(array(1));
+        $req->execute(array($subjectID));
         $message_list = $req->fetchAll(PDO::FETCH_ASSOC);
 
         foreach ($message_list as $row => $link) {
