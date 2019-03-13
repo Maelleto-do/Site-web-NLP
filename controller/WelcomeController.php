@@ -2,8 +2,6 @@
 include_once 'view/Welcome.php';
 
 
-
-
 class WelcomeController{
     private $view;
 

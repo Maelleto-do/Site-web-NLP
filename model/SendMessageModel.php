@@ -26,9 +26,13 @@ class SendMessageModel{
 
         fclose($monfichier);
 
+        //$output = shell_exec('python model/python/test.py');
+        exec('python model/python/test.py' ,$output, $return_val );
+        //echo "<pre>$output</pre>";
 
-        $output = shell_exec('python model/python/test.py');
+        //echo "resultat du test ".$output;
 
+        //echo "resultat du test ".$output[0];
 
         $username = $_SESSION['USERNAME'];
 
@@ -53,7 +57,7 @@ class SendMessageModel{
                                 `0`,
                                 date(Y-m-d H:i:s); ');*/
         //$req->execute($IDSUBJECT);
-        if($req && $output == NULL){
+        if($req && $return_val == 0 ){
             $req->execute(array('IDSUBJECT' => /*$IDSUBJECT*/1, 'MESSAGE' => $message, 'AUTHOR' => $username, 'ISEDITED' => 0, 'TIMEDATE' => date("Y-m-d H:i:s")));
         }
         $checkMessageSent = 0;

@@ -10,7 +10,10 @@ def find_word():
         for i in range(0,len(phrase)):
             #print phrase[i]
             if phrase[i] == "moche":
-                print "ce mot est interdit "
+                #print "ce mot est interdit "
+                return 1
+    return 0
 
-    #print "ok"
-find_word()
+
+
+exit(find_word())
