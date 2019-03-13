@@ -5,12 +5,12 @@ def find_word():
 
     for ligne in f :
         phrase = ligne.split()
-        print phrase
-        print len(phrase)
+        #print phrase
+        #print len(phrase)
         for i in range(0,len(phrase)):
-            print phrase[i]
+            #print phrase[i]
             if phrase[i] == "moche":
                 print "ce mot est interdit "
 
-
+    #print "ok"
 find_word()
