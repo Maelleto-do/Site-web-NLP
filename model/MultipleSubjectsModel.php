@@ -1,27 +1,18 @@
 <?php
 
-define("HOST", "dbserver"); // The host to connect to
-define("USER", "tdesbarat001"); // The database username
-define("PASSWORD", "Tristan29!"); // The database password
-define("DATABASE", "tdesbarat001"); // The database name
+include_once 'DBConnection.php';
 
 class MultipleSubjectsModel{
     public function checkSubjects($post){
 
-        //Connection to PDO
-        try {
-            $dsn = "mysql:host=".HOST.";dbname=".DATABASE;
-            $bdd = new PDO($dsn, USER, PASSWORD);
-            $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        } catch (PDOException $e) {
-            echo "La connexion à la base de données a echoué".$e->getMessage();
-            exit();
-        }
+        //Connexion à la db
+        $DBConnection = new DBConnection();
+        $db = $DBConnection->getDB();
 
         $subject_list_string = "";
 
         //Recherche des infos de tous les sujets
-        $req = $bdd->prepare('SELECT * FROM Sujet ORDER BY creationDate DESC');
+        $req = $db->prepare('SELECT * FROM Sujet ORDER BY creationDate DESC');
         $req->execute();
         $subject_list = $req->fetchAll(PDO::FETCH_ASSOC);
 

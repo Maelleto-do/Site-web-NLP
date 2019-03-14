@@ -5,15 +5,15 @@ include_once 'DBConnection.php';
 class MessageModel{
     public function getMessages($post){
 
-        //Connection to PDO
+        //Connexion à la db
         $DBConnection = new DBConnection();
-        $bdd = $DBConnection->getDB();
+        $db = $DBConnection->getDB();
 
         $subjectID = $post['IDSUBJECT'];
         $message_list_string = "";
 
         //Recherche des infos du sujet selectionné (actuellement le sujet avec subjectID=1)
-        $req = $bdd->prepare('SELECT * FROM Message WHERE subjectID = ?');
+        $req = $db->prepare('SELECT * FROM Message WHERE subjectID = ?');
         $req->execute(array($subjectID));
         $message_list = $req->fetchAll(PDO::FETCH_ASSOC);
 

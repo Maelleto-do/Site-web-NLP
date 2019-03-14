@@ -5,9 +5,9 @@ include("DBConnection.php");
 class SendMessageModel{
     public function sendMessage($post){
 
-        //Connection to pdo
+        //Connexion à la db
         $DBConnection = new DBConnection();
-        $bdd = $DBConnection->getDB();
+        $db = $DBConnection->getDB();
 
         //$IDSUBJECT = $post['IDSUBJECT'];
         $message= $post['MESSAGE'];
@@ -15,10 +15,10 @@ class SendMessageModel{
 
 
         //Recherche des infos du sujet selectionné (actuellement le sujet avec subjectID=1)
-        $req = $bdd->prepare("INSERT INTO Message (messageID, subjectID, messageContent, author, isEdited, `dateTime`) VALUES (NULL, :IDSUBJECT, :MESSAGE, :AUTHOR, :ISEDITED, :TIMEDATE); ");
+        $req = $db->prepare("INSERT INTO Message (messageID, subjectID, messageContent, author, isEdited, `dateTime`) VALUES (NULL, :IDSUBJECT, :MESSAGE, :AUTHOR, :ISEDITED, :TIMEDATE); ");
 
 
-        /*$req = $bdd->prepare('INSERT INTO  `tdesbarat001`.`Message` (
+        /*$req = $db->prepare('INSERT INTO  `tdesbarat001`.`Message` (
                                 `messageID` ,
                                 `subjectID` ,
                                 `messageContent` ,
