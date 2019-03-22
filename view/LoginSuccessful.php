@@ -17,7 +17,7 @@ class LoginSuccessful{
    </div>
    <div class="collapse navbar-collapse" id="myNavbar">
    <ul class="nav navbar-nav">
-   <li><a data-toggle="modal">Bonjour $this->username </a></li>
+   <li><a href="#" onclick="$('#Main_Form_TASK').val('Logged'); $('#Main_Form').submit();">Bonjour $this->username</a></li>
    <li><a href="#" onclick="$('#Main_Form_TASK').val('Info'); $('#Main_Form').submit();">Informations</a></li>
    <li><a href="#" onclick="$('#Main_Form_TASK').val('Contact'); $('#Main_Form').submit();">Contacter un administrateur</a></li>
    <li><a href="#" onclick="$('#Main_Form_TASK').val('Deconnexion'); $('#Main_Form').submit();">Se déconnecter</a></li>
@@ -39,8 +39,8 @@ class LoginSuccessful{
      <div class="well">
        <p><a href="#">Interests</a></p>
        <p>
-         <span class="label label-default">Aya Nakamura</span>
-         <span class="label label-primary">Norman fait des vidéos</span>
+         <span class="label label-default">Aya Nakamura</span><br><br>
+         <span class="label label-primary">Norman fait des vidéos</span><br><br>
          <span class="label label-success">Mentir</span>
        </p>
      </div>
@@ -49,26 +49,6 @@ class LoginSuccessful{
    <div class="col-sm-8 text-left">
    <h1>Bienvenue sur le forum</h1>
    Connexion réussie.
-
-   <p id="test"></p>
-
-   <script>
-   var text = "";
-   for(var i = 0; i < 10; i++){
-       text += '<div class="panel panel-default"> <div class="panel-body"> <div class="row"> <div class="col-sm-3"> <div class="well"> <p>John</p> <img src="img/bird.jpg" class="img-circle" height="55" width="55" alt="Avatar"> </div> </div> <div class="col-sm-9"> <div class="well"> <p>Message randomMessage randomMessage randomMessage randomMessage randomMessage randomMessage randomMessage randomMessage randomMessage randomMessage random</p> </div> </div> </div> </div> </div>';
-   }
-   document.getElementById("test").innerHTML = text;
-   </script>
-
-   <div class="row">
-       <div class="col-sm-4  text-center">
-       <form action = "/cgi-bin/hello_get.cgi" method = "get">
-            <textarea rows = "5" cols = "124" name = "description"> Enter text here... </textarea>
-
-            <input type = "submit" value = "submit" />
-         </form>
-       </div>
-   </div>
    </div>
    <div class="col-sm-2 sidenav">
 

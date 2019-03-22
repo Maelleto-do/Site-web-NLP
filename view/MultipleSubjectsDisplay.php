@@ -22,11 +22,6 @@ class MultipleSubjectsDisplay{
     echo <<<VIEW
    <body>
 
-   <form id="Main_Form" action="index.php" method="POST">
-    <input id="Main_Form_TASK" type="hidden" name="TASK" value="">
-    <input id="Main_Form_IDSUBJECT" type="hidden" name="IDSUBJECT" value="">
-   </form>
-
    <nav class="navbar navbar-default">
    <div class="container-fluid">
    <div class="navbar-header">
@@ -35,7 +30,7 @@ class MultipleSubjectsDisplay{
    </div>
    <div class="collapse navbar-collapse" id="myNavbar">
    <ul class="nav navbar-nav">
-   <li><a data-toggle="modal">Bonjour $this->username </a></li>
+   <li><a href="#" onclick="$('#Main_Form_TASK').val('Logged'); $('#Main_Form').submit();">Bonjour $this->username</a></li>
    <li><a href="#" onclick="$('#Main_Form_TASK').val('Info'); $('#Main_Form').submit();">Informations</a></li>
    <li><a href="#" onclick="$('#Main_Form_TASK').val('Contact'); $('#Main_Form').submit();">Contacter un administrateur</a></li>
    <li><a href="#" onclick="$('#Main_Form_TASK').val('Deconnexion'); $('#Main_Form').submit();">Se déconnecter</a></li>
@@ -56,9 +51,9 @@ class MultipleSubjectsDisplay{
      <div class="well">
        <p><a href="#">Interests</a></p>
        <p>
-         <span class="label label-default">Aya Nakamura</span>
-         <span class="label label-primary">Norman fait des vidéos</span>
-         <span class="label label-success">Mentir</span>
+       <span class="label label-default">Aya Nakamura</span> <br><br>
+       <span class="label label-primary">Norman fait des vidéos</span> <br><br>
+       <span class="label label-success">Mentir</span>
        </p>
      </div>
    <p><a href="#"></a></p>
@@ -74,10 +69,14 @@ class MultipleSubjectsDisplay{
    </div>
    </div>
 
+   <form id="Main_Form" action="index.php" method="POST">
+    <input id="Main_Form_TASK" type="hidden" name="TASK" value="">
+    <input id="Main_Form_IDSUBJECT" type="hidden" name="IDSUBJECT" value="">
+   </form>
+
    </body>
 VIEW;
 
  }
 }
 ?>
-<!-- input type="hidden" name="TASK" value="Deconnexion" //input type="hidden" name="TASK" value="Info" //input type="hidden" name="TASK" value="Contact" -->

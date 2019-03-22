@@ -15,17 +15,27 @@ session_start();
 
 <?php
 
+
 $file = fopen('log/messages.log','a');
 
-
 if($_SERVER['REQUEST_METHOD'] == 'GET'){
-    fputs($file, __FILE__.'('.__LINE__.')'."\n");
+
+    fputs($file, __FILE__.'('.__LINE__.')'." | On rentre dans le GET.\n");
     if( isset($_SESSION['POST']) ){
+        fputs($file, __FILE__.'('.__LINE__.')'." | SESSION[POST] existe.\n");
         $post = $_SESSION['POST'];
+
+        //Sert au refresh pour garder certaines infos. Temporaire.
+        if(isset($post['TASK'])){
+            $_SESSION['TASK'] = $post['TASK'];
+        }
+        if(isset($post['IDSUBJECT'])){
+            $_SESSION['IDSUBJECT'] = $post['IDSUBJECT'];
+        }
 
         $task = $post['TASK'];
         unset($_SESSION['POST']);
-        fputs($file, __FILE__.'('.__LINE__.')'."\n");
+
         switch($task){
 
             case 'Deconnexion':
@@ -75,18 +85,24 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
             $class_name = 'ContactController';
             break;
 
+            case 'Logged':
+            fputs($file, __FILE__.'('.__LINE__.')'."\n");
+            $class_name = 'AlreadyLoggedController';
+            break;
+
             default:
             fputs($file, __FILE__.'('.__LINE__.')'."\n");
             $class_name = 'WelcomeController';
             break;
         }
     }else{
-        $post = NULL;
+
         if(isset($_SESSION['logged']) && $_SESSION['logged'] == 1){
-            fputs($file, __FILE__.'('.__LINE__.')'."Already Logged.\n");
+            fputs($file, __FILE__.'('.__LINE__.')'." | Already Logged.\n");
             $class_name = 'AlreadyLoggedController';
         }else{
-            fputs($file, __FILE__.'('.__LINE__.')'."\n");
+            $post = NULL;
+            fputs($file, __FILE__.'('.__LINE__.')'." | Non connecté, retour à l'accueil.\n");
             $class_name = 'WelcomeController';
         }
     }
@@ -98,32 +114,37 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
             unset($_SESSION['last_action']);
             unset($_SESSION['USERNAME']);
             $class_name = 'SessionExpiredController';
-            fputs($file, __FILE__.'('.__LINE__.')'."\n");
+            fputs($file, __FILE__.'('.__LINE__.')'." | Session expiré.\n");
         }else{
             $_SESSION['last_action'] = time();
-            fputs($file, __FILE__.'('.__LINE__.')'."\n");
+            fputs($file, __FILE__.'('.__LINE__.')'." | Actualisation du time() pour éviter la session expiré.\n");
         }
     }
 }else{
-    fputs($file, __FILE__.'('.__LINE__.')'."\n");
+    fputs($file, __FILE__.'('.__LINE__.')'."On transforme le POST en GET.\n");
     $_SESSION['POST'] = $_POST;
     header('Location: index.php');
     die;
 }
 
+//Sert au refresh pour garder certaines infos. Temporaire.
+if(isset($_SESSION['TASK'])){
+    $post['TASK'] = $_SESSION['TASK'];
+}
+if(isset($_SESSION['IDSUBJECT'])){
+    $post['IDSUBJECT'] = $_SESSION['IDSUBJECT'];
+}
 
+//Création du controller et launch.
 
 fputs($file, __FILE__.'('.__LINE__.')'."\n");
 include_once 'controller/'.$class_name.'.php';
+
 $controller = new $class_name($post);
 
 if(isset($_SESSION['USERNAME'])){
     $post['USERNAME'] = $_SESSION['USERNAME'];
 }
-
-/*if(isset($_SESSION['IDSUBJECT'])){
-    $post['IDSUBJECT'] = $_SESSION['IDSUBJECT'];
-}*/
 
 $controller->launch($post);
 

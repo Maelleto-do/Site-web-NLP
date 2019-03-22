@@ -22,10 +22,6 @@ class SubjectDisplay{
     echo <<<VIEW
    <body>
 
-   <form id="Main_Form" action="index.php" method="POST">
-    <input id="Main_Form_TASK" type="hidden" name="TASK" value="">
-   </form>
-
    <nav class="navbar navbar-default">
    <div class="container-fluid">
    <div class="navbar-header">
@@ -34,7 +30,7 @@ class SubjectDisplay{
    </div>
    <div class="collapse navbar-collapse" id="myNavbar">
    <ul class="nav navbar-nav">
-   <li><a data-toggle="modal">Bonjour $this->username </a></li>
+   <li><a href="#" onclick="$('#Main_Form_TASK').val('Logged'); $('#Main_Form').submit();">Bonjour $this->username</a></li>
    <li><a href="#" onclick="$('#Main_Form_TASK').val('Info'); $('#Main_Form').submit();">Informations</a></li>
    <li><a href="#" onclick="$('#Main_Form_TASK').val('Contact'); $('#Main_Form').submit();">Contacter un administrateur</a></li>
    <li><a href="#" onclick="$('#Main_Form_TASK').val('Deconnexion'); $('#Main_Form').submit();">Se déconnecter</a></li>
@@ -55,9 +51,9 @@ class SubjectDisplay{
      <div class="well">
        <p><a href="#">Interests</a></p>
        <p>
-         <span class="label label-default">Aya Nakamura</span>
-         <span class="label label-primary">Norman fait des vidéos</span>
-         <span class="label label-success">Mentir</span>
+       <span class="label label-default">Aya Nakamura</span><br><br>
+       <span class="label label-primary">Norman fait des vidéos</span><br><br>
+       <span class="label label-success">Mentir</span>
        </p>
      </div>
    <p><a href="#"></a></p>
@@ -97,6 +93,11 @@ class SubjectDisplay{
    </div>
    </div>
    </div>
+
+   <form id="Main_Form" action="index.php" method="POST">
+    <input id="Main_Form_TASK" type="hidden" name="TASK" value="">
+   </form>
+
 
    </body>
 VIEW;

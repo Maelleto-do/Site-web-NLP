@@ -8,6 +8,7 @@ class MessageController{
     private $checkMessages;
 
     function __construct($post){
+
         $this->model = new MessageModel();
         $this->checkMessages = $this->model->getMessages($post);
 

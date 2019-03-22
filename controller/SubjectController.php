@@ -10,10 +10,10 @@ class SubjectController{
     private $checkSubject;
 
     function __construct($post){
+
         $this->model = new SubjectModel();
         $this->checkSubject = $this->model->checkSubject($post);
 
-        //Si checkLogin() renvoie 0, pas d'erreurs
         //if(!$this->checkSubject){
             $controller = new MessageController($post);
             $this -> view = new SubjectDisplay();
