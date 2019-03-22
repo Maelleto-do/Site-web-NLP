@@ -1,12 +1,13 @@
 <?php
 include_once 'view/SubjectDisplay.php';
 include_once 'model/SubjectModel.php';
-include_once 'controller/MessageController.php';
+include_once 'model/MessageModel.php';
 include_once 'view/Welcome.php';
 
 class SubjectController{
     private $view;
     private $model;
+    private $modelbis;
     private $checkSubject;
 
     function __construct($post){
@@ -14,14 +15,12 @@ class SubjectController{
         $this->model = new SubjectModel();
         $this->checkSubject = $this->model->checkSubject($post);
 
-        //if(!$this->checkSubject){
-            $controller = new MessageController($post);
-            $this -> view = new SubjectDisplay();
-        /*}else{
-            $this -> view = new Welcome();
-            $this -> view -> setMessageNumberLogin($this -> checkSubject); //On donne le message d'erreur à afficher à la vue
 
-        }*/
+        $this->modelbis = new MessageModel();
+        $this->checkMessages = $this->modelbis->getMessages($post);
+
+
+        $this -> view = new SubjectDisplay();
     }
 
     function launch(){

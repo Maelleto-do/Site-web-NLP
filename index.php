@@ -137,7 +137,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
     die;
 }
 
-
+//Sert au refresh pour garder certaines infos. Temporaire.
 if(isset($_SESSION['TASK'])){
     $post['TASK'] = $_SESSION['TASK'];
 }
@@ -156,15 +156,7 @@ if(isset($_SESSION['USERNAME'])){
     $post['USERNAME'] = $_SESSION['USERNAME'];
 }
 
-//Sert au refresh pour garder certaines infos. Temporaire.
-if(isset($_SESSION['TASK'])){
-    $post['TASK'] = $_SESSION['TASK'];
-}
-if(isset($_SESSION['IDSUBJECT'])){
-    $post['IDSUBJECT'] = $_SESSION['IDSUBJECT'];
-}
-
-
+//Lancement du controller
 $controller->launch($post);
 
 

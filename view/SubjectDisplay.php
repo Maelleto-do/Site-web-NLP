@@ -81,7 +81,7 @@ class SubjectDisplay{
        <div class="col-sm-4  text-center">
             <form action = "index.php" method = "POST">
                 <textarea rows = "5" cols = "124" name = "MESSAGE"></textarea>
-                <input type="submit" name="TASK" value="SendSubject" required>
+                <input type="submit" name="TASK" value="SendMessage" required>
             </form>
        </div>
    </div>

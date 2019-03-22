@@ -1,7 +1,7 @@
 <?php
 include_once 'view/SubjectDisplay.php';
 include_once 'model/SendMessageModel.php';
-include_once 'controller/MessageController.php';
+include_once 'model/MessageModel.php';
 include_once 'model/SubjectModel.php';
 
 class SendMessageController{
@@ -18,9 +18,9 @@ class SendMessageController{
             echo 'La fonction sendMessage dans SendMessageController a échoué.';
         }
 
-        $this->modelbis = new SubjectModel();
-        $this->checkSubject = $this->modelbis->checkSubject($post);
-        $controller = new MessageController($post);
+        $this->modelbis = new MessageModel();
+        $this->checkMessages = $this->modelbis->getMessages($post);
+
 
         $this -> view = new SubjectDisplay();
     }

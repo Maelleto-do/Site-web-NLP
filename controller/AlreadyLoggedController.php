@@ -3,6 +3,7 @@
 class AlreadyLoggedController{
     private $view;
     private $model;
+    private $modelbis;
     private $checkSubject;
 
     function __construct($post){
@@ -10,19 +11,21 @@ class AlreadyLoggedController{
 
             case 'SendMessage':
             $class_name = 'SubjectDisplay';
-            include_once 'controller/MessageController.php';
+            include_once 'model/MessageModel.php';
             include_once 'model/SubjectModel.php';
             $this->model = new SubjectModel();
             $this->checkSubject = $this->model->checkSubject($post);
-            $controller = new MessageController($post);
+            $this->modelbis = new MessageModel();
+            $this->checkMessages = $this->modelbis->getMessages($post);
 
             case 'MessageSujet':
             $class_name = 'SubjectDisplay';
-            include_once 'controller/MessageController.php';
+            include_once 'model/MessageModel.php';
             include_once 'model/SubjectModel.php';
             $this->model = new SubjectModel();
             $this->checkSubject = $this->model->checkSubject($post);
-            $controller = new MessageController($post);
+            $this->modelbis = new MessageModel();
+            $this->checkMessages = $this->modelbis->getMessages($post);
             break;
 
             case 'TestMultipleSubjets':

@@ -1,6 +1,6 @@
 <?php
 
-include("DBConnection.php");
+include_once 'DBConnection.php';
 
 class SendMessageModel{
     public function sendMessage($post){
