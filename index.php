@@ -55,6 +55,11 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
             $class_name = 'MultipleSubjectsController';
             break;
 
+            case 'CreateSubject':
+            fputs($file, __FILE__.'('.__LINE__.')'."\n");
+            $class_name = 'SubjectCreationPageController';
+            break;
+
             case 'CheckLogin':
             fputs($file, __FILE__.'('.__LINE__.')'."\n");
             $class_name = 'CheckLoginController';
@@ -73,6 +78,11 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
             case 'SendMessage':
             fputs($file, __FILE__.'('.__LINE__.')'."\n");
             $class_name = 'SendMessageController';
+            break;
+
+            case 'SendSubject':
+            fputs($file, __FILE__.'('.__LINE__.')'."\n");
+            $class_name = 'SendSubjectController';
             break;
 
             case 'Info':
@@ -127,7 +137,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
     die;
 }
 
-//Sert au refresh pour garder certaines infos. Temporaire.
+
 if(isset($_SESSION['TASK'])){
     $post['TASK'] = $_SESSION['TASK'];
 }
@@ -145,6 +155,15 @@ $controller = new $class_name($post);
 if(isset($_SESSION['USERNAME'])){
     $post['USERNAME'] = $_SESSION['USERNAME'];
 }
+
+//Sert au refresh pour garder certaines infos. Temporaire.
+if(isset($_SESSION['TASK'])){
+    $post['TASK'] = $_SESSION['TASK'];
+}
+if(isset($_SESSION['IDSUBJECT'])){
+    $post['IDSUBJECT'] = $_SESSION['IDSUBJECT'];
+}
+
 
 $controller->launch($post);
 

@@ -1,23 +1,11 @@
 <?php
 
 
-class SubjectDisplay{
+class SubjectCreationPage{
   private $username;
-  private $nameSubject;
-  private $subjectMessage;
-  private $nbMessages;
-  private $isResolved;
-  private $creationDate;
-  private $message_list;
 
   public function launch(){
     $this->username = $_SESSION['USERNAME'];
-    $this->nameSubject = $_SESSION['NAMESUBJECT'];
-    $this->subjectMessage = $_SESSION['SUBJECTMESSAGE'];
-    $this->nbMessages = $_SESSION['NBMESSAGES'];
-    $this->isResolved = $_SESSION['ISRESOLVED'];
-    $this->creationDate = $_SESSION['CREATIONDATE'];
-    $this->message_list = $_SESSION['MESSAGE_LIST'];
 
     echo <<<VIEW
    <body>
@@ -60,31 +48,16 @@ class SubjectDisplay{
    </div>
    <div class="col-sm-8 text-left">
 
-   <div class="panel panel-default">
-    <center><h2>$this->nameSubject</h2></center>
-        <div class="panel-body">
-            <div class="row">
-                <div class="col-6">
-                    <div class="well">
-                        <p>$this->subjectMessage</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+   <form action = "index.php" method = "POST">
+    Nom du sujet:<br>
+    <input type="text" name="subjectname" required>
+    <br>
+    Sujet:<br>
+    <textarea rows = "5" cols = "124" name = "MESSAGE" required></textarea>
+    <br><br>
+    <input type="submit" name="TASK" value="SendSubject">
+   </form>
 
-    <div class="panel panel-default">
-        $this->message_list
-    </div>
-
-   <div class="row">
-       <div class="col-sm-4  text-center">
-            <form action = "index.php" method = "POST">
-                <textarea rows = "5" cols = "124" name = "MESSAGE"></textarea>
-                <input type="submit" name="TASK" value="SendSubject" required>
-            </form>
-       </div>
-   </div>
    </div>
    <div class="col-sm-2 sidenav">
 
