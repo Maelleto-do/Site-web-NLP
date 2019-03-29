@@ -50,7 +50,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
             $class_name = 'SubjectController';
             break;
 
-            case 'TestMultipleSubjets':
+            case 'DisplayMultipleSubjects':
             fputs($file, __FILE__.'('.__LINE__.')'."\n");
             $class_name = 'MultipleSubjectsController';
             break;
