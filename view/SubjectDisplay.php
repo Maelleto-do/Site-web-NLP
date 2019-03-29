@@ -76,7 +76,21 @@ class SubjectDisplay{
     </div>
 
     <div class="panel panel-default">
-        $this->message_list
+VIEW;
+       foreach ($this->message_list as $row => $link) {
+       echo <<<FE
+       <div class="panel-body">
+           <div class="row">
+               <div class="col-6">
+                   <div class="well">
+                       <p>$link[messageContent]</p>
+                   </div>
+               </div>
+           </div>
+       </div>
+FE;
+       }
+       echo <<<VIEW
     </div>
 
    <div class="row">

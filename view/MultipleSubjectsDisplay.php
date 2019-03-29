@@ -61,9 +61,23 @@ class MultipleSubjectsDisplay{
    <p><a href="#"></a></p>
    </div>
    <div class="col-sm-8 text-left">
-
-    $this->subject_list
-
+VIEW;
+   foreach ($this->subject_list as $row => $link) {
+   echo <<<FE
+       <div class="panel panel-default">
+           <div class="panel-body">
+               <div class="row">
+                   <div class="col-6">
+                       <div class="well">
+                          <a href="#" onclick="$('#Main_Form_IDSUBJECT').val($link[subjectID]); $('#Main_Form_TASK').val('MessageSujet'); $('#Main_Form').submit();">$link[nameSubject]</a>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+FE;
+   }
+   echo <<<VIEW
    </div>
    <div class="col-sm-2 sidenav">
 
