@@ -17,6 +17,7 @@ class SubjectDisplay{
     $this->nbMessages = $post['TEMP_SUBJECT_INFO']['NBMESSAGES'];
     $this->isResolved = $post['TEMP_SUBJECT_INFO']['ISRESOLVED'];
     $this->creationDate = $post['TEMP_SUBJECT_INFO']['CREATIONDATE'];
+    $this->authorUsername = $post['TEMP_SUBJECT_INFO']['AUTHORUSERNAME'];
     $this->message_list = $post['MESSAGE_LIST'];
 
     echo <<<VIEW
@@ -64,6 +65,7 @@ class SubjectDisplay{
 
    <div class="panel panel-default">
     <center><h2>$this->nameSubject</h2></center>
+    <p>$this->authorUsername</p>
         <div class="panel-body">
             <div class="row">
                 <div class="col-6">
