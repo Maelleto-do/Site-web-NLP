@@ -1,6 +1,0 @@
-Traceback (most recent call last):
-  File "model/python/nltk.py", line 1, in <module>
-    import nltk
-  File "/net/www/mtoyriontle/model/python/nltk.py", line 3, in <module>
-    nltk.data.path = ['/net/www/mtoyriontle/nltk_data/']
-AttributeError: 'module' object has no attribute 'data'

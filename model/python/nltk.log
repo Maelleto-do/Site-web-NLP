@@ -1,6 +1,0 @@
-import: unable to open X server `' @ error/import.c/ImportImageCommand/364.
-model/python/nltk.py: 3: model/python/nltk.py: nltk.data.path: not found
-from: can't read /var/mail/nltk.tokenize
-Warning: unknown mime-type for "COUCOUCOUC" -- using "application/octet-stream"
-Error: no such file "COUCOUCOUC"
-model/python/nltk.py: 8: model/python/nltk.py: Syntax error: "(" unexpected
