@@ -32,6 +32,9 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
         if(isset($post['IDSUBJECT'])){
             $_SESSION['IDSUBJECT'] = $post['IDSUBJECT'];
         }
+        if(isset($_SESSION['USERNAME'])){
+            $post['USERNAME'] = $_SESSION['USERNAME'];
+        }
 
         $task = $post['TASK'];
         unset($_SESSION['POST']);

@@ -11,7 +11,7 @@ class SubjectModel{
         $subjectID = $post['IDSUBJECT'];
 
         //Recherche des infos du sujet selectionné (actuellement le sujet avec subjectID=1)
-        $req = $db->prepare('SELECT * FROM Sujet WHERE subjectID = ?');
+        $req = $db->prepare('SELECT Sujet.*, USERNAME FROM Sujet JOIN users ON Sujet.authorId = users.ID WHERE subjectID = ?');
         $req->execute(array($subjectID));
         $res = $req->fetch();
 
@@ -24,6 +24,7 @@ class SubjectModel{
             $_SESSION['NBMESSAGES'] = $res['nbMessages'];
             $_SESSION['ISRESOLVED'] = $res['isResolved'];
             $_SESSION['CREATIONDATE'] = $res['creationDate'];
+            $_SESSION['AUTHORUSERNAME'] = $res['USERNAME'];
             $_SESSION['last_action'] = time();
 
         }else{

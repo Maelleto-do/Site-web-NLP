@@ -18,6 +18,7 @@ class SubjectDisplay{
     $this->isResolved = $_SESSION['ISRESOLVED'];
     $this->creationDate = $_SESSION['CREATIONDATE'];
     $this->message_list = $_SESSION['MESSAGE_LIST'];
+    $this->authorUsername = $_SESSION['AUTHORUSERNAME'];
 
     echo <<<VIEW
    <body>
@@ -64,6 +65,7 @@ class SubjectDisplay{
 
    <div class="panel panel-default">
     <center><h2>$this->nameSubject</h2></center>
+    <p>$this->authorUsername</p>
         <div class="panel-body">
             <div class="row">
                 <div class="col-6">
