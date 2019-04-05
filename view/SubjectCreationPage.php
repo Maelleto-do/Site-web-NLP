@@ -4,8 +4,8 @@
 class SubjectCreationPage{
   private $username;
 
-  public function launch(){
-    $this->username = $_SESSION['USERNAME'];
+  public function launch($post){
+    $this->username = $post['USERNAME'];
 
     echo <<<VIEW
    <body>

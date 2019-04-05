@@ -1,5 +1,5 @@
 <?php
-define('SESSION_MAXLIFETIME', 300); // 5 minutes avant déconnexion
+define('SESSION_MAXLIFETIME', 2500); // 5 minutes avant déconnexion
 session_start();
 ?>
 
@@ -152,9 +152,22 @@ include_once 'controller/'.$class_name.'.php';
 
 $controller = new $class_name($post);
 
+//Temporaire : Pour exclure les $_SESSION des VIEW.
+if(isset($_SESSION['MESSAGE_LIST'])){
+    $post['MESSAGE_LIST'] = $_SESSION['MESSAGE_LIST'];
+}
+if(isset($_SESSION['SUBJECT_LIST'])){
+    $post['SUBJECT_LIST'] = $_SESSION['SUBJECT_LIST'];
+}
+if(isset($_SESSION['TEMP_SUBJECT_INFO'])){
+    $post['TEMP_SUBJECT_INFO'] = $_SESSION['TEMP_SUBJECT_INFO'];
+}
+
+//Keep USERNAME UP !
 if(isset($_SESSION['USERNAME'])){
     $post['USERNAME'] = $_SESSION['USERNAME'];
 }
+
 
 //Lancement du controller
 $controller->launch($post);

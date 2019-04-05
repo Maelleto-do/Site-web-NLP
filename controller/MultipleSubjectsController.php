@@ -12,17 +12,10 @@ class MultipleSubjectsController{
         $this->model = new MultipleSubjectsModel();
         $this->checkSubject = $this->model->checkSubjects($post);
 
-        //Si checkLogin() renvoie 0, pas d'erreurs
-        //if(!$this->checkSubject){
             $this -> view = new MultipleSubjectsDisplay();
-        /*}else{
-            $this -> view = new Welcome();
-            $this -> view -> setMessageNumberLogin($this -> checkSubject); //On donne le message d'erreur à afficher à la vue
-
-        }*/
     }
 
-    function launch(){
-        $this->view->launch();
+    function launch($post){
+        $this->view->launch($post);
     }
 }

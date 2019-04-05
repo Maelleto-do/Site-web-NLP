@@ -18,14 +18,12 @@ class SubjectModel{
         //On test si le subjectID de la db est là
         if($res['subjectID']){
             $checkSubject = 0;
-            $_SESSION['IDSUBJECT'] = $res['subjectID'];
-            $_SESSION['NAMESUBJECT'] = $res['nameSubject'];
-            $_SESSION['SUBJECTMESSAGE'] = $res['subjectMessage'];
-            $_SESSION['NBMESSAGES'] = $res['nbMessages'];
-            $_SESSION['ISRESOLVED'] = $res['isResolved'];
-            $_SESSION['CREATIONDATE'] = $res['creationDate'];
-            $_SESSION['last_action'] = time();
-
+            $_SESSION['TEMP_SUBJECT_INFO']['IDSUBJECT'] = $res['subjectID'];
+            $_SESSION['TEMP_SUBJECT_INFO']['NAMESUBJECT'] = $res['nameSubject'];
+            $_SESSION['TEMP_SUBJECT_INFO']['SUBJECTMESSAGE'] = $res['subjectMessage'];
+            $_SESSION['TEMP_SUBJECT_INFO']['NBMESSAGES'] = $res['nbMessages'];
+            $_SESSION['TEMP_SUBJECT_INFO']['ISRESOLVED'] = $res['isResolved'];
+            $_SESSION['TEMP_SUBJECT_INFO']['CREATIONDATE'] = $res['creationDate'];
         }else{
             //The subject does not exist
             $checkSubject = 3;

@@ -10,14 +10,14 @@ class SubjectDisplay{
   private $creationDate;
   private $message_list;
 
-  public function launch(){
-    $this->username = $_SESSION['USERNAME'];
-    $this->nameSubject = $_SESSION['NAMESUBJECT'];
-    $this->subjectMessage = $_SESSION['SUBJECTMESSAGE'];
-    $this->nbMessages = $_SESSION['NBMESSAGES'];
-    $this->isResolved = $_SESSION['ISRESOLVED'];
-    $this->creationDate = $_SESSION['CREATIONDATE'];
-    $this->message_list = $_SESSION['MESSAGE_LIST'];
+  public function launch($post){
+    $this->username = $post['USERNAME'];
+    $this->nameSubject = $post['TEMP_SUBJECT_INFO']['NAMESUBJECT'];
+    $this->subjectMessage = $post['TEMP_SUBJECT_INFO']['SUBJECTMESSAGE'];
+    $this->nbMessages = $post['TEMP_SUBJECT_INFO']['NBMESSAGES'];
+    $this->isResolved = $post['TEMP_SUBJECT_INFO']['ISRESOLVED'];
+    $this->creationDate = $post['TEMP_SUBJECT_INFO']['CREATIONDATE'];
+    $this->message_list = $post['MESSAGE_LIST'];
 
     echo <<<VIEW
    <body>

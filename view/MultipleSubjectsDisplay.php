@@ -3,21 +3,11 @@
 
 class MultipleSubjectsDisplay{
   private $username;
-  private $nameSubject;
-  private $subjectMessage;
-  private $nbMessages;
-  private $isResolved;
-  private $creationDate;
   private $subject_list;
 
-  public function launch(){
-    $this->username = $_SESSION['USERNAME'];
-    /*$this->nameSubject = $_SESSION['NAMESUBJECT'];
-    $this->subjectMessage = $_SESSION['SUBJECTMESSAGE'];
-    $this->nbMessages = $_SESSION['NBMESSAGES'];
-    $this->isResolved = $_SESSION['ISRESOLVED'];
-    $this->creationDate = $_SESSION['CREATIONDATE'];*/
-    $this->subject_list = $_SESSION['SUBJECT_LIST'];
+  public function launch($post){
+    $this->username = $post['USERNAME'];
+    $this->subject_list = $post['SUBJECT_LIST'];
 
     echo <<<VIEW
    <body>

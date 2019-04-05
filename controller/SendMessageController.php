@@ -25,8 +25,8 @@ class SendMessageController{
         $this -> view = new SubjectDisplay();
     }
 
-    function launch(){
-        $this->view->launch();
+    function launch($post){
+        $this->view->launch($post);
     }
 }
 ?>
