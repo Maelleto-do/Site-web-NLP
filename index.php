@@ -1,4 +1,5 @@
 <?php
+ini_set('display_errors', 1);
 define('SESSION_MAXLIFETIME', 2500); // 5 minutes avant déconnexion
 session_start();
 ?>
@@ -32,9 +33,13 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
         if(isset($post['IDSUBJECT'])){
             $_SESSION['IDSUBJECT'] = $post['IDSUBJECT'];
         }
+        if(isset($post['MESSAGEID'])){
+            $_SESSION['MESSAGEID'] = $post['MESSAGEID'];
+        }
         if(isset($_SESSION['USERNAME'])){
             $post['USERNAME'] = $_SESSION['USERNAME'];
         }
+
 
         $task = $post['TASK'];
         unset($_SESSION['POST']);
@@ -81,6 +86,11 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
             case 'SendMessage':
             fputs($file, __FILE__.'('.__LINE__.')'."\n");
             $class_name = 'SendMessageController';
+            break;
+
+            case 'DeleteMessage':
+            fputs($file, __FILE__.'('.__LINE__.')'."\n");
+            $class_name = 'DeleteMessageController';
             break;
 
             case 'SendSubject':
@@ -147,13 +157,18 @@ if(isset($_SESSION['TASK'])){
 if(isset($_SESSION['IDSUBJECT'])){
     $post['IDSUBJECT'] = $_SESSION['IDSUBJECT'];
 }
+if(isset($_SESSION['MESSAGEID'])){
+    $post['MESSAGEID'] = $_SESSION['MESSAGEID'];
+}
 
 //Création du controller et launch.
+
 
 fputs($file, __FILE__.'('.__LINE__.')'."\n");
 include_once 'controller/'.$class_name.'.php';
 
 $controller = new $class_name($post);
+
 
 //Temporaire : Pour exclure les $_SESSION des VIEW.
 if(isset($_SESSION['MESSAGE_LIST'])){

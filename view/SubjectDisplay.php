@@ -10,6 +10,7 @@ class SubjectDisplay{
   private $creationDate;
   private $message_list;
 
+
   public function launch($post){
     $this->username = $post['USERNAME'];
     $this->nameSubject = $post['TEMP_SUBJECT_INFO']['NAMESUBJECT'];
@@ -19,6 +20,7 @@ class SubjectDisplay{
     $this->creationDate = $post['TEMP_SUBJECT_INFO']['CREATIONDATE'];
     $this->authorUsername = $post['TEMP_SUBJECT_INFO']['AUTHORUSERNAME'];
     $this->message_list = $post['MESSAGE_LIST'];
+
 
     echo <<<VIEW
    <body>
@@ -65,12 +67,13 @@ class SubjectDisplay{
 
    <div class="panel panel-default">
     <center><h2>$this->nameSubject</h2></center>
-    <p>$this->authorUsername</p>
+    <p><i> Topic posté par <strong>$this->authorUsername</strong> </i></p>
         <div class="panel-body">
             <div class="row">
                 <div class="col-6">
                     <div class="well">
                         <p>$this->subjectMessage</p>
+                        
                     </div>
                 </div>
             </div>
@@ -79,19 +82,23 @@ class SubjectDisplay{
 
     <div class="panel panel-default">
 VIEW;
-       foreach ($this->message_list as $row => $link) {
+       foreach ($this->message_list as $row => $link) { 
        echo <<<FE
        <div class="panel-body">
            <div class="row">
                <div class="col-6">
                    <div class="well">
                        <p>$link[messageContent]</p>
+                       <form action = "index.php" method = "POST">
+                       <input type="button" value="Supprimer le message" onclick="$('#Main_Form_MESSAGEID').val($link[messageID]); $('#Main_Form_TASK').val('DeleteMessage'); $('#Main_Form').submit();">
+                       </form>
                    </div>
                </div>
            </div>
        </div>
 FE;
        }
+
        echo <<<VIEW
     </div>
 
@@ -111,8 +118,9 @@ FE;
    </div>
 
    <form id="Main_Form" action="index.php" method="POST">
-    <input id="Main_Form_TASK" type="hidden" name="TASK" value="">
-   </form>
+   <input id="Main_Form_TASK" type="hidden" name="TASK" value="">
+   <input id="Main_Form_MESSAGEID" type="hidden" name="MESSAGEID" value="">
+</form>
 
 
    </body>
