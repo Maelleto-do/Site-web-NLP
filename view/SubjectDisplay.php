@@ -1,8 +1,8 @@
 <?php
 
-
 class SubjectDisplay{
   private $username;
+  private $userID;
   private $nameSubject;
   private $subjectMessage;
   private $nbMessages;
@@ -13,6 +13,7 @@ class SubjectDisplay{
 
   public function launch($post){
     $this->username = $post['USERNAME'];
+    $this->userID = $post['USERID'];
     $this->nameSubject = $post['TEMP_SUBJECT_INFO']['NAMESUBJECT'];
     $this->subjectMessage = $post['TEMP_SUBJECT_INFO']['SUBJECTMESSAGE'];
     $this->nbMessages = $post['TEMP_SUBJECT_INFO']['NBMESSAGES'];
@@ -73,7 +74,7 @@ class SubjectDisplay{
                 <div class="col-6">
                     <div class="well">
                         <p>$this->subjectMessage</p>
-                        
+
                     </div>
                 </div>
             </div>
@@ -82,15 +83,17 @@ class SubjectDisplay{
 
     <div class="panel panel-default">
 VIEW;
-       foreach ($this->message_list as $row => $link) { 
+       foreach ($this->message_list as $row => $link) {
+
        echo <<<FE
+       <p><i><strong>$link[author]</strong> a écrit</i></p>
        <div class="panel-body">
            <div class="row">
                <div class="col-6">
                    <div class="well">
                        <p>$link[messageContent]</p>
                        <form action = "index.php" method = "POST">
-                       <input type="button" value="Supprimer le message" onclick="$('#Main_Form_MESSAGEID').val($link[messageID]); $('#Main_Form_TASK').val('DeleteMessage'); $('#Main_Form').submit();">
+                       <input id="d1" type="button" value="Supprimer le message" onclick="$('#Main_Form_MESSAGEID').val($link[messageID]); $('#Main_Form_TASK').val('DeleteMessage'); $('#Main_Form').submit();">
                        </form>
                    </div>
                </div>
@@ -99,7 +102,7 @@ VIEW;
 FE;
        }
 
-       echo <<<VIEW
+    echo <<<VIEW
     </div>
 
    <div class="row">

@@ -39,6 +39,10 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
         if(isset($_SESSION['USERNAME'])){
             $post['USERNAME'] = $_SESSION['USERNAME'];
         }
+        if(isset($_SESSION['USERID'])){
+            $post['USERID'] = $_SESSION['USERID'];
+        }
+
 
 
         $task = $post['TASK'];
@@ -184,6 +188,10 @@ if(isset($_SESSION['TEMP_SUBJECT_INFO'])){
 //Keep USERNAME UP !
 if(isset($_SESSION['USERNAME'])){
     $post['USERNAME'] = $_SESSION['USERNAME'];
+}
+//Keep USERID UP !
+if(isset($_SESSION['USERID'])){
+    $post['USERID'] = $_SESSION['USERID'];
 }
 
 

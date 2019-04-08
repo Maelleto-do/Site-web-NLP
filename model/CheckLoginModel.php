@@ -31,12 +31,18 @@ class CheckLoginModel{
         $res = $req->fetch();
 
 
+        //Récupération de l'id de l'utilisateur
+        $req = $db->prepare('SELECT ID FROM users WHERE USERNAME = ?');
+        $req->execute(array($USERNAME));
+        $USERID = $req->fetch()[0];
+
 
         //On test si le PW de la db correspond au PW de l'utilisateur
         if($res['PWD']){
             if(password_verify($PW,$res['PWD'])){
                 $_SESSION['logged'] = 1;
                 $_SESSION['USERNAME'] = $USERNAME;
+                $_SESSION['USERID'] = $USERID;
                 $_SESSION['last_action'] = time();
                 return 0;
             }else{

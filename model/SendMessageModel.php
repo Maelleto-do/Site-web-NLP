@@ -12,6 +12,8 @@ class SendMessageModel{
         $subjectID = $post['IDSUBJECT'];
         $message= $post['MESSAGE'];
         $username = $_SESSION['USERNAME'];
+        $userID = $_SESSION['USERID'];
+
 
 
         $monfichier = fopen('texte_test.txt', 'r+');
@@ -29,11 +31,11 @@ class SendMessageModel{
 
 
         //Recherche des infos du sujet selectionné (actuellement le sujet avec subjectID=1)
-        $req = $db->prepare("INSERT INTO Message (messageID, subjectID, messageContent, author, isEdited, `dateTime`) VALUES (NULL, :IDSUBJECT, :MESSAGE, :AUTHOR, :ISEDITED, :TIMEDATE); ");
+        $req = $db->prepare("INSERT INTO Message (messageID, subjectID, messageContent, author, isEdited, `dateTime`, authorID) VALUES (NULL, :IDSUBJECT, :MESSAGE, :AUTHOR, :ISEDITED, :TIMEDATE, :AUTHORID); ");
 
         if($req && $return_val == 0){
 
-          $req->execute(array('IDSUBJECT' => $subjectID, 'MESSAGE' => $message, 'AUTHOR' => $username, 'ISEDITED' => 0, 'TIMEDATE' => date("Y-m-d H:i:s")));
+          $req->execute(array('IDSUBJECT' => $subjectID, 'MESSAGE' => $message, 'AUTHOR' => $username, 'ISEDITED' => 0, 'TIMEDATE' => date("Y-m-d H:i:s"), 'AUTHORID' => $userID));
 
             $req = $db->prepare("UPDATE Sujet SET nbMessages = nbMessages + 1 WHERE subjectID = :IDSUBJECT");
 
