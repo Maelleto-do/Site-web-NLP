@@ -26,8 +26,10 @@ class AdminCheckLoginModel{
         //On test si le PW de la db correspond au PW de l'utilisateur
         if($res['PWD']){
             if(password_verify($PW,$res['PWD'])){
+                //Sauvegarde des données propres à l'administrateur
                 $_SESSION['logged'] = 1;
                 $_SESSION['USERNAME'] = $USERNAME;
+                $_SESSION['ADMINID'] = $ADMINID;
                 $_SESSION['last_action'] = time();
                 return 0;
             }else{

@@ -9,11 +9,13 @@ class SubjectDisplay{
   private $isResolved;
   private $creationDate;
   private $message_list;
+  private $adminID;
 
 
   public function launch($post){
     $this->username = $post['USERNAME'];
     $this->userID = $post['USERID'];
+    $this->adminID = $post['ADMINID']; 
     $this->nameSubject = $post['TEMP_SUBJECT_INFO']['NAMESUBJECT'];
     $this->subjectMessage = $post['TEMP_SUBJECT_INFO']['SUBJECTMESSAGE'];
     $this->nbMessages = $post['TEMP_SUBJECT_INFO']['NBMESSAGES'];
@@ -94,6 +96,14 @@ VIEW;
                        <p>$link[messageContent]</p>
                        <form action = "index.php" method = "POST">
                        <input id="d1" type="button" value="Supprimer le message" onclick="$('#Main_Form_MESSAGEID').val($link[messageID]); $('#Main_Form_TASK').val('DeleteMessage'); $('#Main_Form').submit();">
+                       <script> 
+                       var authorID= '<?php echo $link[authorID]; ?>' ; 
+                       var userID = '<?php echo $this->userID; ?>' ; 
+                       var adminID = '<?php echo $this->adminID; ?>' ; 
+                       
+                       if (authorID != userID && userID != adminID) $('input').hide(); 
+                   </script>
+                       
                        </form>
                    </div>
                </div>

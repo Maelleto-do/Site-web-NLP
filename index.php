@@ -42,6 +42,9 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
         if(isset($_SESSION['USERID'])){
             $post['USERID'] = $_SESSION['USERID'];
         }
+        if(isset($_SESSION['ADMINID'])){
+            $post['ADMINID'] = $_SESSION['ADMINID'];
+        }
 
 
 
@@ -185,15 +188,18 @@ if(isset($_SESSION['TEMP_SUBJECT_INFO'])){
     $post['TEMP_SUBJECT_INFO'] = $_SESSION['TEMP_SUBJECT_INFO'];
 }
 
-//Keep USERNAME UP !
+//Sauvegarde le nom de l'utilisateur connecté
 if(isset($_SESSION['USERNAME'])){
     $post['USERNAME'] = $_SESSION['USERNAME'];
 }
-//Keep USERID UP !
+//Sauvegarde l'id de l'utilisateur connecté
 if(isset($_SESSION['USERID'])){
     $post['USERID'] = $_SESSION['USERID'];
 }
-
+//Sauvegarde l'id de l'administrateur connecté
+if(isset($_SESSION['ADMINID'])){
+    $post['ADMINID'] = $_SESSION['ADMINID'];
+}
 
 //Lancement du controller
 $controller->launch($post);
