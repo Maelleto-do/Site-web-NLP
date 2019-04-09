@@ -3,10 +3,11 @@ include_once 'view/SubjectDisplay.php';
 include_once 'model/SubjectModel.php';
 include_once 'model/MessageModel.php';
 include_once 'view/Welcome.php';
+include_once 'controller/AbstractController.php';
 
-class SubjectController{
-    private $view;
-    private $model;
+
+class SubjectController extends AbstractController {
+
     private $modelbis;
     private $checkSubject;
 
@@ -23,8 +24,5 @@ class SubjectController{
         $this -> view = new SubjectDisplay();
     }
 
-    function launch($post){
-        $this->view->launch($post);
-    }
 }
-?>
+

@@ -1,16 +1,13 @@
 <?php
 include_once 'view/ContactView.php';
+include_once 'controller/AbstractController.php';
 
 
-class ContactController{
-    private $view;
+class ContactController extends AbstractController {
 
     function __construct($post){
         $this -> view = new ContactView();
     }
 
-    function launch($post){
-        $this->view->launch($post);
-    }
 }
-?>
+

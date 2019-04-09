@@ -3,11 +3,11 @@ include_once 'view/AdminSignUpNewUserView.php';
 include_once 'view/AdminCheckLoginView.php';
 include_once 'model/AdminSignUpNewUserModel.php';
 include_once 'view/Welcome.php';
+include_once 'controller/AbstractController.php';
 
 
-class AdminSignUpNewUserController{
-    private $view;
-    private $model;
+class AdminSignUpNewUserController extends AbstractController {
+
     private $ADD_DB;
 
     function __construct($post){
@@ -24,8 +24,5 @@ class AdminSignUpNewUserController{
         }
     }
 
-    function launch($post){
-        $this->view->launch($post);
-    }
 }
-?>
+

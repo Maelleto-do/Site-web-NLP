@@ -1,8 +1,9 @@
 <?php
 
-class AlreadyLoggedController{
-    private $view;
-    private $model;
+include_once 'controller/AbstractController.php';
+
+class AlreadyLoggedController extends AbstractController {
+
     private $modelbis;
     private $checkSubject;
 
@@ -61,8 +62,5 @@ class AlreadyLoggedController{
         $this -> view = new $class_name();
     }
 
-    function launch($post){
-        $this->view->launch($post);
-    }
 }
-?>
+

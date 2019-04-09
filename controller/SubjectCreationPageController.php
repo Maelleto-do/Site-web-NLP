@@ -1,9 +1,8 @@
 <?php
 include_once 'view/SubjectCreationPage.php';
+include_once 'controller/AbstractController.php';
 
-
-class SubjectCreationPageController{
-    private $view;
+class SubjectCreationPageController extends AbstractController {
 
     function __construct($post){
         $this -> view = new SubjectCreationPage();
@@ -13,4 +12,4 @@ class SubjectCreationPageController{
         $this->view->launch($post);
     }
 }
-?>
+

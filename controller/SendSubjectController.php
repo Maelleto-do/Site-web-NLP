@@ -3,10 +3,10 @@ include_once 'view/MultipleSubjectsDisplay.php';
 include_once 'model/MultipleSubjectsModel.php';
 include_once 'model/SendSubjectModel.php';
 include_once 'model/SubjectModel.php';
+include_once 'controller/AbstractController.php';
 
-class SendSubjectController{
-    private $view;
-    private $model;
+class SendSubjectController extends AbstractController {
+
     private $model2;
     private $checkSubjectSent;
 
@@ -23,8 +23,5 @@ class SendSubjectController{
         $this -> view = new MultipleSubjectsDisplay();
     }
 
-    function launch($post){
-        $this->view->launch($post);
-    }
 }
-?>
+

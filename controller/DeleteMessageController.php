@@ -3,13 +3,13 @@ include_once 'model/DeleteMessageModel.php';
 include_once 'view/SubjectDisplay.php';
 include_once 'model/MessageModel.php';
 include_once 'model/SubjectModel.php';
+include_once 'controller/AbstractController.php';
 
 /**
  * Suppression d'un message
  */
-class DeleteMessageController{
-    private $view;
-    private $model;
+class DeleteMessageController extends AbstractController {
+
     private $deleteMessage;
 
     function __construct($post){
@@ -28,9 +28,5 @@ class DeleteMessageController{
 
         $this -> view = new SubjectDisplay();
     }
-
-    function launch($post){
-        $this->view->launch($post);
-    }
 }
-?>
+

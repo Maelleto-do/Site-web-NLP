@@ -2,11 +2,11 @@
 include_once 'view/AdminCheckLoginView.php';
 include_once 'model/AdminCheckLoginModel.php';
 include_once 'view/Welcome.php';
+include_once 'controller/AbstractController.php';
 
 
-class AdminCheckLoginController{
-    private $view;
-    private $model;
+class AdminCheckLoginController extends AbstractController {
+
     private $checkLoginAdminAnswer;
 
     function __construct($post){
@@ -23,8 +23,5 @@ class AdminCheckLoginController{
         }
     }
 
-    function launch($post){
-        $this->view->launch($post);
-    }
 }
-?>
+

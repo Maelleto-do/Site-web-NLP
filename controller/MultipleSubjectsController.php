@@ -2,10 +2,10 @@
 include_once 'view/MultipleSubjectsDisplay.php';
 include_once 'model/MultipleSubjectsModel.php';
 include_once 'view/Welcome.php';
+include_once 'controller/AbstractController.php';
 
-class MultipleSubjectsController{
-    private $view;
-    private $model;
+class MultipleSubjectsController extends AbstractController {
+
     private $checkSubject;
 
     function __construct($post){
@@ -15,7 +15,4 @@ class MultipleSubjectsController{
             $this -> view = new MultipleSubjectsDisplay();
     }
 
-    function launch($post){
-        $this->view->launch($post);
-    }
 }
