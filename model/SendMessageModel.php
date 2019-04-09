@@ -24,7 +24,7 @@ class SendMessageModel{
 
         // $output = shell_exec('python model/python/nltk.py');
         //exec('python3 model/python/doudou.py', $output, $return_val );
-        passthru('python3 model/python/doudou.py', $return_val );
+        passthru('python3 model/python/doudou.py 2> doudou.log', $return_val );
         //echo $return_val;
         //echo shell_exec('python3 model/python/doudou.py 2> doudou.log');
 
