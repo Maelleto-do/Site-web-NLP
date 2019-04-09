@@ -9,12 +9,13 @@ tokenizer = TreebankWordTokenizer()
 
 def find_word():
 
-    f = open("/net/www/mtoyriontle/texte_test.txt",'rU')
+    f = open("texte_test.txt",'rU')
     text = f.read()
     text = text.lower()
     #print(text)
-    f = open("/net/www/mtoyriontle/model/python/black_list.txt",'rU')
+    f = open("model/python/black_list.txt",'rU')
     text_black_list = f.read()
+    text_black_list = text.lower()
     # print nltk.word_tokenize(test)
     #print(text_black_list)
     text_token = tokenizer.tokenize(text)

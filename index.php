@@ -1,5 +1,5 @@
 <?php
-ini_set('display_errors', 1);
+//ini_set('display_errors', 1);
 define('SESSION_MAXLIFETIME', 2500); // 5 minutes avant déconnexion
 session_start();
 ?>
