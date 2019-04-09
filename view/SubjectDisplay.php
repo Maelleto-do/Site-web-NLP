@@ -14,7 +14,7 @@ class SubjectDisplay{
 
   public function launch($post){
     $this->username = $post['USERNAME'];
-    $this->userID = $post['USERID'];
+    $this->userID = $_SESSION['USERID'];
     $this->adminID = $post['ADMINID']; 
     $this->nameSubject = $post['TEMP_SUBJECT_INFO']['NAMESUBJECT'];
     $this->subjectMessage = $post['TEMP_SUBJECT_INFO']['SUBJECTMESSAGE'];
