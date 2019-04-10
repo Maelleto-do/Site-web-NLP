@@ -1,5 +1,5 @@
 <?php
-//ini_set('display_errors', 1);
+ini_set('display_errors', 1);
 define('SESSION_MAXLIFETIME', 2500); // 5 minutes avant déconnexion
 session_start();
 ?>
@@ -54,76 +54,91 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
         switch($task){
 
             case 'Deconnexion':
-            fputs($file, __FILE__.'('.__LINE__.')'."\n");
-            $class_name = 'LoggedOutController';
-            session_unset();
-            session_destroy();
-            break;
+                fputs($file, __FILE__.'('.__LINE__.')'."\n");
+                $class_name = 'LoggedOutController';
+                session_unset();
+                session_destroy();
+                break;
 
             case 'MessageSujet':
-            fputs($file, __FILE__.'('.__LINE__.')'."\n");
-            $class_name = 'SubjectController';
-            break;
+                fputs($file, __FILE__.'('.__LINE__.')'."\n");
+                $class_name = 'SubjectController';
+                break;
 
             case 'DisplayMultipleSubjects':
-            fputs($file, __FILE__.'('.__LINE__.')'."\n");
-            $class_name = 'MultipleSubjectsController';
-            break;
+                fputs($file, __FILE__.'('.__LINE__.')'."\n");
+                $class_name = 'MultipleSubjectsController';
+                break;
 
             case 'CreateSubject':
-            fputs($file, __FILE__.'('.__LINE__.')'."\n");
-            $class_name = 'SubjectCreationPageController';
-            break;
+                fputs($file, __FILE_PW_USER_.'('.__LINE__.')'."\n");
+                $class_name = 'SubjectCreationPageController';
+                break;
 
             case 'CheckLogin':
-            fputs($file, __FILE__.'('.__LINE__.')'."\n");
-            $class_name = 'CheckLoginController';
-            break;
+                fputs($file, __FILE__.'('.__LINE__.')'."\n");
+                $class_name = 'CheckLoginController';
+                break;
 
             case 'AdminCheckLogin':
-            fputs($file, __FILE__.'('.__LINE__.')'."\n");
-            $class_name = 'AdminCheckLoginController';
-            break;
+                fputs($file, __FILE__.'('.__LINE__.')'."\n");
+                $class_name = 'AdminCheckLoginController';
+                break;
 
             case 'AdminSignUpNewUser':
-            fputs($file, __FILE__.'('.__LINE__.')'."\n");
-            $class_name = 'AdminSignUpNewUserController';
-            break;
+                fputs($file, __FILE__.'('.__LINE__.')'."\n");
+                $class_name = 'AdminSignUpNewUserController';
+                break;
 
             case 'SendMessage':
-            fputs($file, __FILE__.'('.__LINE__.')'."\n");
-            $class_name = 'SendMessageController';
-            break;
+                fputs($file, __FILE__.'('.__LINE__.')'."\n");
+                $class_name = 'SendMessageController';
+                break;
 
             case 'DeleteMessage':
-            fputs($file, __FILE__.'('.__LINE__.')'."\n");
-            $class_name = 'DeleteMessageController';
-            break;
+                fputs($file, __FILE__.'('.__LINE__.')'."\n");
+                $class_name = 'DeleteMessageController';
+                break;
 
             case 'SendSubject':
-            fputs($file, __FILE__.'('.__LINE__.')'."\n");
-            $class_name = 'SendSubjectController';
-            break;
+                fputs($file, __FILE__.'('.__LINE__.')'."\n");
+                $class_name = 'SendSubjectController';
+                break;
 
             case 'Info':
-            fputs($file, __FILE__.'('.__LINE__.')'."\n");
-            $class_name = 'InfoController';
-            break;
+                fputs($file, __FILE__.'('.__LINE__.')'."\n");
+                $class_name = 'InfoController';
+                break;
 
             case 'Contact':
-            fputs($file, __FILE__.'('.__LINE__.')'."\n");
-            $class_name = 'ContactController';
-            break;
+                fputs($file, __FILE__.'('.__LINE__.')'."\n");
+                $class_name = 'ContactController';
+                break;
+
+            case 'Profile':
+                fputs($file, __FILE__.'('.__LINE__.')'."\n");
+                $class_name = 'ProfileController';
+                break;
+
+            case 'ChangePseudo':
+                fputs($file, __FILE__.'('.__LINE__.')'."\n");
+                $class_name = 'ChangePseudoController';
+                break;
+
+            case 'ChangePwd':
+                fputs($file, __FILE__.'('.__LINE__.')'."\n");
+                $class_name = 'ChangePwdController';
+                break;
 
             case 'Logged':
-            fputs($file, __FILE__.'('.__LINE__.')'."\n");
-            $class_name = 'AlreadyLoggedController';
-            break;
+                fputs($file, __FILE__.'('.__LINE__.')'."\n");
+                $class_name = 'AlreadyLoggedController';
+                break;
 
             default:
-            fputs($file, __FILE__.'('.__LINE__.')'."\n");
-            $class_name = 'WelcomeController';
-            break;
+                fputs($file, __FILE__.'('.__LINE__.')'."\n");
+                $class_name = 'WelcomeController';
+                break;
         }
     }else{
 
