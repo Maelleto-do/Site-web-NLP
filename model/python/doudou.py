@@ -54,8 +54,6 @@ def find_word():
     #text = unicode(s,'utf-8')
     #text = unicodedata.normalize('NFD', text).encode('ascii', 'ignore')
 
-
-
     text_linearized1 = filter(text)
     black_list_token = tokenizer.tokenize(text_black_list)
     sensitive_list_token = tokenizer.tokenize(text_sensitive_list)
@@ -67,11 +65,12 @@ def find_word():
         print(w)
         common2 = set(w).intersection(sensitive_list_token)
 
+
     #S'il y a des mots interdits dans le message
     if ((len(common1) > 0)  or (len(common1) > 0 and len(common2) > 0)) :
         return 0
-
     #Si pas de mots interdits dans le message
+
     return 1
 
 exit(find_word())

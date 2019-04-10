@@ -5,7 +5,8 @@ include_once 'controller/AbstractController.php';
 class AlreadyLoggedController extends AbstractController {
 
     private $modelbis;
-    private $checkSubject;
+    private $tabCheckSubject;
+    private $subjectId;
 
     function __construct($post){
         if($_SESSION['USERNAME'] == 'Admin'){
@@ -18,8 +19,11 @@ class AlreadyLoggedController extends AbstractController {
                 include_once 'model/MessageModel.php';
                 include_once 'model/SubjectModel.php';
                 $this->model = new SubjectModel();
-                $this->checkSubject = $this->model->checkSubject($post);
+                $this->tabCheckSubject = $this->model->checkSubject($post);
+                $this->subjectId = $this->tabCheckSubject['IDSUBJECT'];
+
                 $this->modelbis = new MessageModel();
+                $this->modelbis-> setIdSubject($this->tabCheckSubject['IDSUBJECT']);
                 $this->checkMessages = $this->modelbis->getMessages($post);
 
                 case 'MessageSujet':
@@ -28,7 +32,10 @@ class AlreadyLoggedController extends AbstractController {
                 include_once 'model/SubjectModel.php';
                 $this->model = new SubjectModel();
                 $this->checkSubject = $this->model->checkSubject($post);
+                $this->subjectId = $this->tabCheckSubject['IDSUBJECT'];
+
                 $this->modelbis = new MessageModel();
+                $this->modelbis-> setIdSubject($this->tabCheckSubject['IDSUBJECT']);
                 $this->checkMessages = $this->modelbis->getMessages($post);
                 break;
 
@@ -68,7 +75,12 @@ class AlreadyLoggedController extends AbstractController {
 
 
         include_once 'view/'.$class_name.'.php';
+
         $this -> view = new $class_name();
+        if($class_name == 'SubjectDisplay'){
+          $this->view->setCheckSubject($this->tabCheckSubject);
+        }
+
     }
 
 }

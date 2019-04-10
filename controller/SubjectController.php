@@ -2,7 +2,6 @@
 include_once 'view/SubjectDisplay.php';
 include_once 'model/SubjectModel.php';
 include_once 'model/MessageModel.php';
-include_once 'view/Welcome.php';
 include_once 'controller/AbstractController.php';
 
 
@@ -25,4 +24,3 @@ class SubjectController extends AbstractController {
     }
 
 }
-

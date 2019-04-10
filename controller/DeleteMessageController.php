@@ -6,27 +6,33 @@ include_once 'model/SubjectModel.php';
 include_once 'controller/AbstractController.php';
 
 /**
- * Suppression d'un message
- */
+* Suppression d'un message
+*/
 class DeleteMessageController extends AbstractController {
 
-    private $deleteMessage;
+  private $deleteMessage;
 
-    function __construct($post){
+  function __construct($post){
 
-        //Suppression du message
-        $this->model = new DeleteMessageModel();
-        $this->deleteMessage = $this->model->deleteMessage($post);
+    $this->model = new SubjectModel();
+    $this->tabCheckSubject = $this->model->checkSubject($post);
+    $this->checkSubject = $this->tabCheckSubject['checkSubject'];
 
-        if($this->deleteMessage != 0){
-            echo 'La fonction deleteMessage dans DeleteMessageController a échoué.';
-        }
 
-        //Affichage des messages mis à jour 
-        $this->modelbis = new MessageModel();
-        $this->checkMessages = $this->modelbis->getMessages($post);
+    //Suppression du message
+    $this->model = new DeleteMessageModel();
+    $this->deleteMessage = $this->model->deleteMessage($post);
 
-        $this -> view = new SubjectDisplay();
+    if($this->deleteMessage != 0){
+      echo 'La fonction deleteMessage dans DeleteMessageController a échoué.';
     }
-}
 
+    //Affichage des messages mis à jour
+    $this->modelbis = new MessageModel();
+    $this->modelbis-> setIdSubject($this->tabCheckSubject['IDSUBJECT']);
+    $this->checkMessages = $this->modelbis->getMessages($post);
+
+    $this -> view = new SubjectDisplay();
+    $this->view-> setCheckSubject($this->tabCheckSubject);
+  }
+}
