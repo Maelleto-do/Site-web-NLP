@@ -18,8 +18,10 @@ class SendMessageController extends AbstractController {
         $this->model = new SendMessageModel();
         $this->modelPython = new SendMessagePythonModel();
         $this->checkMessageGood = $this->modelPython->SendMessagePython();
-        echo $this->checkMessageGood ;
-        if($this->checkMessageGood != 0){
+        echo 'return value'.$this->checkMessageGood ;
+
+        if($this->checkMessageGood == 0){
+
             echo 'Le message envoyé contient un mot interdit.';
 
         }else{
