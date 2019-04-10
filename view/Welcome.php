@@ -14,8 +14,6 @@ class Welcome{
 
   public function launch($post){
 
-    $this->username = $post['TEMP_SUBJECT_INFO']['USERNAME'];
-
     $header = new Header();
     $header->launch($post);
 

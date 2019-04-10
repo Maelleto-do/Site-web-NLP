@@ -4,9 +4,8 @@ class Header{
     private $username;
 
   public function launch($post){
-    $this->username = $post['USERNAME'];
-
     if(isset($post['USERNAME'])){
+      $this->username = $post['USERNAME'];
       if($post['USERNAME'] == 'Admin'){
         echo <<<VIEW
         <body>
@@ -66,27 +65,35 @@ class Header{
         </div>
 VIEW;
       }else{
-          echo <<<VIEW
-          <body>
-          <nav class="navbar navbar-default">
-          <div class="container-fluid">
-          <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-          </button>
-          </div>
-          <div class="collapse navbar-collapse" id="myNavbar">
-          <ul class="nav navbar-nav">
-          <li><a href="#" onclick="$('#Main_Form_TASK').val('Logged'); $('#Main_Form').submit();">Bonjour $this->username</a></li>
-          <li><a href="#" onclick="$('#Main_Form_TASK').val('Info'); $('#Main_Form').submit();">Informations</a></li>
-          <li><a href="#" onclick="$('#Main_Form_TASK').val('Contact'); $('#Main_Form').submit();">Contacter un administrateur</a></li>
-          <li><a href="#" onclick="$('#Main_Form_TASK').val('DisplayMultipleSubjects'); $('#Main_Form').submit();">Liste des sujets</a></li>
-          <li><a href="#" onclick="$('#Main_Form_TASK').val('CreateSubject'); $('#Main_Form').submit();">Créer un sujet</a></li>
-          <li><a href="#" onclick="$('#Main_Form_TASK').val('Deconnexion'); $('#Main_Form').submit();">Se déconnecter</a></li>
-          </ul>
-          </div>
-          </div>
-          </nav>
-          </body>
+        echo <<<VIEW
+        <body>
+        <nav class="navbar navbar-default">
+        <div class="container-fluid">
+        <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        </button>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+        <li><a href="#" onclick="$('#Main_Form_TASK').val('Logged'); $('#Main_Form').submit();">Bonjour $this->username</a></li>
+        <li><a href="#" onclick="$('#Main_Form_TASK').val('Info'); $('#Main_Form').submit();">Informations</a></li>
+        <li><a href="#" onclick="$('#Main_Form_TASK').val('Contact'); $('#Main_Form').submit();">Contacter un administrateur</a></li>
+        <li><a href="#" onclick="$('#Main_Form_TASK').val('DisplayMultipleSubjects'); $('#Main_Form').submit();">Liste des sujets</a></li>
+        <li><a href="#" onclick="$('#Main_Form_TASK').val('CreateSubject'); $('#Main_Form').submit();">Créer un sujet</a></li>
+        <li><a href="#" onclick="$('#Main_Form_TASK').val('Deconnexion'); $('#Main_Form').submit();">Se déconnecter</a></li>
+        </ul>
+        </div>
+        </div>
+        </nav>
+        </body>
+
+        <div class="col-sm-2 sidenav">
+        <div class="well">
+        <p>$this->username</p>
+        <p><a href="#" onclick="$('#Main_Form_TASK').val('Profile'); $('#Main_Form').submit();">Mon profil</a></p>
+        <img src="img/bird.jpg" class="img-circle" height="65" width="65" alt="Avatar">
+        </div>
+        </div>
 VIEW;
       }
     }else{

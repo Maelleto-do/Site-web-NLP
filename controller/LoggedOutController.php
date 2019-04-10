@@ -10,4 +10,3 @@ class LoggedOutController extends AbstractController {
     }
 
 }
-

@@ -32,11 +32,16 @@ class AlreadyLoggedController extends AbstractController {
                 $this->checkMessages = $this->modelbis->getMessages($post);
                 break;
 
-                case 'TestMultipleSubjets':
-                $class_name = 'MultipleSubjectsDisplay';
-                include_once 'model/MultipleSubjectsModel.php';
-                $this->model = new MultipleSubjectsModel();
-                $this->checkSubject = $this->model->checkSubjects($post);
+                case 'DisplayMultipleSubjects':
+                  $class_name = 'MultipleSubjectsDisplay';
+                  include_once 'model/MultipleSubjectsModel.php';
+                  $this->model = new MultipleSubjectsModel();
+                  $this->model->checkSubjects($post);
+                break;
+
+                case 'CreateSubject':
+                include_once 'view/SubjectCreationPage.php';
+                $class_name = 'SubjectCreationPage';
                 break;
 
                 case 'Info':
@@ -51,6 +56,10 @@ class AlreadyLoggedController extends AbstractController {
                 $class_name = 'LoginSuccessful';
                 break;
 
+                case 'Profile':
+                $class_name = 'ProfileView';
+                break;
+
                 default:
                 $class_name = 'LoginSuccessful';
                 break;
@@ -63,4 +72,3 @@ class AlreadyLoggedController extends AbstractController {
     }
 
 }
-

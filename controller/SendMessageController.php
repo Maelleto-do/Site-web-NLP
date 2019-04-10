@@ -9,6 +9,8 @@ include_once 'controller/AbstractController.php';
 class SendMessageController extends AbstractController {
 
     private $modelbis;
+    private $modelPython;
+    private $message_erreur;
     private $checkMessageSent;
     private $checkMessageGood;
 
@@ -20,8 +22,7 @@ class SendMessageController extends AbstractController {
         $this->checkMessageGood = $this->modelPython->SendMessagePython($post);
 
         if($this->checkMessageGood == 0){
-
-            echo 'Le message envoyé contient un mot interdit.';
+            $this->message_erreur = 'Le message envoyé contient un mot interdit.';
             $this -> view = new SubjectDisplay();
 
         }else{
@@ -30,7 +31,7 @@ class SendMessageController extends AbstractController {
         $this->checkMessageSent = $this->model->sendMessage($post);
 
 
-
+        //A patché, faire passer l'erreur à la vue
         if($this->checkMessageSent != 0 ){
             echo 'La fonction sendMessage dans SendMessageController a échoué.';
         }
@@ -45,6 +46,11 @@ class SendMessageController extends AbstractController {
 
 
 
+    }
+
+    public function launch($post){
+        $post['MESSAGE_ERREUR'] = $this->message_erreur;
+        $this->view->launch($post);
     }
 
 }

@@ -59,6 +59,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
             case 'Deconnexion':
                 fputs($file, __FILE__.'('.__LINE__.')'."\n");
                 $class_name = 'LoggedOutController';
+                $post = NULL;
                 session_unset();
                 session_destroy();
                 break;
@@ -74,7 +75,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
                 break;
 
             case 'CreateSubject':
-                fputs($file, __FILE_PW_USER_.'('.__LINE__.')'."\n");
+                fputs($file, __FILE__.'('.__LINE__.')'."\n");
                 $class_name = 'SubjectCreationPageController';
                 break;
 

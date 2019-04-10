@@ -10,9 +10,8 @@ class MultipleSubjectsController extends AbstractController {
 
     function __construct($post){
         $this->model = new MultipleSubjectsModel();
-        $this->checkSubject = $this->model->checkSubjects($post);
-
-            $this -> view = new MultipleSubjectsDisplay();
+        $this->model->checkSubjects($post);
+        $this -> view = new MultipleSubjectsDisplay();
     }
 
 }
