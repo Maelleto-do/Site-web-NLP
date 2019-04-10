@@ -14,8 +14,9 @@ session_start();
 </html>
 
 
-<?php
 
+
+<?php
 
 $file = fopen('log/messages.log','a');
 
