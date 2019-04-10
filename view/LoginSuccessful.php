@@ -1,5 +1,5 @@
 <?php
-
+include_once 'Header.php';
 
 class LoginSuccessful{
   private $username;
@@ -8,27 +8,11 @@ class LoginSuccessful{
 
       $this->username = $post['TEMP_SUBJECT_INFO']['USERNAME'];
 
-    echo <<<VIEW
-   <body>
-   <nav class="navbar navbar-default">
-   <div class="container-fluid">
-   <div class="navbar-header">
-   <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-   </button>
-   </div>
-   <div class="collapse navbar-collapse" id="myNavbar">
-   <ul class="nav navbar-nav">
-   <li><a href="#" onclick="$('#Main_Form_TASK').val('Logged'); $('#Main_Form').submit();">Bonjour $this->username</a></li>
-   <li><a href="#" onclick="$('#Main_Form_TASK').val('Info'); $('#Main_Form').submit();">Informations</a></li>
-   <li><a href="#" onclick="$('#Main_Form_TASK').val('Contact'); $('#Main_Form').submit();">Contacter un administrateur</a></li>
-   <li><a href="#" onclick="$('#Main_Form_TASK').val('Deconnexion'); $('#Main_Form').submit();">Se déconnecter</a></li>
-   <li><a href="#" onclick="$('#Main_Form_TASK').val('DisplayMultipleSubjects'); $('#Main_Form').submit();">Liste des sujets</a></li>
-   <li><a href="#" onclick="$('#Main_Form_TASK').val('CreateSubject'); $('#Main_Form').submit();">Créer un sujet</a></li>
-   </ul>
-   </div>
-   </div>
-   </nav>
 
+    $header = new Header();
+    $header->launch($post);
+
+    echo <<<VIEW
 
    <div class="container-fluid text-center">
    <div class="row content">

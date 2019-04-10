@@ -31,6 +31,7 @@ class AdminCheckLoginModel{
                 $_SESSION['TEMP_SUBJECT_INFO']['USERNAME'] = $USERNAME;
                 $_SESSION['USERNAME'] = $USERNAME;
                 $_SESSION['TEMP_SUBJECT_INFO']['ADMINID'] = $ADMINID;
+
                 $_SESSION['last_action'] = time();
                 return 0;
             }else{
