@@ -5,7 +5,8 @@ class AdminSignUpNewUserView{
 
 
   public function launch($post){
-    $this->username = $post['USERNAME'];
+
+      $this->username = $post['TEMP_SUBJECT_INFO']['USERNAME'];
 
 
     echo <<<VIEW

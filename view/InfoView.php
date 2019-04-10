@@ -3,11 +3,30 @@
 
 class InfoView{
   private $username;
+    private $messageNumber;
+    private $MESSAGE;
+    private $messagetoprint;
 
-  public function launch($post){
-    $this->username = $post['USERNAME'];
+    public function setmessageNumber($nb){
+        $this -> messageNumber = $nb;
+    }
 
-    echo <<<VIEW
+    public function launch($post){
+
+        $this->username = $post['TEMP_SUBJECT_INFO']['USERNAME'];
+    $this->MESSAGE = array(
+          'Le prénom.nom que vous avez tenté d\'ajouter fais déjà parti de la base de données !',
+          'L\'E-MAIL que vous avez tenté d\'ajouter fais déjà parti de la base de données !',
+          'Les mots de passe ne correspondent pas',
+          'Erreur de connexion à la base de données !'
+      );
+
+    if ($this -> messageNumber > 0){
+        $this->messagetoprint = $this->MESSAGE[$this -> messageNumber - 1];
+    }
+
+
+        echo <<<VIEW
     <body>
     <nav class="navbar navbar-default">
     <div class="container-fluid">
@@ -39,7 +58,7 @@ class InfoView{
 
     <div class="well">
     <p>$this->username</p>
-    <p><a href="#">My Profile</a></p>
+    <p><a href="#" onclick="$('#Main_Form_TASK').val('Profile'); $('#Main_Form').submit();">My Profile</a></p>
     <img src="img/bird.jpg" class="img-circle" height="65" width="65" alt="Avatar">
     </div>
     <div class="well">

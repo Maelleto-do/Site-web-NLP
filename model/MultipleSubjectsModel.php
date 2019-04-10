@@ -16,7 +16,7 @@ class MultipleSubjectsModel{
         $req->execute();
         $subject_list = $req->fetchAll(PDO::FETCH_ASSOC);
 
-        $_SESSION['SUBJECT_LIST'] = $subject_list;
+        $_SESSION['TEMP_SUBJECT_INFO']['SUBJECT_LIST'] = $subject_list;
         $checkSubjects=0;
 
         return $checkSubjects;

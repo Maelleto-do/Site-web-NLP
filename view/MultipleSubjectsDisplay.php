@@ -6,8 +6,8 @@ class MultipleSubjectsDisplay{
   private $subject_list;
 
   public function launch($post){
-    $this->username = $post['USERNAME'];
-    $this->subject_list = $post['SUBJECT_LIST'];
+      $this->username = $post['TEMP_SUBJECT_INFO']['USERNAME'];
+    $this->subject_list = $post['TEMP_SUBJECT_INFO']['SUBJECT_LIST'];
 
     echo <<<VIEW
    <body>
@@ -37,7 +37,7 @@ class MultipleSubjectsDisplay{
    <div class="col-sm-2 sidenav">
    <div class="well">
        <p>$this->username</p>
-       <p><a href="#">My Profile</a></p>
+       <p><a href="#" onclick="$('#Main_Form_TASK').val('Profile'); $('#Main_Form').submit();">My Profile</a></p>
        <img src="img/bird.jpg" class="img-circle" height="65" width="65" alt="Avatar">
      </div>
      <div class="well">

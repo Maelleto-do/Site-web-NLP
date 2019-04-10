@@ -13,16 +13,16 @@ class SubjectDisplay{
 
 
   public function launch($post){
-    $this->username = $post['USERNAME'];
-    $this->userID = $_SESSION['USERID'];
-    $this->adminID = $_SESSION['ADMINID'];
+      $this->username = $post['TEMP_SUBJECT_INFO']['USERNAME'];
+    $this->userID = $post['TEMP_SUBJECT_INFO']['USERID'];
+    $this->adminID = $post['TEMP_SUBJECT_INFO']['ADMINID'];
     $this->nameSubject = $post['TEMP_SUBJECT_INFO']['NAMESUBJECT'];
     $this->subjectMessage = $post['TEMP_SUBJECT_INFO']['SUBJECTMESSAGE'];
     $this->nbMessages = $post['TEMP_SUBJECT_INFO']['NBMESSAGES'];
     $this->isResolved = $post['TEMP_SUBJECT_INFO']['ISRESOLVED'];
     $this->creationDate = $post['TEMP_SUBJECT_INFO']['CREATIONDATE'];
     $this->authorUsername = $post['TEMP_SUBJECT_INFO']['AUTHORUSERNAME'];
-    $this->message_list = $post['MESSAGE_LIST'];
+    $this->message_list = $post['TEMP_SUBJECT_INFO']['MESSAGE_LIST'];
 
     echo <<<VIEW
    <body>
@@ -52,7 +52,7 @@ class SubjectDisplay{
    <div class="col-sm-2 sidenav">
    <div class="well">
        <p>$this->username</p>
-       <p><a href="#" >My Profile</a></p>
+       <p><a href="#" onclick="$('#Main_Form_TASK').val('Profile'); $('#Main_Form').submit();">My Profile</a></p>
        <li><a href="#" >Contacter un administrateur</a></li>
        <img src="img/bird.jpg" class="img-circle" height="65" width="65" alt="Avatar">
      </div>

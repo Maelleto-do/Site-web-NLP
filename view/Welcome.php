@@ -12,7 +12,9 @@ class Welcome{
 
 
   public function launch($post){
-      $this->MESSAGE_LOGIN = array(
+    $this->username = $post['TEMP_SUBJECT_INFO']['USERNAME'];
+
+    $this->MESSAGE_LOGIN = array(
         'Veuillez saisir des données',
         'Le mot de passe que vous avez tapé est incorrect',
         'L\'identifiant demandé n\'existe pas dans notre base de données'

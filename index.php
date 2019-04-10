@@ -199,10 +199,6 @@ if(isset($_SESSION['MESSAGE_LIST'])){
 if(isset($_SESSION['SUBJECT_LIST'])){
     $post['SUBJECT_LIST'] = $_SESSION['SUBJECT_LIST'];
 }
-if(isset($_SESSION['TEMP_SUBJECT_INFO'])){
-    $post['TEMP_SUBJECT_INFO'] = $_SESSION['TEMP_SUBJECT_INFO'];
-}
-
 //Sauvegarde le nom de l'utilisateur connecté
 if(isset($_SESSION['USERNAME'])){
     $post['USERNAME'] = $_SESSION['USERNAME'];
@@ -215,7 +211,9 @@ if(isset($_SESSION['USERID'])){
 if(isset($_SESSION['ADMINID'])){
     $post['ADMINID'] = $_SESSION['ADMINID'];
 }
-
+if(isset($_SESSION['TEMP_SUBJECT_INFO'])){
+    $post['TEMP_SUBJECT_INFO'] = $_SESSION['TEMP_SUBJECT_INFO'];
+}
 //Lancement du controller
 $controller->launch($post);
 

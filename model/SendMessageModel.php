@@ -14,8 +14,6 @@ class SendMessageModel{
         $username = $_SESSION['USERNAME'];
         $userID = $_SESSION['USERID'];
 
-
-
         $monfichier = fopen('texte_test.txt', 'r+');
         file_put_contents('texte_test.txt', '');
         fputs($monfichier, $message);

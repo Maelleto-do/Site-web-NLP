@@ -18,7 +18,7 @@ class MessageModel{
         $message_list = $req->fetchAll(PDO::FETCH_ASSOC);
 
 
-        $_SESSION['MESSAGE_LIST'] = $message_list;
+        $_SESSION['TEMP_SUBJECT_INFO']['MESSAGE_LIST'] = $message_list;
         $checkMessages = 0;
 
         return $checkMessages;

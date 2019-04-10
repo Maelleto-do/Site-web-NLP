@@ -18,7 +18,7 @@ class AdminCheckLoginView{
 
 
   public function launch($post){
-    $this->username = $post['USERNAME'];
+    $this->username = $post['TEMP_SUBJECT_INFO']['USERNAME'];
     $this->MESSAGE_SIGNUP = array(
       'Veuillez saisir des données',
       'Le prénom.nom que vous avez tenté d\'ajouter fais déjà parti de la base de données !',

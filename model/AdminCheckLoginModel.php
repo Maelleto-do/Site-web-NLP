@@ -28,8 +28,9 @@ class AdminCheckLoginModel{
             if(password_verify($PW,$res['PWD'])){
                 //Sauvegarde des données propres à l'administrateur
                 $_SESSION['logged'] = 1;
+                $_SESSION['TEMP_SUBJECT_INFO']['USERNAME'] = $USERNAME;
                 $_SESSION['USERNAME'] = $USERNAME;
-                $_SESSION['ADMINID'] = $ADMINID;
+                $_SESSION['TEMP_SUBJECT_INFO']['ADMINID'] = $ADMINID;
                 $_SESSION['last_action'] = time();
                 return 0;
             }else{

@@ -5,9 +5,11 @@ class ContactView{
   private $username;
 
   public function launch($post){
-    $this->username = $post['USERNAME'];
 
-    echo <<<VIEW
+      $this->username = $post['TEMP_SUBJECT_INFO']['USERNAME'];
+
+
+      echo <<<VIEW
    <body>
    <nav class="navbar navbar-default">
    <div class="container-fluid">
@@ -39,7 +41,7 @@ class ContactView{
 
    <div class="well">
    <p>$this->username</p>
-   <p><a href="#">My Profile</a></p>
+   <p><a href="#" onclick="$('#Main_Form_TASK').val('Profile'); $('#Main_Form').submit();">My Profile</a></p>
    <img src="img/bird.jpg" class="img-circle" height="65" width="65" alt="Avatar">
    </div>
    <div class="well">

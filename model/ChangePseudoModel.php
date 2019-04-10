@@ -11,29 +11,34 @@ class ChangePseudoModel
         $NEWPSEUDO = $post['NEW_PSEUDO'];
         //Id de l'utilisateur en cours
         $USERID = $_SESSION['USERID'];
+        $USERNAME = $_SESSION['USERNAME'];
 
         //Connexion à la db
         $DBConnection = new DBConnection();
         $db = $DBConnection->getDB();
 
-        //Vérification si l'USERNAME n'est pas déjà dans la BDD :
-        /*
-        $req = $bdd->prepare("SELECT USERNAME FROM users WHERE USERNAME = ?");
+        //Vérification si l'USERNAME n'est pas déjà dans la BDD
+        $req = $db->prepare("SELECT USERNAME FROM users");
         $req->execute(array($USERNAME));
-        $res = $req->fetch();
-        if($res['USERNAME']){
-            return 2;
-        }*/
+        while ($res = $req->fetch()) {
+            if ($res['USERNAME'] === $NEWPSEUDO && $res['ID'] != $USERID) {
+                return 1;
+            }
+        }
+
+        //On remet le nom de l'utilisateur à jour
+        $_SESSION['TEMP_SUBJECT_INFO']['USERNAME'] = $NEWPSEUDO;
+        $_SESSION['USERNAME'] = $NEWPSEUDO;
 
         //Modification de la BD
-        $req = $db >prepare("UPDATE users SET USERNAME = ? WHERE ID = ?");
+        $req = $db->prepare("UPDATE users SET USERNAME=? WHERE ID=?");
         if($req){
-            $req->execute(array('USERNAME' => $NEWPSEUDO, 'ID' => $USERID));
-            echo "super"; exit();
+            //$req->execute(array('USERNAME' => $NEWPSEUDO, 'ID' => $USERID));
+            $req->execute([$NEWPSEUDO, $USERID]);
             return 0;
         }else{
             $req->errorInfo();
-            return 5;
+            return 2;
         }
     }
 }

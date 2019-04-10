@@ -5,8 +5,8 @@ class SubjectCreationPage{
   private $username;
 
   public function launch($post){
-    $this->username = $post['USERNAME'];
 
+      $this->username = $post['TEMP_SUBJECT_INFO']['USERNAME'];
     echo <<<VIEW
    <body>
 
@@ -35,7 +35,7 @@ class SubjectCreationPage{
    <div class="col-sm-2 sidenav">
    <div class="well">
        <p>$this->username</p>
-       <p><a href="#">My Profile</a></p>
+       <p><a href="#" onclick="$('#Main_Form_TASK').val('Profile'); $('#Main_Form').submit();">My Profile</a></p>
        <img src="img/bird.jpg" class="img-circle" height="65" width="65" alt="Avatar">
      </div>
      <div class="well">

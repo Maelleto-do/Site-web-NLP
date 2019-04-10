@@ -2,7 +2,7 @@
 
 include("DBConnection.php");
 
-class AdminSignUpNewUserModel{
+class   AdminSignUpNewUserModel{
 
     private $PW_HASH;
     private $EMAIL_HASH;
