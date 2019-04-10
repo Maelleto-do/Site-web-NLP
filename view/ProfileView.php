@@ -1,12 +1,11 @@
 <?php
 
 
-class InfoView{
+class ProfileView{
     private $username;
 
     public function launch($post){
         $this->username = $post['USERNAME'];
-        echo 'ici' ; exit();
 
         echo <<<VIEW
     <body>
@@ -51,23 +50,31 @@ class InfoView{
     <span class="label label-success">Mentir</span>
     </p>
     </div>
-
+    
+    
+    
+    
     <p><a href="#"></a></p>
     </div>
     <div class="col-sm-8 text-left">
-    <h1>Informations</h1>
-    Vous êtes sur le forum dédié aux enfants de l'école.
-    Vous pouvez accéder aux différents sous forums, poser vos questions ou répondre à vos camarades.
+    <form action="index.php" method="POST">
+    <input type="hidden" name="TASK" value="ChangePseudo">
+    <div class="form-group">
+        <label for="username">Nouveau pseudo</label>
+        <input type="text" name="NEW_PSEUDO" class="form-control" id="new_pseudo" placeholder="Saisir le nouveau pseudo">
     </div>
-    <div class="col-sm-2 sidenav">
-
-    </div>
-    </div>
-    </div>
-    <form id="Main_Form" action="index.php" method="POST">
-    <input id="Main_Form_TASK" type="hidden" name="TASK" value="">
+    <input type="submit" value="enregistrer le nouveau pseudo">
     </form>
-    </body>
+    <form action="index.php" method="POST">
+    <input type="hidden" name="TASK" value="ChangePwd">
+    <div class="form-group">
+    <label for="username">Nouveau mot de passe</label>
+        <input type="text" name="NEW_PWD" class="form-control" id="new_pwd" placeholder="Saisir le nouveau mot de passe">
+    </div>
+    <input type="submit" value="enregistrer le nouveau mot de passe ">
+    </form>
+    </div>
+
 VIEW;
 
     }

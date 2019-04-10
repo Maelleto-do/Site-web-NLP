@@ -24,7 +24,7 @@ class SendMessageModel{
 
         // $output = shell_exec('python model/python/nltk.py');
         //exec('python3 model/python/doudou.py', $output, $return_val );
-        passthru('python3 model/python/doudou.py 2> doudou.log', $return_val );
+        passthru('python3.6 model/python/doudou.py 2> doudou.log', $return_val );
         //echo $return_val;
         //echo shell_exec('python3 model/python/doudou.py 2> doudou.log');
 
@@ -33,7 +33,7 @@ class SendMessageModel{
         //Recherche des infos du sujet selectionné (actuellement le sujet avec subjectID=1)
         $req = $db->prepare("INSERT INTO Message (messageID, subjectID, messageContent, author, isEdited, `dateTime`, authorID) VALUES (NULL, :IDSUBJECT, :MESSAGE, :AUTHOR, :ISEDITED, :TIMEDATE, :AUTHORID); ");
 
-        if($req && $return_val == 0){
+        if($req){
 
           $req->execute(array('IDSUBJECT' => $subjectID, 'MESSAGE' => $message, 'AUTHOR' => $username, 'ISEDITED' => 0, 'TIMEDATE' => date("Y-m-d H:i:s"), 'AUTHORID' => $userID));
 

@@ -3,6 +3,7 @@
 include_once 'DBConnection.php';
 
 class SendSubjectModel{
+
     public function sendSubject($post){
 
         //Connexion à la db

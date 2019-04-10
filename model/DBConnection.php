@@ -1,8 +1,8 @@
 <?php
 
-define("HOST", "dbserver"); // The host to connect to
-define("USER", "tdesbarat001"); // The database username
-define("PASSWORD", "Tristan29!"); // The database password
+define("HOST", "localhost"); // The host to connect to
+define("USER", "root"); // The database username
+define("PASSWORD", "root"); // The database password
 define("DATABASE", "tdesbarat001"); // The database
 
 class DBConnection{

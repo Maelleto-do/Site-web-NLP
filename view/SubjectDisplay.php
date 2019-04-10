@@ -24,7 +24,6 @@ class SubjectDisplay{
     $this->authorUsername = $post['TEMP_SUBJECT_INFO']['AUTHORUSERNAME'];
     $this->message_list = $post['MESSAGE_LIST'];
 
-
     echo <<<VIEW
    <body>
 
@@ -53,7 +52,8 @@ class SubjectDisplay{
    <div class="col-sm-2 sidenav">
    <div class="well">
        <p>$this->username</p>
-       <p><a href="#">My Profile</a></p>
+       <p><a href="#" >My Profile</a></p>
+       <li><a href="#" >Contacter un administrateur</a></li>
        <img src="img/bird.jpg" class="img-circle" height="65" width="65" alt="Avatar">
      </div>
      <div class="well">
