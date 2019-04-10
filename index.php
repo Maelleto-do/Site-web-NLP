@@ -46,7 +46,9 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
         if(isset($_SESSION['ADMINID'])){
             $post['ADMINID'] = $_SESSION['ADMINID'];
         }
-
+        if(isset($post['MESSAGE'])){
+            $_SESSION['MESSAGE'] = $post['MESSAGE'];
+        }
 
 
         $task = $post['TASK'];
@@ -182,6 +184,9 @@ if(isset($_SESSION['IDSUBJECT'])){
 }
 if(isset($_SESSION['MESSAGEID'])){
     $post['MESSAGEID'] = $_SESSION['MESSAGEID'];
+}
+if(isset($_SESSION['MESSAGE'])){
+    $post['MESSAGE'] = $_SESSION['MESSAGE'];
 }
 
 //Création du controller et launch.

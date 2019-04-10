@@ -4,10 +4,10 @@ include_once 'DBConnection.php';
 
 class SendMessagePythonModel{
 
-    public function sendMessagePython(){
+    public function sendMessagePython($post){
 
       $message= $post['MESSAGE'];
-      echo 'la chaine de caraactère voulu'.$message;
+      
       $monfichier = fopen('texte_test.txt', 'w+');
       //file_put_contents('texte_test.txt', $message);
       fputs($monfichier, $message);

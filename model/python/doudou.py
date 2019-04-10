@@ -9,10 +9,14 @@ tokenizer = TreebankWordTokenizer()
 
 def find_word():
 
-    f = open("texte_test.txt",'rU')
+    f = open("texte_test.txt",'rU', encoding='utf-8')
     text = f.read()
     text = text.lower()
-    print(text)
+
+    #text = unicode(s,'utf-8')
+    #text = unicodedata.normalize('NFD', text).encode('ascii', 'ignore')
+
+
     f1 = open("model/python/black_list.txt",'rU')
     text_black_list = f1.read()
     text_black_list = text_black_list.lower()

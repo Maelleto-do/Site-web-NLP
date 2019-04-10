@@ -17,12 +17,12 @@ class SendMessageController extends AbstractController {
 
         $this->model = new SendMessageModel();
         $this->modelPython = new SendMessagePythonModel();
-        $this->checkMessageGood = $this->modelPython->SendMessagePython();
-        echo 'return value'.$this->checkMessageGood ;
+        $this->checkMessageGood = $this->modelPython->SendMessagePython($post);
 
         if($this->checkMessageGood == 0){
 
             echo 'Le message envoyé contient un mot interdit.';
+            $this -> view = new SubjectDisplay();
 
         }else{
 
@@ -38,10 +38,12 @@ class SendMessageController extends AbstractController {
 
                     $this->modelbis = new MessageModel();
                     $this->checkMessages = $this->modelbis->getMessages($post);
-
-
                     $this -> view = new SubjectDisplay();
+
+
         }
+
+
 
     }
 
