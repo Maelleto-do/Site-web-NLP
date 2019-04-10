@@ -14,14 +14,11 @@ session_start();
 </html>
 
 
-
-
 <?php
 
 $file = fopen('log/messages.log','a');
 
 if($_SERVER['REQUEST_METHOD'] == 'GET'){
-
     fputs($file, __FILE__.'('.__LINE__.')'." | On rentre dans le GET.\n");
     if( isset($_SESSION['POST']) ){
         fputs($file, __FILE__.'('.__LINE__.')'." | SESSION[POST] existe.\n");
@@ -58,7 +55,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
 
             case 'Deconnexion':
                 fputs($file, __FILE__.'('.__LINE__.')'."\n");
-                $class_name = 'LoggedOutController';
+                $class_name = 'BasicController';
                 $post = NULL;
                 session_unset();
                 session_destroy();
@@ -77,11 +74,6 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
             case 'CreateSubject':
                 fputs($file, __FILE__.'('.__LINE__.')'."\n");
                 $class_name = 'SubjectCreationPageController';
-                break;
-
-            case 'CheckLogin':
-                fputs($file, __FILE__.'('.__LINE__.')'."\n");
-                $class_name = 'CheckLoginController';
                 break;
 
             case 'AdminCheckLogin':
@@ -109,39 +101,9 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
                 $class_name = 'SendSubjectController';
                 break;
 
-            case 'Info':
-                fputs($file, __FILE__.'('.__LINE__.')'."\n");
-                $class_name = 'InfoController';
-                break;
-
-            case 'Contact':
-                fputs($file, __FILE__.'('.__LINE__.')'."\n");
-                $class_name = 'ContactController';
-                break;
-
-            case 'Profile':
-                fputs($file, __FILE__.'('.__LINE__.')'."\n");
-                $class_name = 'ProfileController';
-                break;
-
-            case 'ChangePseudo':
-                fputs($file, __FILE__.'('.__LINE__.')'."\n");
-                $class_name = 'ChangePseudoController';
-                break;
-
-            case 'ChangePwd':
-                fputs($file, __FILE__.'('.__LINE__.')'."\n");
-                $class_name = 'ChangePwdController';
-                break;
-
-            case 'Logged':
-                fputs($file, __FILE__.'('.__LINE__.')'."\n");
-                $class_name = 'AlreadyLoggedController';
-                break;
-
             default:
                 fputs($file, __FILE__.'('.__LINE__.')'."\n");
-                $class_name = 'WelcomeController';
+                $class_name = 'BasicController';
                 break;
         }
     }else{
@@ -152,7 +114,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
         }else{
             $post = NULL;
             fputs($file, __FILE__.'('.__LINE__.')'." | Non connecté, retour à l'accueil.\n");
-            $class_name = 'WelcomeController';
+            $class_name = 'BasicController';
         }
     }
 
@@ -162,7 +124,8 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
             unset($_SESSION['logged']);
             unset($_SESSION['last_action']);
             unset($_SESSION['USERNAME']);
-            $class_name = 'SessionExpiredController';
+            $class_name = 'BasicController';
+            $post['TASK'] = 'ExpiredSession';
             fputs($file, __FILE__.'('.__LINE__.')'." | Session expiré.\n");
         }else{
             $_SESSION['last_action'] = time();
