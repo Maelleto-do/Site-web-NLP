@@ -29,7 +29,6 @@ class AdminCheckLoginModel{
                 //Sauvegarde des données propres à l'administrateur
                 $_SESSION['logged'] = 1;
                 $_SESSION['USERNAME'] = $USERNAME;
-                $_SESSION['ADMINID'] = $ADMINID;
                 $_SESSION['last_action'] = time();
                 return 0;
             }else{
