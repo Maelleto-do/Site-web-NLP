@@ -26,12 +26,12 @@ def find_word():
     #print(common)
 
     if len(common) > 0 :
-        return 1
+        return 0
         #print("mot interdit dans le message")
 
 
     #print("pas de mots interdits")
-    return 0
+    return 1
 
 exit(find_word())
 
