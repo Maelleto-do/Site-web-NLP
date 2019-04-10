@@ -146,6 +146,8 @@ VIEW;
 VIEW;
       break;
 
+      case 'ChangePseudo':
+      case 'ChangePwd':
       case 'Profile':
           //Array message d'erreur
           $this->MESSAGE = array(

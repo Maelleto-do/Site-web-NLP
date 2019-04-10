@@ -1,8 +1,5 @@
 <?php
 include_once 'controller/AbstractController.php';
-include_once 'model/CheckLoginModel.php';
-include_once 'model/ChangePseudoModel.php';
-include_once 'model/ChangePwdModel.php';
 include_once 'view/BasicView.php';
 
 class BasicController extends AbstractController{
@@ -23,6 +20,7 @@ class BasicController extends AbstractController{
                 $value = 'Deconnexion';
                 break;
             case 'CheckLogin':
+                include_once 'model/CheckLoginModel.php';
                 //Création du model et appel pour tester la connexion
                 $this->model = new CheckLoginModel();
                 $this->checkLoginAnswer = $this->model->checkLogin($post);
@@ -48,6 +46,7 @@ class BasicController extends AbstractController{
                 break;
 
             case 'ChangePseudo':
+                include_once 'model/ChangePseudoModel.php';
                 $this->model = new ChangePseudoModel();
                 $this->result = $this->model->changePseudo($post);
 
@@ -55,6 +54,7 @@ class BasicController extends AbstractController{
                 break;
 
             case 'ChangePwd':
+                include_once 'model/ChangePwdModel.php';
                 $this->model = new ChangePwdModel();
                 $this->result = $this->model->changePwd($post);
                 $value = 'ChangePwd';

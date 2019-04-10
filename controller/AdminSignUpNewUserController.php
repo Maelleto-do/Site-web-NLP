@@ -2,7 +2,6 @@
 include_once 'view/AdminSignUpNewUserView.php';
 include_once 'view/AdminCheckLoginView.php';
 include_once 'model/AdminSignUpNewUserModel.php';
-include_once 'view/Welcome.php';
 include_once 'controller/AbstractController.php';
 
 
@@ -25,4 +24,3 @@ class AdminSignUpNewUserController extends AbstractController {
     }
 
 }
-

@@ -1,7 +1,6 @@
 <?php
 include_once 'view/AdminCheckLoginView.php';
 include_once 'model/AdminCheckLoginModel.php';
-include_once 'view/Welcome.php';
 include_once 'controller/AbstractController.php';
 
 
@@ -24,4 +23,3 @@ class AdminCheckLoginController extends AbstractController {
     }
 
 }
-

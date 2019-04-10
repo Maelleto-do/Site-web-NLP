@@ -1,7 +1,6 @@
 <?php
 include_once 'view/MultipleSubjectsDisplay.php';
 include_once 'model/MultipleSubjectsModel.php';
-include_once 'view/Welcome.php';
 include_once 'controller/AbstractController.php';
 
 class MultipleSubjectsController extends AbstractController {

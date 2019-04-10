@@ -73,6 +73,8 @@ class AlreadyLoggedController extends AbstractController {
                         break;
 
                     case 'Profile':
+                    case 'ChangePwd':
+                    case 'ChangePseudo':
                         $value = 'Profile';
                         break;
 
