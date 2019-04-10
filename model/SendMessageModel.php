@@ -3,13 +3,23 @@
 include_once 'DBConnection.php';
 
 class SendMessageModel{
+
+  private $subjectID;
+
+    public function setIdSubject($subjectID){
+
+      $this->subjectID = $subjectID;
+
+    }
+
+
     public function sendMessage($post){
 
         //Connexion à la db
         $DBConnection = new DBConnection();
         $db = $DBConnection->getDB();
 
-        $subjectID = $post['IDSUBJECT'];
+        //$subjectID = $post['IDSUBJECT'];
         $message= $post['MESSAGE'];
         $username = $_SESSION['USERNAME'];
         $userID = $_SESSION['USERID'];
@@ -19,12 +29,12 @@ class SendMessageModel{
 
         if($req){
 
-          $req->execute(array('IDSUBJECT' => $subjectID, 'MESSAGE' => $message, 'AUTHOR' => $username, 'ISEDITED' => 0, 'TIMEDATE' => date("Y-m-d H:i:s"), 'AUTHORID' => $userID));
+          $req->execute(array('IDSUBJECT' => $this->subjectID, 'MESSAGE' => $message, 'AUTHOR' => $username, 'ISEDITED' => 0, 'TIMEDATE' => date("Y-m-d H:i:s"), 'AUTHORID' => $userID));
 
             $req = $db->prepare("UPDATE Sujet SET nbMessages = nbMessages + 1 WHERE subjectID = :IDSUBJECT");
 
             if($req){
-              $req->execute(array('IDSUBJECT' => $subjectID));
+              $req->execute(array('IDSUBJECT' => $this->subjectID));
             }
 
         }

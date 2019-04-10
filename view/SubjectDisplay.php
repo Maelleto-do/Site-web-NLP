@@ -13,26 +13,44 @@ class SubjectDisplay{
   private $adminID;
   private $message_erreur;
 
+  public function setMessageisGood($msg){
+
+    $this->message_erreur = $msg;
+
+  }
+
+  public function setCheckSubject($tab){
+
+    $this->nameSubject = $tab['NAMESUBJECT'];
+    $this->subjectMessage = $tab['SUBJECTMESSAGE'];
+    $this->nbMessages = $tab['NBMESSAGES'];
+    $this->isResolved = $tab['ISRESOLVED'];
+    $this->authorUsername = $tab['AUTHORUSERNAME'];
+    $this->creationDate = $tab['CREATIONDATE'];
+    echo   $this->authorUsername;
+
+  }
 
   public function launch($post){
+
+
     $this->username = $post['TEMP_SUBJECT_INFO']['USERNAME'];
     $this->userID = $post['TEMP_SUBJECT_INFO']['USERID'];
+
     if(isset($post['TEMP_SUBJECT_INFO']['ADMINID'])){
         $this->adminID = $post['TEMP_SUBJECT_INFO']['ADMINID'];
     }
+    /*
     $this->nameSubject = $post['TEMP_SUBJECT_INFO']['NAMESUBJECT'];
     $this->subjectMessage = $post['TEMP_SUBJECT_INFO']['SUBJECTMESSAGE'];
     $this->nbMessages = $post['TEMP_SUBJECT_INFO']['NBMESSAGES'];
     $this->isResolved = $post['TEMP_SUBJECT_INFO']['ISRESOLVED'];
-    $this->creationDate = $post['TEMP_SUBJECT_INFO']['CREATIONDATE'];
     $this->authorUsername = $post['TEMP_SUBJECT_INFO']['AUTHORUSERNAME'];
-    $this->message_list = $post['TEMP_SUBJECT_INFO']['MESSAGE_LIST'];
+    $this->creationDate = $post['TEMP_SUBJECT_INFO']['CREATIONDATE'];
 
-    if(isset($post['MESSAGE_ERREUR'])){
-       $this->message_erreur = $post['MESSAGE_ERREUR'];
-    }else{
-      $this->message_erreur = '';
-    }
+
+    */
+    $this->message_list = $post['TEMP_SUBJECT_INFO']['MESSAGE_LIST'];
 
 
     $header = new Header();
@@ -62,7 +80,6 @@ class SubjectDisplay{
     <div class="panel panel-default">
 VIEW;
        foreach ($this->message_list as $row => $link) {
-
        echo <<<FE
        <p><i><strong>$link[author]</strong> a répondu :</i></p>
        <div class="panel-body">

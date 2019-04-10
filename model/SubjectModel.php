@@ -2,6 +2,7 @@
 include_once 'DBConnection.php';
 
 class SubjectModel{
+
     public function checkSubject($post){
 
         //Connexion à la db
@@ -17,8 +18,20 @@ class SubjectModel{
 
         //On test si le subjectID de la db est là
         if($res['subjectID']){
-            $checkSubject = 0;
 
+
+            $temp_subject_info = array(
+              'IDSUBJECT' => $res['subjectID'],
+              'NAMESUBJECT' => $res['nameSubject'],
+              'SUBJECTMESSAGE' => $res['subjectMessage'],
+              'NBMESSAGES' => $res['nbMessages'],
+              'ISRESOLVED' => $res['isResolved'],
+              'AUTHORUSERNAME'  => $res['USERNAME'],
+              'CREATIONDATE' => $res['creationDate'],
+              'checkSubject' => 0,
+            );
+/*
+                    $checkSubject = 0;
             $_SESSION['TEMP_SUBJECT_INFO']['IDSUBJECT'] = $res['subjectID'];
             $_SESSION['TEMP_SUBJECT_INFO']['NAMESUBJECT'] = $res['nameSubject'];
             $_SESSION['TEMP_SUBJECT_INFO']['SUBJECTMESSAGE'] = $res['subjectMessage'];
@@ -26,13 +39,13 @@ class SubjectModel{
             $_SESSION['TEMP_SUBJECT_INFO']['ISRESOLVED'] = $res['isResolved'];
             $_SESSION['TEMP_SUBJECT_INFO']['AUTHORUSERNAME'] = $res['USERNAME'];
             $_SESSION['TEMP_SUBJECT_INFO']['CREATIONDATE'] = $res['creationDate'];
-
+*/
         }else{
             //The subject does not exist
-            $checkSubject = 3;
+            $temp_subject_info['checkSubject'] = 3;
+            //$checkSubject = 3;
         }
 
-
-        return $checkSubject;
+        return $temp_subject_info;
     }
 }

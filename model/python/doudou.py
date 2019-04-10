@@ -20,21 +20,26 @@ def find_word():
     f1 = open("model/python/black_list.txt",'rU')
     text_black_list = f1.read()
     text_black_list = text_black_list.lower()
-    #print nltk.word_tokenize(test)
-    #print(text_black_list)
+
+
+
     text_token = tokenizer.tokenize(text)
     black_list_token = tokenizer.tokenize(text_black_list)
 
+
+    '''On compare la black list avec le texte écrit par l'utilisateur'''
+
     common = set(text_token).intersection(black_list_token)
 
-    #print(common)
+
 
     if len(common) > 0 :
         return 0
-        #print("mot interdit dans le message")
 
 
-    #print("pas de mots interdits")
+
+
+
     return 1
 
 exit(find_word())
