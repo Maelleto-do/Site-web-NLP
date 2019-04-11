@@ -38,6 +38,7 @@ def two_group(data) :
 #Renvoie si le texte saisit dans le formulaire est censuré ou non
 def find_word():
 
+    #Ouverture de la blacklist
     #On met la black list en minuscule pour éviter les problèmes de casse
     f1 = open("model/python/black_list.txt",'rU')
     text_black_list = f1.read()
