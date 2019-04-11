@@ -85,20 +85,6 @@ class AlreadyLoggedController extends AbstractController {
                     case 'Deconnexion':
                         $value = 'Deconnexion';
                         break;
-                    case 'CheckLogin':
-                        //Création du model et appel pour tester la connexion
-                        include_once 'model/CheckLoginModel.php';
-                        $this->model = new CheckLoginModel();
-                        $this->checkLoginAnswer = $this->model->checkLogin($post);
-                        //Si checkLogin() renvoie 0, pas d'erreurs
-                        if(isset($this->checkLoginAnswer) && $this->checkLoginAnswer == 0){
-                          $value = 'Logged';
-                        }else{
-                          $value = 'Welcome';
-                          //On donne le message d'erreur à afficher à la vue
-                          $this -> view -> setMessageNumberLogin($this -> checkLoginAnswer);
-                        }
-                        break;
                     case 'ExpiredSession':
                         $value = 'ExpiredSession';
                         break;
@@ -107,6 +93,7 @@ class AlreadyLoggedController extends AbstractController {
                     case 'ChangePseudo':
                         $value = 'Profile';
                         break;
+                    case 'CheckLogin':
                     case 'Logged':
                         $value = 'Logged';
                         break;
