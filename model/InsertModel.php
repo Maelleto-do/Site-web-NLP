@@ -18,7 +18,7 @@ class InsertModel{
             return 1;
         }
         if ($PW != $PW_REPEAT){
-            return 4;
+            return 3;
         }
         //Connection to PDO
         $DBConnection = new DBConnection();
@@ -34,14 +34,14 @@ class InsertModel{
         $req->execute(array($USERNAME));
         $res = $req->fetch();
         if($res['USERNAME']){
-            return 2;
+            return 1;
         }
         //Vérification si l'EMAIL n'est pas déjà dans la BDD :
         $req = $bdd->prepare("SELECT EMAIL FROM users");
         $req->execute();
         while ($res = $req->fetch()){
             if(password_verify($MAIL,$res['EMAIL'])){
-                return 3; //EMAIL DEJA DANS LA BDD
+                return 2; //EMAIL DEJA DANS LA BDD
             }
         }
         //Insertion dans la BD
@@ -51,7 +51,7 @@ class InsertModel{
             return 0;
         }else{
             $req->errorInfo();
-            return 5;
+            return 4;
         }
     }
 }

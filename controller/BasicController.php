@@ -73,10 +73,6 @@ class BasicController extends AbstractController{
                 $value = 'Profile';
                 break;
 
-            case 'Logged':
-                $value = 'Logged';
-                break;
-
             case 'ChangePseudo':
                 include_once 'model/ChangePseudoModel.php';
                 include_once 'model/GetIDFromBDModel.php';
@@ -111,7 +107,7 @@ class BasicController extends AbstractController{
 
 
         if(isset($value)){
-          if($value = 'AdminLogged'){
+          if($value == 'AdminLogged'){
               include_once 'view/AdminCheckLoginView.php';
               $this->view= new AdminCheckLoginView();
               if(isset($this->result)){

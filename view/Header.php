@@ -4,7 +4,7 @@ class Header{
     private $username;
 
   public function launch($post){
-    if(isset($post['USERNAME'])){
+    if(isset($_SESSION['logged'] ) && $_SESSION['logged'] ==1){
       $this->username = $post['USERNAME'];
       if($post['USERNAME'] == 'Admin'){
         echo <<<VIEW
@@ -39,20 +39,20 @@ class Header{
         <input type="hidden" name="TASK" value="AdminSignUpNewUser">
         <div class="form-group">
         <label for="email">Email address</label>
-        <input type="email" name="MAIL_USER" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter parent email">
+        <input type="email" name="MAIL_USER" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter parent email" required>
         <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
         </div>
         <div class="form-group">
         <label for="username">Username</label>
-        <input type="text" name="USERNAME_USER" class="form-control" id="username" aria-describedby="username" placeholder="Enter Username">
+        <input type="text" name="USERNAME_USER" class="form-control" id="username" aria-describedby="username" placeholder="Enter Username"  required>
         </div>
         <div class="form-group">
         <label for="password">Password</label>
-        <input type="password" name="PW_USER" class="form-control" id="password" placeholder="Enter Password">
+        <input type="password" name="PW_USER" class="form-control" id="password" placeholder="Enter Password"  required>
         </div>
          <div class="form-group">
         <label for="password_repeat">Repeat password</label>
-        <input type="password" name="PW_USER_REPEAT" class="form-control" id="password_repeat" placeholder="Enter Password again">
+        <input type="password" name="PW_USER_REPEAT" class="form-control" id="password_repeat" placeholder="Enter Password again"  required>
         </div>
         <input type="submit" value="signup">
         </form>

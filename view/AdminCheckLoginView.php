@@ -18,13 +18,12 @@ class AdminCheckLoginView{
 
     $this->MESSAGE_SIGNUP = array(
       'Vous avez ajouté un nouvel utilisateur !',
-      'Veuillez saisir des données',
       'Le prénom.nom que vous avez tenté d\'ajouter fais déjà parti de la base de données !',
       'L\'E-MAIL que vous avez tenté d\'ajouter fais déjà parti de la base de données !',
-      'Les mots de passe ne correspondent pas',
+      'Les mots de passe ne correspondent pas !',
       'Erreur de connexion à la base de données !'
   );
-
+    $this->messagetoprint = 'Vous pouvez dès à présent inscrire un nouvel utilisateur';
     //Dans le cas où il y a une erreur lorsque l'administrateur inscrit un élève, affichage d'un message d'erreur
     if (isset($this->messageNumberSignup)){
       $this->messagetoprint = $this->MESSAGE_SIGNUP[$this->messageNumberSignup];
@@ -36,7 +35,7 @@ class AdminCheckLoginView{
    <div class="row content">
    <div class="col-sm-8 text-left">
    $this->messagetoprint
-   Vous pouvez dès à présent inscrire un nouvel utilisateur.
+
    </div>
    </div>
    </div>

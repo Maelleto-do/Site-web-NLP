@@ -39,13 +39,14 @@ class TestLoginModel{
 
                 'USERNAME' => $USERNAME,
                 'USERID' => $USERID,
-                 'checkLogin' => 0,
+                'checkLogin' => 0,
               );
 
               $_SESSION['logged'] = 1;
               $_SESSION['USERNAME'] = $USERNAME;
               $_SESSION['last_action'] = time();
-              return 0;
+              return $tabCheckLogin;
+
           }else{
               //Incorrect password
               $tabCheckLogin['checkLogin']= 2;
@@ -97,7 +98,8 @@ class TestLoginModel{
               );
 
               $_SESSION['last_action'] = time();
-              return 0;
+              return $tabCheckLoginAdmin;
+              
           }else{
               //Incorrect password
               $tabCheckLoginAdmin['checkLogin']= 2;

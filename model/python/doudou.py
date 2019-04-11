@@ -2,6 +2,7 @@
 
 import sys
 import nltk
+
 nltk.data.path.append('nltk_data')
 # nltk.download('nltk_data/tokenizers/punkt')
 from nltk import word_tokenize
@@ -18,7 +19,7 @@ def filter(data) :
     stopWords = set(stopwords.words('french'))
     words = nltk.word_tokenize(data)
     wordsFiltered = []
- 
+
     for w in words:
         if w not in stopWords:
             wordsFiltered.append(w)
@@ -48,22 +49,28 @@ def find_word():
     text_sensitive_list = f2.read()
     text_sensitive_list = text_sensitive_list.lower()
 
+    f3 = open("model/python/usual_list.txt",'rU')
+    text_usual_list = f3.read()
+    text_usual_list = text_usual_list.lower()
+
     #On met le texte saisit par l'utilisateur en minuscule pour éviter les problèmes de casse
     f = open("texte_test.txt",'rU', encoding='utf-8')
     text = f.read()
     text = text.lower()
-    #text = unicode(s,'utf-8')
-    #text = unicodedata.normalize('NFD', text).encode('ascii', 'ignore')
+    # text = unicode(s,'utf-8')
+    # text = unicodedata.normalize('NFD', text).encode('ascii', 'ignore')
 
     text_linearized1 = filter(text)
     black_list_token = tokenizer.tokenize(text_black_list)
     sensitive_list_token = tokenizer.tokenize(text_sensitive_list)
+    usual_list_token = tokenizer.tokenize(text_usual_list)
     #Intersection des deux listes pour voir s'il y a des mots en commun
     common1 = set(text_linearized1).intersection(black_list_token)
 
+
     text_linearized2 = two_group(text)
     for w in text_linearized2 :
-        print(w)
+        #print(w)
         common2 = set(w).intersection(sensitive_list_token)
 
 
@@ -75,35 +82,3 @@ def find_word():
     return 1
 
 exit(find_word())
-
-
-
-
-# def find_word():
-#
-#     f = open("texte_test.txt", 'rU')
-#     res = nltk.word_tokenize(f)
-#     for wd in res :
-#         if wd == "moche":
-#             return 1
-#     return 0
-
-# exit(find_word())
-
-#
-# def find_word():
-#
-#     f = open("texte_test.txt", 'rU')
-#     for ligne in f :
-#         phrase = ligne.split()
-#         #print phrase
-#         #print len(phrase)
-#         for i in range(0,len(phrase)):
-#             #print phrase[i]
-#             if phrase[i] == "moche":
-#                 return 1
-#     return 0
-#
-#
-#
-# exit(find_word())
