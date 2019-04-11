@@ -15,6 +15,9 @@ session_start();
 
 <?php
 
+// session_unset();
+// session_destroy();
+
 $file = fopen('log/messages.log','a');
 
 if($_SERVER['REQUEST_METHOD'] == 'GET'){

@@ -2,7 +2,10 @@
 include_once 'Header.php';
 
 class SubjectDisplay{
+<<<<<<< HEAD
 
+=======
+>>>>>>> 541701c0db2780ffc1068789b506038ea14e8408
   private $userID;
   private $nameSubject;
   private $subjectMessage;
