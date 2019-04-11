@@ -36,7 +36,6 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
     switch($task){
 
       case 'Deconnexion':
-
       $class_name = 'BasicController';
       $post = NULL;
       session_unset();
@@ -44,27 +43,18 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
       break;
 
       case 'MessageSujet':
-
       $class_name = 'SubjectController';
       break;
 
-      case 'AdminSignUpNewUser':
-
-      $class_name = 'AdminSignUpNewUserController';
-      break;
-
       case 'SendMessage':
-
       $class_name = 'SendMessageController';
       break;
 
       case 'DeleteMessage':
-
       $class_name = 'DeleteMessageController';
       break;
 
       default:
-
       $class_name = 'BasicController';
       break;
     }

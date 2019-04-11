@@ -22,6 +22,12 @@ class BasicController extends AbstractController{
             case 'Deconnexion':
                 $value = 'Deconnexion';
                 break;
+            case 'AdminSignUpNewUser':
+                include_once 'model/InsertModel.php';
+                $this->model = new InsertModel();
+                $this->result = $this->model->SignUpUser($post);
+                $value = 'AdminLogged';
+                break;
             case 'AdminCheckLogin':
                 include_once 'model/TestLoginModel.php';
                 $this->model = new TestLoginModel();
@@ -105,9 +111,12 @@ class BasicController extends AbstractController{
 
 
         if(isset($value)){
-          if($value == 'AdminLogged'){
+          if($value = 'AdminLogged'){
               include_once 'view/AdminCheckLoginView.php';
-              $this->view = new AdminCheckLoginView();
+              $this->view= new AdminCheckLoginView();
+              if(isset($this->result)){
+                $this->view->setMessageNumberSignup($this->result);
+              }
           }else{
               $this->view = new BasicView();
               $this->view->setValueToSwitch($value);

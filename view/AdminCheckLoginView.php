@@ -4,26 +4,20 @@ include_once 'Header.php';
 class AdminCheckLoginView{
 
   private $messageNumberSignup;
-  private $messageNumberLogin;
   private $MESSAGE_SIGNUP;
   private $messagetoprint;
-
-  public function setmessageNumberLogin($nb){
-    $this -> messageNumberLogin = $nb;
-  }
 
   public function setMessageNumberSignup($nb){
     $this -> messageNumberSignup = $nb;
   }
 
-
   public function launch($post){
-
 
     $header = new Header();
     $header->launch($post);
 
     $this->MESSAGE_SIGNUP = array(
+      'Vous avez ajouté un nouvel utilisateur !',
       'Veuillez saisir des données',
       'Le prénom.nom que vous avez tenté d\'ajouter fais déjà parti de la base de données !',
       'L\'E-MAIL que vous avez tenté d\'ajouter fais déjà parti de la base de données !',
@@ -31,14 +25,9 @@ class AdminCheckLoginView{
       'Erreur de connexion à la base de données !'
   );
 
-    //Dans le cas où l'administrateur souhaite s'identifier et qu'il y a une erreur, affichage d'un message d'erreur
-    if ($this -> messageNumberLogin > 0){
-      $this->messagetoprint = $this->MESSAGE_LOGIN[$this -> messageNumberLogin - 1];
-    }
-
     //Dans le cas où il y a une erreur lorsque l'administrateur inscrit un élève, affichage d'un message d'erreur
-    if ($this -> messageNumberSignup > 0){
-      $this->messagetoprint = $this->MESSAGE_SIGNUP[$this -> messageNumberSignup - 1];
+    if (isset($this->messageNumberSignup)){
+      $this->messagetoprint = $this->MESSAGE_SIGNUP[$this->messageNumberSignup];
     }
 
     echo <<<VIEW
