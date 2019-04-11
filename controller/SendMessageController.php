@@ -39,8 +39,10 @@ class SendMessageController extends AbstractController {
     if($this->checkMessageGood == 0){
 
       $this->message_erreur = 'Le message envoyé contient un mot interdit.';
+
       $this->view = new SubjectDisplay();
-      $this->view -> setMessageisGood($this->message_erreur);
+      $this->view->setMessageisGood($this->message_erreur);
+      $this->view->setCheckSubject($this->tabCheckSubject);
       $this->view->setGetMessages($this->tabGetMessages);
       $this->view->setADMINID($this->ADMINID);
       $this->view->setUSERID($this->USERID);
@@ -68,11 +70,6 @@ class SendMessageController extends AbstractController {
 
 
 
-  }
-
-  public function launch($post){
-    $post['MESSAGE_ERREUR'] = $this->message_erreur;
-    $this->view->launch($post);
   }
 
 }
