@@ -34,25 +34,26 @@ class BasicView{
     switch($this->switch){
       case 'CreateSubject':
       echo <<<VIEW
-     <body>
-     <div class="container-fluid text-center">
-     <div class="row content">
-     <div class="col-sm-8 text-left">
-     <form action = "index.php" method = "POST">
-      Nom du sujet:<br>
-      <input type="text" name="subjectname" required>
-      <br>
-      Sujet:<br>
-      <textarea rows = "5" cols = "124" name = "MESSAGE" required></textarea>
-      <br><br>
-      <input type="submit" name="TASK" value="SendSubject">
-     </form>
-     </div>
-     </div>
-     </div>
-     </body>
+         <body>
+         <div class="container-fluid text-center">
+         <div class="row content">
+         <div class="col-sm-8 text-left">
+         <form action = "index.php" method = "POST">
+         Nom du sujet:<br>
+         <input type="text" name="subjectname" required>
+         <br>
+         Sujet:<br>
+         <textarea rows = "5" cols = "124" name = "MESSAGE" required></textarea>
+         <br><br>
+         <input type="submit" name="TASK" value="SendSubject">
+         </form>
+         </div>
+         </div>
+         </div>
+         </body>
 VIEW;
           break;
+      case 'SendSubject':
       case 'DisplayMultipleSubjects':
       echo <<<VIEW
       <body>

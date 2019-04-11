@@ -19,7 +19,7 @@ class SendSubjectController extends AbstractController {
         $this->subject_list = $this->model2->checkSubjects($post);
 
         $this -> view = new BasicView();
-        $this->view -> setSubjectList($this->subject_list);
+        $this->view->setSubjectList($this->subject_list);
 
     }
 

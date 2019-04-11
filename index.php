@@ -18,9 +18,8 @@ session_start();
 $file = fopen('log/messages.log','a');
 
 if($_SERVER['REQUEST_METHOD'] == 'GET'){
-  fputs($file, __FILE__.'('.__LINE__.')'." | On rentre dans le GET.\n");
+  fputs($file, __FILE__.'('.__LINE__.')'." | REQUEST_METHOD = GET.\n");
   if( isset($_SESSION['POST']) ){
-    fputs($file, __FILE__.'('.__LINE__.')'." | SESSION[POST] existe.\n");
     $post = $_SESSION['POST'];
 
     //Sert au refresh pour garder certaines infos. Temporaire.
@@ -49,11 +48,6 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
       $class_name = 'SubjectController';
       break;
 
-      case 'AdminCheckLogin':
-
-      $class_name = 'AdminCheckLoginController';
-      break;
-
       case 'AdminSignUpNewUser':
 
       $class_name = 'AdminSignUpNewUserController';
@@ -67,11 +61,6 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
       case 'DeleteMessage':
 
       $class_name = 'DeleteMessageController';
-      break;
-
-      case 'SendSubject':
-
-      $class_name = 'SendSubjectController';
       break;
 
       default:

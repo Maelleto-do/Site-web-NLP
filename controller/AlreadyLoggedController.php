@@ -73,11 +73,9 @@ class AlreadyLoggedController extends AbstractController {
                         $value = 'Deconnexion';
                         break;
                     case 'CheckLogin':
-                        include_once 'model/CheckLoginModel.php';
-                        //Création du model et appel pour tester la connexion
-                        $this->model = new CheckLoginModel();
+                        include_once 'model/TestLoginModel.php';
+                        $this->model = new TestLoginModel();
                         $this->tabCheckLogin = $this->model->checkLogin($post);
-                        //Si checkLogin() renvoie 0, pas d'erreurs
                         if(isset($this->tabCheckLogin) && $this->tabCheckLogin['checkLogin'] == 0){
                           $value = 'Logged';
                         }else{
