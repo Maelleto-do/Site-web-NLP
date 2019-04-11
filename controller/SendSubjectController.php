@@ -1,9 +1,9 @@
 <?php
-include_once 'view/MultipleSubjectsDisplay.php';
+include_once 'controller/AbstractController.php';
 include_once 'model/MultipleSubjectsModel.php';
 include_once 'model/SendSubjectModel.php';
 include_once 'model/SubjectModel.php';
-include_once 'controller/AbstractController.php';
+include_once 'view/BasicView.php';
 
 class SendSubjectController extends AbstractController {
 
@@ -15,14 +15,10 @@ class SendSubjectController extends AbstractController {
         $this->model = new SendSubjectModel();
         $this->checkSubjectSent = $this->model->sendSubject($post);
 
-        if($this->checkSubjectSent != 0){
-            echo 'La fonction sendSubject dans SendSubjectController a échoué.';
-        }
-
         $this->model2 = new MultipleSubjectsModel();
         $this->subject_list = $this->model2->checkSubjects($post);
 
-        $this -> view = new MultipleSubjectsDisplay();
+        $this -> view = new BasicView();
         $this->view -> setSubjectList($this->subject_list);
 
     }

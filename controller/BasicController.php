@@ -8,6 +8,7 @@ class BasicController extends AbstractController{
     private $result;
     private $modelGetID;
     private $USERID;
+    private $subject_list;
 
     function __construct($post){
 
@@ -26,20 +27,25 @@ class BasicController extends AbstractController{
                 //Création du model et appel pour tester la connexion
                 $this->model = new CheckLoginModel();
                 $this->tabCheckLogin = $this->model->checkLogin($post);
-                echo $this->tabCheckLogin['checkLogin'];
                 //Si checkLogin() renvoie 0, pas d'erreurs
                 if(isset($this->tabCheckLogin) && $this->tabCheckLogin['checkLogin'] == 0){
                   $value = 'Logged';
                 }else{
                   $value = 'Welcome';
-                  //On donne le message d'erreur à afficher à la vue
-                  $this -> view -> setMessageNumberLogin($this->tabCheckLogin['checkLogin']);
                 }
                 break;
             case 'ExpiredSession':
                 $value = 'ExpiredSession';
                 break;
-
+            case 'CreateSubject':
+                $value = 'CreateSubject';
+                break;
+            case 'DisplayMultipleSubjects':
+                $value = 'DisplayMultipleSubjects';
+                include_once 'model/MultipleSubjectsModel.php';
+                $this->model = new MultipleSubjectsModel();
+                $this->subject_list = $this->model->checkSubjects($post);
+                break;
             case 'Profile':
                 $value = 'Profile';
                 break;
@@ -84,6 +90,13 @@ class BasicController extends AbstractController{
         $this->view->setValueToSwitch($value);
         if($this->result != 0){
             $this->view->setMessageNumber($this->result);
+        }
+        if($value == 'Welcome' && isset($this->tabCheckLogin['checkLogin'])){
+          //On donne le message d'erreur à afficher à la vue
+          $this->view->setMessageNumberLogin($this->tabCheckLogin['checkLogin']);
+        }
+        if($value == 'DisplayMultipleSubjects'){
+          $this->view -> setSubjectList($this->subject_list);
         }
 
     }

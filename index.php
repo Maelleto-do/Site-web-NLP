@@ -37,7 +37,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
     switch($task){
 
       case 'Deconnexion':
-      fputs($file, __FILE__.'('.__LINE__.')'."\n");
+
       $class_name = 'BasicController';
       $post = NULL;
       session_unset();
@@ -45,47 +45,37 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
       break;
 
       case 'MessageSujet':
-      fputs($file, __FILE__.'('.__LINE__.')'."\n");
+
       $class_name = 'SubjectController';
       break;
 
-      case 'DisplayMultipleSubjects':
-      fputs($file, __FILE__.'('.__LINE__.')'."\n");
-      $class_name = 'MultipleSubjectsController';
-      break;
-
-      case 'CreateSubject':
-      fputs($file, __FILE__.'('.__LINE__.')'."\n");
-      $class_name = 'SubjectCreationPageController';
-      break;
-
       case 'AdminCheckLogin':
-      fputs($file, __FILE__.'('.__LINE__.')'."\n");
+
       $class_name = 'AdminCheckLoginController';
       break;
 
       case 'AdminSignUpNewUser':
-      fputs($file, __FILE__.'('.__LINE__.')'."\n");
+
       $class_name = 'AdminSignUpNewUserController';
       break;
 
       case 'SendMessage':
-      fputs($file, __FILE__.'('.__LINE__.')'."\n");
+
       $class_name = 'SendMessageController';
       break;
 
       case 'DeleteMessage':
-      fputs($file, __FILE__.'('.__LINE__.')'."\n");
+
       $class_name = 'DeleteMessageController';
       break;
 
       case 'SendSubject':
-      fputs($file, __FILE__.'('.__LINE__.')'."\n");
+
       $class_name = 'SendSubjectController';
       break;
 
       default:
-      fputs($file, __FILE__.'('.__LINE__.')'."\n");
+
       $class_name = 'BasicController';
       break;
     }
@@ -130,7 +120,6 @@ if(isset($_SESSION['IDSUBJECT'])){
   $post['IDSUBJECT'] = $_SESSION['IDSUBJECT'];
 }
 
-
 //Sauvegarde le nom de l'utilisateur connecté
 if(isset($_SESSION['USERNAME'])){
   $post['USERNAME'] = $_SESSION['USERNAME'];
@@ -143,6 +132,9 @@ $controller = new $class_name($post);
 //Sauvegarde le nom de l'utilisateur connecté pour les changement de pseudo
 if(isset($_SESSION['USERNAME'])){
   $post['USERNAME'] = $_SESSION['USERNAME'];
+}
+if(isset($_SESSION['IDSUBJECT'])){
+  $post['IDSUBJECT'] = $_SESSION['IDSUBJECT'];
 }
 
 //Lancement du controller
