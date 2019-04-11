@@ -152,11 +152,23 @@ VIEW;
           //Array message d'erreur
           $this->MESSAGE = array(
               'Le prénom.nom que vous avez tenté d\'ajouter fais déjà parti de la base de données !',
+              'Veuillez saisir un pseudo',
+              'Veuillez saisir un pseudo conforme',
+              'Veuillez saisir un pseudo de longueur inférieure à 20 caractères',
+              'Veuillez saisir un pseudo de longueur supérieure à 2 caractères',
               'Erreur de connexion à la base de données !',
+              'Veuillez saisir un mot de passe',
+              'Veuillez saisir un mot de passe de longueur inférieure à 20 caractères',
+              'Veuillez saisir un mot de passe de longueur supérieure à 2 caractères',
+              'Veuillez saisir un mot de passe contenant au moins : une majuscule, un chiffre, un caractère spécial'
+
           );
+
+
           if ($this -> messageNumber > 0){
-              $this->messagetoprint = $this->MESSAGE[$this -> messageNumber - 1];
-          }
+            $this->messagetoprint = $this->MESSAGE[$this -> messageNumber - 1];
+        }
+
           echo <<<VIEW
           <div class="container-fluid text-center">
           <div class="row content">
@@ -175,7 +187,7 @@ VIEW;
           <input type="hidden" name="TASK" value="ChangePwd">
           <div class="form-group">
           <label for="username">Nouveau mot de passe</label>
-          <input type="text" name="NEW_PWD" class="form-control" id="new_pwd" placeholder="Saisir le nouveau mot de passe">
+          <input type="password" name="NEW_PWD" class="form-control" id="new_pwd" placeholder="Saisir le nouveau mot de passe">
           </div>
           <input type="submit" value="Enregistrer">
           </form>
