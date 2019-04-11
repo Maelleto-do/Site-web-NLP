@@ -36,14 +36,18 @@ class SendMessageController extends AbstractController {
     $this->USERID = $this->modelGetID->GetUSERID($post);
     $this->ADMINID = $this->modelGetID->GetADMINID($post);
 
-    $this->modelbis = new MessageModel();
-    $this->modelbis-> setIdSubject($this->tabCheckSubject['IDSUBJECT']);
-    $this->tabGetMessages = $this->modelbis->getMessages($post);
+
+
+
 
 
     if($this->checkMessageGood == 0){
 
       $this->message_erreur = 'Le message envoyé contient un mot interdit.';
+
+      $this->modelbis = new MessageModel();
+      $this->modelbis-> setIdSubject($this->tabCheckSubject['IDSUBJECT']);
+      $this->tabGetMessages = $this->modelbis->getMessages($post);
 
       $this->view = new SubjectDisplay();
       $this->view->setMessageisGood($this->message_erreur);
@@ -60,6 +64,9 @@ class SendMessageController extends AbstractController {
       $this->model->setIdSubject($this->subjectId);
       $this->checkMessageSent = $this->model->sendMessage($post);
 
+      $this->modelbis = new MessageModel();
+      $this->modelbis-> setIdSubject($this->tabCheckSubject['IDSUBJECT']);
+      $this->tabGetMessages = $this->modelbis->getMessages($post);
 
 
       $this -> view = new SubjectDisplay();

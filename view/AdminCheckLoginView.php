@@ -45,17 +45,9 @@ class AdminCheckLoginView{
 
    <div class="container-fluid text-center">
    <div class="row content">
-   <div class="col-sm-2 sidenav">
-   <p><a href="#"></a></p>
-   </div>
    <div class="col-sm-8 text-left">
-
    $this->messagetoprint
    Vous pouvez dès à présent inscrire un nouvel utilisateur.
-
-   </div>
-   <div class="col-sm-2 sidenav">
-
    </div>
    </div>
    </div>

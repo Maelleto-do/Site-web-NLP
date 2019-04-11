@@ -8,9 +8,14 @@ class BasicView{
   private $messagetoprint;
   private $MESSAGE;
   private $messageNumber;
+  private $subject_list;
 
   public function setmessageNumber($value){
       $this->messageNumber = $value;
+  }
+
+  public function setSubjectList($subject_list){
+    $this->subject_list = $subject_list;
   }
 
   public function setmessageNumberLogin($value){
@@ -27,6 +32,57 @@ class BasicView{
     $header->launch($post);
 
     switch($this->switch){
+      case 'CreateSubject':
+      echo <<<VIEW
+         <body>
+         <div class="container-fluid text-center">
+         <div class="row content">
+         <div class="col-sm-8 text-left">
+         <form action = "index.php" method = "POST">
+         Nom du sujet:<br>
+         <input type="text" name="subjectname" required>
+         <br>
+         Sujet:<br>
+         <textarea rows = "5" cols = "124" name = "MESSAGE" required></textarea>
+         <br><br>
+         <input type="submit" name="TASK" value="SendSubject">
+         </form>
+         </div>
+         </div>
+         </div>
+         </body>
+VIEW;
+          break;
+      case 'SendSubject':
+      case 'DisplayMultipleSubjects':
+      echo <<<VIEW
+      <body>
+      <div class="container-fluid text-center">
+      <div class="row content">
+      <div class="col-sm-8 text-left">
+VIEW;
+      foreach ($this->subject_list as $row => $link) {
+        echo <<<FE
+        <div class="panel panel-default">
+        <div class="panel-body">
+        <div class="row">
+        <div class="col-6">
+        <div class="well">
+        <a href="#" onclick="$('#Main_Form_IDSUBJECT').val($link[subjectID]); $('#Main_Form_TASK').val('MessageSujet'); $('#Main_Form').submit();">$link[nameSubject]</a>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+FE;
+      }
+      echo <<<VIEW
+      </div>
+      </div>
+      </div>
+      </body>
+VIEW;
+          break;
 
       case 'Deconnexion':
           echo <<<VIEW
@@ -200,6 +256,7 @@ VIEW;
 
     <form id="Main_Form" action="index.php" method="POST">
     <input id="Main_Form_TASK" type="hidden" name="TASK" value="">
+    <input id="Main_Form_IDSUBJECT" type="hidden" name="IDSUBJECT" value="">
     </form>
 
 FORM;

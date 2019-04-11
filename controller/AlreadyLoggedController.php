@@ -61,19 +61,6 @@ class AlreadyLoggedController extends AbstractController {
 
                 break;
 
-                case 'DisplayMultipleSubjects':
-                  $class_name = 'MultipleSubjectsDisplay';
-                  include_once 'model/MultipleSubjectsModel.php';
-                  $this->model = new MultipleSubjectsModel();
-                  $this->subject_list = $this->model->checkSubjects($post);
-                break;
-
-                case 'SendSubject':
-                case 'CreateSubject':
-                include_once 'view/SubjectCreationPage.php';
-                $class_name = 'SubjectCreationPage';
-                break;
-
                 default:
                 switch($post['TASK']){
                     case 'Info':
@@ -85,18 +72,64 @@ class AlreadyLoggedController extends AbstractController {
                     case 'Deconnexion':
                         $value = 'Deconnexion';
                         break;
+                    case 'CheckLogin':
+                        include_once 'model/TestLoginModel.php';
+                        $this->model = new TestLoginModel();
+                        $this->tabCheckLogin = $this->model->checkLogin($post);
+                        if(isset($this->tabCheckLogin) && $this->tabCheckLogin['checkLogin'] == 0){
+                          $value = 'Logged';
+                        }else{
+                          $value = 'Welcome';
+                        }
+                        break;
                     case 'ExpiredSession':
                         $value = 'ExpiredSession';
                         break;
+                    case 'SendSubject':
+                    case 'CreateSubject':
+                        $value = 'CreateSubject';
+                        break;
+                    case 'DisplayMultipleSubjects':
+                        $value = 'DisplayMultipleSubjects';
+                        include_once 'model/MultipleSubjectsModel.php';
+                        $this->model = new MultipleSubjectsModel();
+                        $this->subject_list = $this->model->checkSubjects($post);
+                        break;
                     case 'Profile':
-                    case 'ChangePwd':
-                    case 'ChangePseudo':
                         $value = 'Profile';
                         break;
-                    case 'CheckLogin':
+
                     case 'Logged':
                         $value = 'Logged';
                         break;
+
+                    case 'ChangePseudo':
+                        include_once 'model/ChangePseudoModel.php';
+                        include_once 'model/GetIDFromBDModel.php';
+
+                        $this->modelGetID = new GetIDFromBDModel();
+                        $this->USERID = $this->modelGetID->GetUSERID($post);
+
+                        $this->model = new ChangePseudoModel();
+                        $this->model->getUserId($this->USERID);
+                        $this->result = $this->model->changePseudo($post);
+
+                        $value = 'ChangePseudo';
+                        break;
+
+                    case 'ChangePwd':
+                        include_once 'model/ChangePwdModel.php';
+                        include_once 'model/GetIDFromBDModel.php';
+
+                        $this->modelGetID = new GetIDFromBDModel();
+                        $this->USERID = $this->modelGetID->GetUSERID($post);
+
+                        $this->model = new ChangePwdModel();
+                        $this->model->getUserId($this->USERID);
+                        $this->result = $this->model->changePwd($post);
+                        $value = 'ChangePwd';
+                        break;
+
                     default:
                         $value = 'Welcome';
                         break;
@@ -120,6 +153,17 @@ class AlreadyLoggedController extends AbstractController {
         }
         if(isset($value)){
           $this -> view -> setValueToSwitch($value);
+          if($value == 'Welcome' && isset($this->tabCheckLogin['checkLogin'])){
+            //On donne le message d'erreur à afficher à la vue
+            $this->view->setMessageNumberLogin($this->tabCheckLogin['checkLogin']);
+          }
+          if($value == 'DisplayMultipleSubjects'){
+            $this->view -> setSubjectList($this->subject_list);
+          }
         }
+        if(isset($this->result) && $this->result != 0){
+            $this->view->setMessageNumber($this->result);
+        }
+
     }
 }

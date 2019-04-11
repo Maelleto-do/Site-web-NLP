@@ -8,6 +8,7 @@ class BasicController extends AbstractController{
     private $result;
     private $modelGetID;
     private $USERID;
+    private $subject_list;
 
     function __construct($post){
 
@@ -21,25 +22,47 @@ class BasicController extends AbstractController{
             case 'Deconnexion':
                 $value = 'Deconnexion';
                 break;
+            case 'AdminCheckLogin':
+                include_once 'model/TestLoginModel.php';
+                $this->model = new TestLoginModel();
+                $this->tabCheckLogin = $this->model->checkLoginAdmin($post);
+                if(isset($this->tabCheckLogin) && $this->tabCheckLogin['checkLogin'] == 0){
+                  $value = 'AdminLogged';
+                }else{
+                  $value = 'Welcome';
+                }
+                break;
             case 'CheckLogin':
-                include_once 'model/CheckLoginModel.php';
-                //Création du model et appel pour tester la connexion
-                $this->model = new CheckLoginModel();
+                include_once 'model/TestLoginModel.php';
+                $this->model = new TestLoginModel();
                 $this->tabCheckLogin = $this->model->checkLogin($post);
-                echo $this->tabCheckLogin['checkLogin'];
-                //Si checkLogin() renvoie 0, pas d'erreurs
                 if(isset($this->tabCheckLogin) && $this->tabCheckLogin['checkLogin'] == 0){
                   $value = 'Logged';
                 }else{
                   $value = 'Welcome';
-                  //On donne le message d'erreur à afficher à la vue
-                  $this -> view -> setMessageNumberLogin($this->tabCheckLogin['checkLogin']);
                 }
                 break;
             case 'ExpiredSession':
                 $value = 'ExpiredSession';
                 break;
-
+            case 'SendSubject':
+                $value = 'SendSubject';
+                include_once 'model/MultipleSubjectsModel.php';
+                include_once 'model/SendSubjectModel.php';
+                $this->model = new SendSubjectModel();
+                $this->checkSubjectSent = $this->model->sendSubject($post);
+                $this->model2 = new MultipleSubjectsModel();
+                $this->subject_list = $this->model2->checkSubjects($post);
+                break;
+            case 'CreateSubject':
+                $value = 'CreateSubject';
+                break;
+            case 'DisplayMultipleSubjects':
+                $value = 'DisplayMultipleSubjects';
+                include_once 'model/MultipleSubjectsModel.php';
+                $this->model = new MultipleSubjectsModel();
+                $this->subject_list = $this->model->checkSubjects($post);
+                break;
             case 'Profile':
                 $value = 'Profile';
                 break;
@@ -80,11 +103,32 @@ class BasicController extends AbstractController{
                 break;
         }
 
-        $this->view = new BasicView();
-        $this->view->setValueToSwitch($value);
-        if($this->result != 0){
-            $this->view->setMessageNumber($this->result);
+
+        if(isset($value)){
+          if($value == 'AdminLogged'){
+              include_once 'view/AdminCheckLoginView.php';
+              $this->view = new AdminCheckLoginView();
+          }else{
+              $this->view = new BasicView();
+              $this->view->setValueToSwitch($value);
+              if(isset($this->subject_list)){
+                $this->view->setSubjectList($this->subject_list);
+              }
+              if($value == 'Welcome' && isset($this->tabCheckLogin['checkLogin'])){
+                //On donne le message d'erreur à afficher à la vue
+                $this->view->setMessageNumberLogin($this->tabCheckLogin['checkLogin']);
+              }
+              if($value == 'DisplayMultipleSubjects'){
+                $this->view -> setSubjectList($this->subject_list);
+              }
+              if(isset($this->result) && $this->result != 0){
+                  $this->view->setMessageNumber($this->result);
+              }
+          }
         }
+
+
+
 
     }
 
