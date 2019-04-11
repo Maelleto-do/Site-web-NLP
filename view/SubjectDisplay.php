@@ -2,7 +2,6 @@
 include_once 'Header.php';
 
 class SubjectDisplay{
-  private $username;
   private $userID;
   private $nameSubject;
   private $subjectMessage;
