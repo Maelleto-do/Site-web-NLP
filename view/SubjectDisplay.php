@@ -2,7 +2,7 @@
 include_once 'Header.php';
 
 class SubjectDisplay{
-  private $username;
+
   private $userID;
   private $nameSubject;
   private $subjectMessage;
@@ -27,20 +27,38 @@ class SubjectDisplay{
     $this->isResolved = $tab['ISRESOLVED'];
     $this->authorUsername = $tab['AUTHORUSERNAME'];
     $this->creationDate = $tab['CREATIONDATE'];
-    echo   $this->authorUsername;
+
+  }
+
+  public function setGetMessages($tab){
+
+    $this->message_list = $tab['MESSAGE_LIST'];
+
+  }
+
+  public function setCheckLoginAdmin($tab){
+
+
+    $this->adminID = $tab['ADMINID'];
+
+  }
+
+  public function setCheckLogin($tab){
+
+    $this->userId = $tab['USERID'];
 
   }
 
   public function launch($post){
 
+    /*
+      $this->userID = $post['TEMP_SUBJECT_INFO']['USERID'];
 
     $this->username = $post['TEMP_SUBJECT_INFO']['USERNAME'];
-    $this->userID = $post['TEMP_SUBJECT_INFO']['USERID'];
-
     if(isset($post['TEMP_SUBJECT_INFO']['ADMINID'])){
         $this->adminID = $post['TEMP_SUBJECT_INFO']['ADMINID'];
     }
-    /*
+
     $this->nameSubject = $post['TEMP_SUBJECT_INFO']['NAMESUBJECT'];
     $this->subjectMessage = $post['TEMP_SUBJECT_INFO']['SUBJECTMESSAGE'];
     $this->nbMessages = $post['TEMP_SUBJECT_INFO']['NBMESSAGES'];
@@ -49,9 +67,9 @@ class SubjectDisplay{
     $this->creationDate = $post['TEMP_SUBJECT_INFO']['CREATIONDATE'];
 
 
-    */
-    $this->message_list = $post['TEMP_SUBJECT_INFO']['MESSAGE_LIST'];
 
+    $this->message_list = $post['TEMP_SUBJECT_INFO']['MESSAGE_LIST'];
+    */
 
     $header = new Header();
     $header->launch($post);
