@@ -25,9 +25,23 @@ class ChangePseudoModel
         $req = $db->prepare("SELECT USERNAME, ID FROM users");
         $req->execute(array($USERNAME));
         while ($res = $req->fetch()) {
-            if ($res['USERNAME'] == $NEWPSEUDO && $res['ID'] != $this->userId) {
-                return 1;
+            if (($res['USERNAME'] === $NEWPSEUDO) || ($res['ID'] != $this->userId) || (mb_strtolower($NEWPSEUDO) === 'admin') ) {
+                return 1; 
+                exit(); 
             }
+        }
+
+        if (empty($NEWPSEUDO)){
+            return 2; 
+        }
+        if (!preg_match("/^[a-zA-Z0-9]*$/", $NEWPSEUDO)){ 
+            return 3; 
+        }
+        if  (strlen($NEWPSEUDO) > 20){
+            return 4; 
+        }
+        if (strlen($NEWPSEUDO) < 3){
+            return 5; 
         }
 
         //On remet le nom de l'utilisateur à jour
@@ -37,10 +51,10 @@ class ChangePseudoModel
         $req = $db->prepare("UPDATE users SET USERNAME=? WHERE ID=?");
         if($req){
             $req->execute([$NEWPSEUDO, $this->userId]);
-            return 0;
+            $this->ret = 0; 
         }else{
             $req->errorInfo();
-            return 2;
+            $this->ret = 6; 
         }
     }
 }

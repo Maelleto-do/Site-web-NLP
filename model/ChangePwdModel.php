@@ -23,6 +23,19 @@ class ChangePwdModel
         $db = $DBConnection->getDB();
 
 
+        if (empty($NEWPWD)){
+            return 7; 
+        }
+
+        if  (strlen($NEWPWD) > 20){
+            return 8; 
+        }
+        if  (strlen($NEWPWD) < 3){
+            return 9; 
+        }else if (!preg_match('#^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W)#', $NEWPWD)){ 
+            return 10; 
+        }
+
         //Hash
         $options = [
             'cost' => 12,
@@ -37,7 +50,7 @@ class ChangePwdModel
             return 0;
         }else {
             $req->errorInfo();
-            return 2;
+            return 6;
         }
     }
 }
