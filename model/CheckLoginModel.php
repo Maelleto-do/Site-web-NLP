@@ -41,24 +41,34 @@ class CheckLoginModel{
         if($res['PWD']){
             if(password_verify($PW,$res['PWD'])){
                 //Sauvegarde des données propres à l'utilisateur
+
+                $tabCheckLoginAdmin = array (
+
+                  'USERNAME' => $USERNAME,
+                  'USERID' => $ADMINID,
+                   'checkLogin' => 0,
+                );
+
+
+
                 $_SESSION['logged'] = 1;
                 $_SESSION['USERNAME'] = $USERNAME;
                 $_SESSION['USERID'] = $USERID;
-                $_SESSION['TEMP_SUBJECT_INFO']['USERNAME'] = $USERNAME;
-                $_SESSION['TEMP_SUBJECT_INFO']['USERID'] = $USERID;
+                //$_SESSION['TEMP_SUBJECT_INFO']['USERNAME'] = $USERNAME;
+                //$_SESSION['TEMP_SUBJECT_INFO']['USERID'] = $USERID;
                 $_SESSION['last_action'] = time();
                 return 0;
             }else{
                 //Incorrect password
-                $checkLogin = 2;
+                $tabCheckLoginAdmin['checkLogin']= 2;
             }
         }else{
             //The username does not exist
-            $checkLogin = 3;
+            $tabCheckLoginAdmin['checkLogin']= 3;
         }
 
 
-        return $checkLogin;
+        return $tabCheckLoginAdmin;
     }
 
 }

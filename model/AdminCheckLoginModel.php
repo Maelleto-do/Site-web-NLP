@@ -28,22 +28,37 @@ class AdminCheckLoginModel{
             if(password_verify($PW,$res['PWD'])){
                 //Sauvegarde des données propres à l'administrateur
                 $_SESSION['logged'] = 1;
-                $_SESSION['TEMP_SUBJECT_INFO']['USERNAME'] = $USERNAME;
+                //$_SESSION['TEMP_SUBJECT_INFO']['USERNAME'] = $USERNAME;
                 $_SESSION['USERNAME'] = $USERNAME;
-                $_SESSION['TEMP_SUBJECT_INFO']['ADMINID'] = $ADMINID;
+                //$_SESSION['TEMP_SUBJECT_INFO']['ADMINID'] = $ADMINID;
+
+                $tabCheckLoginAdmin = array (
+
+                  'USERNAME' => $USERNAME,
+                  'ADMINID' => $ADMINID,
+                  'checkLogin' => 0,
+                );
+
+
 
                 $_SESSION['last_action'] = time();
                 return 0;
             }else{
                 //Incorrect password
-                $checkLogin = 2;
+
+                $tabCheckLoginAdmin['checkLogin']= 2;
+
+                //$checkLogin = 2;
             }
         }else{
             //The username does not exist
-            $checkLogin = 3;
+
+            $tabCheckLoginAdmin['checkLogin']= 3;
+
+            //$checkLogin = 3;
         }
 
 
-        return $checkLogin;
+        return $tabCheckLoginAdmin;
     }
 }
