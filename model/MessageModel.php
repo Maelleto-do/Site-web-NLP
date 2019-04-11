@@ -4,7 +4,7 @@ include_once 'DBConnection.php';
 
 class MessageModel{
   private $subjectID;
-  
+
 
     public function setIdSubject($subjectID){
 
@@ -27,9 +27,17 @@ class MessageModel{
         $message_list = $req->fetchAll(PDO::FETCH_ASSOC);
 
 
-        $_SESSION['TEMP_SUBJECT_INFO']['MESSAGE_LIST'] = $message_list;
-        $checkMessages = 0;
+        //$_SESSION['TEMP_SUBJECT_INFO']['MESSAGE_LIST'] = $message_list;
 
-        return $checkMessages;
+        $tabGetMessages = array (
+
+          'MESSAGE_LIST' => $message_list,
+          'checkMessages' => 0,
+
+        );
+
+        //$checkMessages = 0;
+
+        return $tabGetMessages;
     }
 }
