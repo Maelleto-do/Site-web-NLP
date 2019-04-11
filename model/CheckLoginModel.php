@@ -45,17 +45,12 @@ class CheckLoginModel{
                 $tabCheckLoginAdmin = array (
 
                   'USERNAME' => $USERNAME,
-                  'USERID' => $ADMINID,
+                  'USERID' => $USERID,
                    'checkLogin' => 0,
                 );
 
-
-
                 $_SESSION['logged'] = 1;
                 $_SESSION['USERNAME'] = $USERNAME;
-                $_SESSION['USERID'] = $USERID;
-                //$_SESSION['TEMP_SUBJECT_INFO']['USERNAME'] = $USERNAME;
-                //$_SESSION['TEMP_SUBJECT_INFO']['USERID'] = $USERID;
                 $_SESSION['last_action'] = time();
                 return 0;
             }else{

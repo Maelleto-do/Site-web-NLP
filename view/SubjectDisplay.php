@@ -2,18 +2,15 @@
 include_once 'Header.php';
 
 class SubjectDisplay{
-<<<<<<< HEAD
 
-=======
->>>>>>> 541701c0db2780ffc1068789b506038ea14e8408
   private $userID;
+  private $adminID;
   private $nameSubject;
   private $subjectMessage;
   private $nbMessages;
   private $isResolved;
   private $creationDate;
   private $message_list;
-  private $adminID;
   private $message_erreur;
 
   public function setMessageisGood($msg){
@@ -39,40 +36,15 @@ class SubjectDisplay{
 
   }
 
-  public function setCheckLoginAdmin($tab){
-
-
-    $this->adminID = $tab['ADMINID'];
-
+  public function setADMINID($adminId){
+    $this->adminID = $adminId;
   }
 
-  public function setCheckLogin($tab){
-
-    $this->userId = $tab['USERID'];
-
+  public function setUSERID($userId){
+    $this->userID = $userId;
   }
 
   public function launch($post){
-
-    /*
-      $this->userID = $post['TEMP_SUBJECT_INFO']['USERID'];
-
-    $this->username = $post['TEMP_SUBJECT_INFO']['USERNAME'];
-    if(isset($post['TEMP_SUBJECT_INFO']['ADMINID'])){
-        $this->adminID = $post['TEMP_SUBJECT_INFO']['ADMINID'];
-    }
-
-    $this->nameSubject = $post['TEMP_SUBJECT_INFO']['NAMESUBJECT'];
-    $this->subjectMessage = $post['TEMP_SUBJECT_INFO']['SUBJECTMESSAGE'];
-    $this->nbMessages = $post['TEMP_SUBJECT_INFO']['NBMESSAGES'];
-    $this->isResolved = $post['TEMP_SUBJECT_INFO']['ISRESOLVED'];
-    $this->authorUsername = $post['TEMP_SUBJECT_INFO']['AUTHORUSERNAME'];
-    $this->creationDate = $post['TEMP_SUBJECT_INFO']['CREATIONDATE'];
-
-
-
-    $this->message_list = $post['TEMP_SUBJECT_INFO']['MESSAGE_LIST'];
-    */
 
     $header = new Header();
     $header->launch($post);
@@ -111,20 +83,22 @@ VIEW;
                    </div>
                    <div class="text-right">
                    <form action = "index.php" method = "POST">
-                   <p><a href="#" onclick="$('#Main_Form_MESSAGEID').val($link[messageID]); $('#Main_Form_TASK').val('DeleteMessage'); $('#Main_Form').submit();">Supprimer le message</a></p>
-                   <script>
-                   var authorID= '<?php echo $link[authorID]; ?>' ;
-                   var userID = '<?php echo $this->userID; ?>' ;
-                   var adminID = '<?php echo $this->adminID; ?>' ;
-                   if (authorID != userID && userID != adminID) $('input').hide();
-                   </script>
-                   </form>
+                      <input id="d1" type="button" value="Supprimer le message" onclick="$('#Main_Form_MESSAGEID').val($link[messageID]); $('#Main_Form_TASK').val('DeleteMessage'); $('#Main_Form').submit();">
+                      <script>
+                      var authorID= '<?php echo $link[authorID]; ?>' ;
+                      var userID = '<?php echo $this->userID; ?>' ;
+                      var adminID = '<?php echo $this->adminID; ?>' ;
+
+                      if (authorID != userID && userID != adminID) $('input').hide();
+                  </script>
+
+                      </form>
                    </div>
                </div>
            </div>
        </div>
 FE;
-       }
+     }
 
        echo <<<VIEW
        </div>

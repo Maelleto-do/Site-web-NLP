@@ -5,12 +5,18 @@ class MultipleSubjectsDisplay{
   private $username;
   private $subject_list;
 
+
+  public function setSubjectList($subject_list){
+
+    $this->subject_list = $subject_list;
+
+  }
+
   public function launch($post){
 
     $header = new Header();
     $header->launch($post);
-      $this->username = $post['TEMP_SUBJECT_INFO']['USERNAME'];
-    $this->subject_list = $post['TEMP_SUBJECT_INFO']['SUBJECT_LIST'];
+
 
     echo <<<VIEW
    <body>

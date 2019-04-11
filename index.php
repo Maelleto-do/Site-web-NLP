@@ -15,9 +15,6 @@ session_start();
 
 <?php
 
-// session_unset();
-// session_destroy();
-
 $file = fopen('log/messages.log','a');
 
 if($_SERVER['REQUEST_METHOD'] == 'GET'){
@@ -32,21 +29,6 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
     }
     if(isset($post['IDSUBJECT'])){
       $_SESSION['IDSUBJECT'] = $post['IDSUBJECT'];
-    }
-    if(isset($post['MESSAGEID'])){
-      $_SESSION['MESSAGEID'] = $post['MESSAGEID'];
-    }
-    if(isset($_SESSION['USERNAME'])){
-      $post['USERNAME'] = $_SESSION['USERNAME'];
-    }
-    if(isset($_SESSION['USERID'])){
-      $post['USERID'] = $_SESSION['USERID'];
-    }
-    if(isset($_SESSION['ADMINID'])){
-      $post['ADMINID'] = $_SESSION['ADMINID'];
-    }
-    if(isset($post['MESSAGE'])){
-      $_SESSION['MESSAGE'] = $post['MESSAGE'];
     }
 
     $task = $post['TASK'];
@@ -147,44 +129,22 @@ if(isset($_SESSION['TASK'])){
 if(isset($_SESSION['IDSUBJECT'])){
   $post['IDSUBJECT'] = $_SESSION['IDSUBJECT'];
 }
-if(isset($_SESSION['MESSAGEID'])){
-  $post['MESSAGEID'] = $_SESSION['MESSAGEID'];
-}
-if(isset($_SESSION['MESSAGE'])){
-  $post['MESSAGE'] = $_SESSION['MESSAGE'];
-}
-
-//Création du controller et launch.
 
 
-fputs($file, __FILE__.'('.__LINE__.')'."\n");
-include_once 'controller/'.$class_name.'.php';
-
-$controller = new $class_name($post);
-
-
-//Temporaire : Pour exclure les $_SESSION des VIEW.
-if(isset($_SESSION['MESSAGE_LIST'])){
-  $post['MESSAGE_LIST'] = $_SESSION['MESSAGE_LIST'];
-}
-if(isset($_SESSION['SUBJECT_LIST'])){
-  $post['SUBJECT_LIST'] = $_SESSION['SUBJECT_LIST'];
-}
 //Sauvegarde le nom de l'utilisateur connecté
 if(isset($_SESSION['USERNAME'])){
   $post['USERNAME'] = $_SESSION['USERNAME'];
 }
-//Sauvegarde l'id de l'utilisateur connecté
-if(isset($_SESSION['USERID'])){
-  $post['USERID'] = $_SESSION['USERID'];
+
+//Création du controller
+include_once 'controller/'.$class_name.'.php';
+$controller = new $class_name($post);
+
+//Sauvegarde le nom de l'utilisateur connecté pour les changement de pseudo
+if(isset($_SESSION['USERNAME'])){
+  $post['USERNAME'] = $_SESSION['USERNAME'];
 }
-//Sauvegarde l'id de l'administrateur connecté
-if(isset($_SESSION['ADMINID'])){
-  $post['ADMINID'] = $_SESSION['ADMINID'];
-}
-if(isset($_SESSION['TEMP_SUBJECT_INFO'])){
-  $post['TEMP_SUBJECT_INFO'] = $_SESSION['TEMP_SUBJECT_INFO'];
-}
+
 //Lancement du controller
 $controller->launch($post);
 

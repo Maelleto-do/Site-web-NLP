@@ -9,7 +9,6 @@ class SubjectCreationPage{
     $header = new Header();
     $header->launch($post);
 
-      $this->username = $post['TEMP_SUBJECT_INFO']['USERNAME'];
     echo <<<VIEW
    <body>
    <div class="container-fluid text-center">
@@ -41,4 +40,3 @@ VIEW;
  }
 }
 ?>
-<!-- input type="hidden" name="TASK" value="Deconnexion" //input type="hidden" name="TASK" value="Info" //input type="hidden" name="TASK" value="Contact" -->

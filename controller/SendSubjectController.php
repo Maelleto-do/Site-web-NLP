@@ -9,6 +9,7 @@ class SendSubjectController extends AbstractController {
 
     private $model2;
     private $checkSubjectSent;
+    private $subject_list;
 
     function __construct($post){
         $this->model = new SendSubjectModel();
@@ -19,9 +20,11 @@ class SendSubjectController extends AbstractController {
         }
 
         $this->model2 = new MultipleSubjectsModel();
-        $this->checkSubjectSent = $this->model2->checkSubjects($post);
+        $this->subject_list = $this->model2->checkSubjects($post);
+
         $this -> view = new MultipleSubjectsDisplay();
+        $this->view -> setSubjectList($this->subject_list);
+
     }
 
 }
-

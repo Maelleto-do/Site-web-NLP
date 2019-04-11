@@ -4,8 +4,10 @@ include_once 'view/BasicView.php';
 
 class BasicController extends AbstractController{
     private $value;
-    private $checkLoginAnswer;
+    private $tabCheckLogin;
     private $result;
+    private $modelGetID;
+    private $USERID;
 
     function __construct($post){
 
@@ -23,14 +25,15 @@ class BasicController extends AbstractController{
                 include_once 'model/CheckLoginModel.php';
                 //Création du model et appel pour tester la connexion
                 $this->model = new CheckLoginModel();
-                $this->checkLoginAnswer = $this->model->checkLogin($post);
+                $this->tabCheckLogin = $this->model->checkLogin($post);
+                echo $this->tabCheckLogin['checkLogin'];
                 //Si checkLogin() renvoie 0, pas d'erreurs
-                if(isset($this->checkLoginAnswer) && $this->checkLoginAnswer == 0){
+                if(isset($this->tabCheckLogin) && $this->tabCheckLogin['checkLogin'] == 0){
                   $value = 'Logged';
                 }else{
                   $value = 'Welcome';
                   //On donne le message d'erreur à afficher à la vue
-                  $this -> view -> setMessageNumberLogin($this -> checkLoginAnswer);
+                  $this -> view -> setMessageNumberLogin($this->tabCheckLogin['checkLogin']);
                 }
                 break;
             case 'ExpiredSession':
@@ -47,7 +50,13 @@ class BasicController extends AbstractController{
 
             case 'ChangePseudo':
                 include_once 'model/ChangePseudoModel.php';
+                include_once 'model/GetIDFromBDModel.php';
+
+                $this->modelGetID = new GetIDFromBDModel();
+                $this->USERID = $this->modelGetID->GetUSERID($post);
+
                 $this->model = new ChangePseudoModel();
+                $this->model->getUserId($this->USERID);
                 $this->result = $this->model->changePseudo($post);
 
                 $value = 'ChangePseudo';
@@ -55,7 +64,13 @@ class BasicController extends AbstractController{
 
             case 'ChangePwd':
                 include_once 'model/ChangePwdModel.php';
+                include_once 'model/GetIDFromBDModel.php';
+
+                $this->modelGetID = new GetIDFromBDModel();
+                $this->USERID = $this->modelGetID->GetUSERID($post);
+
                 $this->model = new ChangePwdModel();
+                $this->model->getUserId($this->USERID);
                 $this->result = $this->model->changePwd($post);
                 $value = 'ChangePwd';
                 break;

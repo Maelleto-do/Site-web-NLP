@@ -1,6 +1,6 @@
 <?php
 
-include_once 'DBConnection.php';
+require_once("DBConnection.php");
 
 class MessageModel{
   private $subjectID;

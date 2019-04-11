@@ -6,15 +6,18 @@ class ChangePwdModel
 {
 
     private $PW_HASH;
+    private $userId;
 
+    public function getUserId($userId){
+      $this->userId = $userId;
+    }
 
     public function changePwd($post){
 
         //On récupère le pseudo tapé par l'utilisateur dans le formulaire
         $NEWPWD = $post['NEW_PWD'];
         //Id de l'utilisateur en cours
-        $USERID = $_SESSION['USERID'];
-
+      
         //Connexion à la db
         $DBConnection = new DBConnection();
         $db = $DBConnection->getDB();
@@ -30,7 +33,7 @@ class ChangePwdModel
         $req = $db->prepare("UPDATE users SET PWD=? WHERE ID=?");
         if($req){
             //$req->execute(array('USERNAME' => $PW_HASH, 'ID' => $USERID));
-            $req->execute([$this->PW_HASH, $USERID]);
+            $req->execute([$this->PW_HASH, $this->userId]);
             return 0;
         }else {
             $req->errorInfo();

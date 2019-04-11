@@ -9,8 +9,6 @@ class AdminSignUpNewUserView{
     $header = new Header();
     $header->launch($post);
 
-      $this->username = $post['TEMP_SUBJECT_INFO']['USERNAME'];
-
 
     echo <<<VIEW
 
