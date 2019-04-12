@@ -40,10 +40,12 @@ class InsertModel{
         //On récupère l'USERNAME, l'E-Mail et le PW que l'utilisateur a tapé dans le formulaire
         $USERNAME = $post['USERNAME_USER'];
         $MAIL = $post['MAIL_USER'];
+        $NAME = $post['NAME_USER'];
+        $SURNAME = $post['SURNAME_USER'];
         $PW = $post['PW_USER'];
         $PW_REPEAT = $post['PW_USER_REPEAT'];
-        //Connexion raté car USERNAME ou PW ou MAIL est vide :
-        if (empty($USERNAME) || empty($PW) || empty($MAIL) ){
+        //Connexion raté car USERNAME ou PW ou NAME ou SURNAME ou MAIL est vide :
+        if (empty($USERNAME) || empty($PW) || empty($MAIL) || empty($NAME) || empty($USERNAME) ){
             return 1;
         }
         if ($PW != $PW_REPEAT){
@@ -74,9 +76,9 @@ class InsertModel{
             }
         }
         //Insertion dans la BD
-        $req = $bdd->prepare("INSERT INTO users(USERNAME, EMAIL, PWD)VALUES(:USERNAME, :EMAIL, :PWD)");
+        $req = $bdd->prepare("INSERT INTO users(NAME, SURNAME, USERNAME, EMAIL, PWD)VALUES(:NAME, :SURNAME, :USERNAME, :EMAIL, :PWD)");
         if($req){
-            $req->execute(array('USERNAME' => $USERNAME, 'EMAIL' => $this->EMAIL_HASH, 'PWD' => $this->PW_HASH));
+            $req->execute(array('NAME' => $NAME,'SURNAME' => $SURNAME,'USERNAME' => $USERNAME, 'EMAIL' => $this->EMAIL_HASH, 'PWD' => $this->PW_HASH));
             return 0;
         }else{
             $req->errorInfo();

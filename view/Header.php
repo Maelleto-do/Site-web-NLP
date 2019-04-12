@@ -143,7 +143,7 @@ VIEW;
       </div>
       <div class="form-group">
       <label for="exampleInputPassword1">Mot de pase</label>
-      <input type="password" name="PW" class="form-control" id="exampleInputPassword1" placeholder="Mot de pase" required>
+      <input type="password" name="PW" class="form-control" id="exampleInputPassword1" placeholder="Mot de passe" required>
       </div>
       <input type="submit" value="Se connecter">
       </form>
