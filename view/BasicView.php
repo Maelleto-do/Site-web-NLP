@@ -45,7 +45,7 @@ class BasicView{
          Sujet:<br>
          <textarea rows = "5" cols = "124" name = "MESSAGE" required></textarea>
          <br><br>
-         <input type="submit" name="TASK" value="SendSubject">
+         <input type="submit" name="TASK" value="Envoyer le sujet">
          </form>
          </div>
          </div>
