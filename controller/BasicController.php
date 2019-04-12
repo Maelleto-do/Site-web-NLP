@@ -38,6 +38,11 @@ class BasicController extends AbstractController{
                   $value = 'Welcome';
                 }
                 break;
+
+            case 'AlreadyLogged':
+                $value = 'AlreadLogged';
+                break;
+                
             case 'CheckLogin':
                 include_once 'model/TestLoginModel.php';
                 $this->model = new TestLoginModel();

@@ -105,6 +105,15 @@ class AlreadyLoggedController extends AbstractController {
                         $value = 'Profile';
                         break;
 
+<<<<<<< HEAD
+=======
+                    case 'Logged':
+                        $value = 'Logged';
+                        break;
+                    case 'AlreadyLogged':
+                        $value = 'AlreadLogged';
+                        break;
+>>>>>>> 92dc29b2cfadc864900219c81632ccc6881b7575
                     case 'ChangePseudo':
                         require_once("model/SelectModel.php");
                         $this->modelGetID = new SelectModel();

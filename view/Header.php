@@ -38,27 +38,35 @@ class Header{
         <form action="index.php" method="POST">
         <input type="hidden" name="TASK" value="AdminSignUpNewUser">
         <div class="form-group">
-        <label for="email">Email address</label>
-        <input type="email" name="MAIL_USER" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter parent email" required>
-        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        <label for="email">Adresse Email</label>
+        <input type="email" name="MAIL_USER" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Entrer une adresse mail" required>
+        <small id="emailHelp" class="form-text text-muted">On ne diffusera pas votre adresse mail.</small>
         </div>
         <div class="form-group">
-        <label for="username">Username</label>
-        <input type="text" name="USERNAME_USER" class="form-control" id="username" aria-describedby="username" placeholder="Enter Username"  required>
+        <label for="username">Pseudo</label>
+        <input type="text" name="USERNAME_USER" class="form-control" id="username" aria-describedby="username" placeholder="Entrer un Pseudo"  required>
         </div>
         <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" name="PW_USER" class="form-control" id="password" placeholder="Enter Password"  required>
+        <label for="name">Prénom</label>
+        <input type="name" name="NAME_USER" class="form-control" id="name" placeholder="Entrer un Prénom"  required>
+        </div>
+        <div class="form-group">
+        <label for="surname">Nom</label>
+        <input type="surname" name="SURNAME_USER" class="form-control" id="surname" placeholder="Entrer un Nom"  required>
+        </div>
+        <div class="form-group">
+        <label for="password">Mot de passe</label>
+        <input type="password" name="PW_USER" class="form-control" id="password" placeholder="Entrer un mot de passe"  required>
         </div>
          <div class="form-group">
-        <label for="password_repeat">Repeat password</label>
-        <input type="password" name="PW_USER_REPEAT" class="form-control" id="password_repeat" placeholder="Enter Password again"  required>
+        <label for="password_repeat">Répéter le mot de passe</label>
+        <input type="password" name="PW_USER_REPEAT" class="form-control" id="password_repeat" placeholder="Entrer un mot de passe"  required>
         </div>
-        <input type="submit" value="signup">
+        <input type="submit" value="Enregistrer">
         </form>
         </div>
         <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
         </div>
         </div>
         </div>
@@ -75,7 +83,7 @@ VIEW;
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
-        <li><a href="#" onclick="$('#Main_Form_TASK').val('Logged'); $('#Main_Form').submit();">Bonjour $this->username</a></li>
+        <li><a href="#" onclick="$('#Main_Form_TASK').val('AlreadyLogged'); $('#Main_Form').submit();">Bonjour $this->username</a></li>
         <li><a href="#" onclick="$('#Main_Form_TASK').val('Info'); $('#Main_Form').submit();">Informations</a></li>
         <li><a href="#" onclick="$('#Main_Form_TASK').val('Contact'); $('#Main_Form').submit();">Contacter un administrateur</a></li>
         <li><a href="#" onclick="$('#Main_Form_TASK').val('DisplayMultipleSubjects'); $('#Main_Form').submit();">Liste des sujets</a></li>
@@ -130,19 +138,18 @@ VIEW;
       <form action="index.php" method="POST">
       <input type="hidden" name="TASK" value="CheckLogin">
       <div class="form-group">
-      <label for="exampleInputUsername1">Email address</label>
-      <input type="text" name="USERNAME" class="form-control" id="exampleInputUsername1" placeholder="Username" required>
-      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+      <label for="exampleInputUsername1">Pseudo</label>
+      <input type="text" name="USERNAME" class="form-control" id="exampleInputUsername1" placeholder="Pseudo" required>
       </div>
       <div class="form-group">
-      <label for="exampleInputPassword1">Password</label>
-      <input type="password" name="PW" class="form-control" id="exampleInputPassword1" placeholder="Password" required>
+      <label for="exampleInputPassword1">Mot de pase</label>
+      <input type="password" name="PW" class="form-control" id="exampleInputPassword1" placeholder="Mot de pase" required>
       </div>
       <input type="submit" value="Se connecter">
       </form>
       </div>
       <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
       </div>
       </div>
       </div>
@@ -161,14 +168,14 @@ VIEW;
       <form action="index.php" method="POST">
       <input type="hidden" name="TASK" value="AdminCheckLogin">
       <div class="form-group">
-      <label for="exampleInputPassword1">Password</label>
-      <input type="password" name="Admin_PW" class="form-control" id="exampleInputPassword1" placeholder="Password">
+      <label for="exampleInputPassword1">Mot de passe</label>
+      <input type="password" name="Admin_PW" class="form-control" id="exampleInputPassword1" placeholder="Mot de passe" required>
       </div>
       <input type="submit" value="Se connecter">
       </form>
       </div>
       <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
       </div>
       </div>
       </div>
