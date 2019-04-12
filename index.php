@@ -15,6 +15,12 @@ session_start();
 
 <?php
 
+// session_unset();
+// session_destroy();
+// unset($_SESSION['logged']);
+// unset($_SESSION['last_action']);
+// unset($_SESSION['USERNAME']);
+
 $file = fopen('log/messages.log','a');
 
 if($_SERVER['REQUEST_METHOD'] == 'GET'){

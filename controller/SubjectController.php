@@ -1,9 +1,7 @@
 <?php
-include_once 'view/SubjectDisplay.php';
-include_once 'model/SubjectModel.php';
-include_once 'model/MessageModel.php';
-include_once 'model/GetIDFromBDModel.php';
 include_once 'controller/AbstractController.php';
+include_once 'view/SubjectDisplay.php';
+require_once("model/SelectModel.php");
 
 
 class SubjectController extends AbstractController {
@@ -17,18 +15,13 @@ class SubjectController extends AbstractController {
 
     function __construct($post){
 
-        $this->model = new SubjectModel();
+        $this->model = new SelectModel();
         $this->tabCheckSubject = $this->model->checkSubject($post);
         $this->subjectId = $this->tabCheckSubject['IDSUBJECT'];
-
-
-        $this->modelbis = new MessageModel();
-        $this->modelbis-> setIdSubject($this->tabCheckSubject['IDSUBJECT']);
-        $this->tabGetMessages = $this->modelbis->getMessages($post);
-
-        $this->modelGetID = new GetIDFromBDModel();
-        $this->USERID = $this->modelGetID->GetUSERID($post);
-        $this->ADMINID = $this->modelGetID->GetADMINID($post);
+        $this->model-> setIdSubject($this->tabCheckSubject['IDSUBJECT']);
+        $this->tabGetMessages = $this->model->getMessages($post);
+        $this->USERID = $this->model->GetUSERID($post);
+        $this->ADMINID = $this->model->GetADMINID($post);
 
         $this -> view = new SubjectDisplay();
         $this->view->setCheckSubject($this->tabCheckSubject);

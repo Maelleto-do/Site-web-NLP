@@ -48,16 +48,19 @@ class BasicController extends AbstractController{
                   $value = 'Welcome';
                 }
                 break;
+            case 'Logged':
+                $value = 'Logged';
+                break;
             case 'ExpiredSession':
                 $value = 'ExpiredSession';
                 break;
             case 'SendSubject':
                 $value = 'SendSubject';
-                include_once 'model/MultipleSubjectsModel.php';
-                include_once 'model/SendSubjectModel.php';
-                $this->model = new SendSubjectModel();
+                require_once("model/SelectModel.php");
+                require_once("model/InsertModel.php");
+                $this->model = new InsertModel();
                 $this->checkSubjectSent = $this->model->sendSubject($post);
-                $this->model2 = new MultipleSubjectsModel();
+                $this->model2 = new SelectModel();
                 $this->subject_list = $this->model2->checkSubjects($post);
                 break;
             case 'CreateSubject':
@@ -65,8 +68,8 @@ class BasicController extends AbstractController{
                 break;
             case 'DisplayMultipleSubjects':
                 $value = 'DisplayMultipleSubjects';
-                include_once 'model/MultipleSubjectsModel.php';
-                $this->model = new MultipleSubjectsModel();
+                require_once("model/SelectModel.php");
+                $this->model = new SelectModel();
                 $this->subject_list = $this->model->checkSubjects($post);
                 break;
             case 'Profile':
@@ -74,27 +77,21 @@ class BasicController extends AbstractController{
                 break;
 
             case 'ChangePseudo':
-                include_once 'model/ChangePseudoModel.php';
-                include_once 'model/GetIDFromBDModel.php';
-
-                $this->modelGetID = new GetIDFromBDModel();
-                $this->USERID = $this->modelGetID->GetUSERID($post);
-
-                $this->model = new ChangePseudoModel();
+                require_once("model/SelectModel.php");
+                $this->modelGetID = new SelectModel();
+                require_once("model/UpdateModel.php");
+                $this->model = new UpdateModel();
                 $this->model->getUserId($this->USERID);
                 $this->result = $this->model->changePseudo($post);
-
                 $value = 'ChangePseudo';
                 break;
 
             case 'ChangePwd':
-                include_once 'model/ChangePwdModel.php';
-                include_once 'model/GetIDFromBDModel.php';
-
-                $this->modelGetID = new GetIDFromBDModel();
+                require_once("model/SelectModel.php");
+                $this->modelGetID = new SelectModel();
+                require_once("model/UpdateModel.php");
+                $this->model = new UpdateModel();
                 $this->USERID = $this->modelGetID->GetUSERID($post);
-
-                $this->model = new ChangePwdModel();
                 $this->model->getUserId($this->USERID);
                 $this->result = $this->model->changePwd($post);
                 $value = 'ChangePwd';

@@ -1,5 +1,6 @@
 <?php
 include_once 'controller/AbstractController.php';
+
 class AlreadyLoggedController extends AbstractController {
 
     private $modelbis;
@@ -11,8 +12,6 @@ class AlreadyLoggedController extends AbstractController {
     private $USERID;
     private $subject_list;
 
-
-
     function __construct($post){
 
         if($_SESSION['USERNAME'] == 'Admin'){
@@ -22,42 +21,30 @@ class AlreadyLoggedController extends AbstractController {
 
                 case 'SendMessage':
                 $class_name = 'SubjectDisplay';
-                include_once 'model/MessageModel.php';
-                include_once 'model/SubjectModel.php';
-                include_once 'model/GetIDFromBDModel.php';
+                require_once("model/SelectModel.php");
 
-                $this->model = new SubjectModel();
+                $this->model = new SelectModel();
                 $this->tabCheckSubject = $this->model->checkSubject($post);
                 $this->subjectId = $this->tabCheckSubject['IDSUBJECT'];
-
-                $this->modelbis = new MessageModel();
-                $this->modelbis-> setIdSubject($this->tabCheckSubject['IDSUBJECT']);
-                $this->tabGetMessages = $this->modelbis->getMessages($post);
-
-                $this->modelGetID = new GetIDFromBDModel();
-                $this->ADMINID = $this->modelGetID->GetADMINID($post);
-                $this->USERID = $this->modelGetID->GetUSERID($post);
+                $this->model->setIdSubject($this->tabCheckSubject['IDSUBJECT']);
+                $this->tabGetMessages = $this->model->getMessages($post);
+                $this->ADMINID = $this->model->GetADMINID($post);
+                $this->USERID = $this->model->GetUSERID($post);
 
                 break;
 
                 case 'DeleteMessage':
                 case 'MessageSujet':
                 $class_name = 'SubjectDisplay';
-                include_once 'model/MessageModel.php';
-                include_once 'model/SubjectModel.php';
-                include_once 'model/GetIDFromBDModel.php';
+                require_once("model/SelectModel.php");
 
-                $this->model = new SubjectModel();
+                $this->model = new SelectModel();
                 $this->tabCheckSubject = $this->model->checkSubject($post);
                 $this->subjectId = $this->tabCheckSubject['IDSUBJECT'];
-
-                $this->modelbis = new MessageModel();
-                $this->modelbis-> setIdSubject($this->tabCheckSubject['IDSUBJECT']);
-                $this->tabGetMessages = $this->modelbis->getMessages($post);
-
-                $this->modelGetID = new GetIDFromBDModel();
-                $this->USERID = $this->modelGetID->GetUSERID($post);
-                $this->ADMINID = $this->modelGetID->GetADMINID($post);
+                $this->model-> setIdSubject($this->tabCheckSubject['IDSUBJECT']);
+                $this->tabGetMessages = $this->model->getMessages($post);
+                $this->USERID = $this->model->GetUSERID($post);
+                $this->ADMINID = $this->model->GetADMINID($post);
 
                 break;
 
@@ -72,6 +59,22 @@ class AlreadyLoggedController extends AbstractController {
                     case 'Deconnexion':
                         $value = 'Deconnexion';
                         break;
+                    case 'AdminSignUpNewUser':
+                        include_once 'model/InsertModel.php';
+                        $this->model = new InsertModel();
+                        $this->result = $this->model->SignUpUser($post);
+                        $value = 'AdminLogged';
+                        break;
+                    case 'AdminCheckLogin':
+                        include_once 'model/TestLoginModel.php';
+                        $this->model = new TestLoginModel();
+                        $this->tabCheckLogin = $this->model->checkLoginAdmin($post);
+                        if(isset($this->tabCheckLogin) && $this->tabCheckLogin['checkLogin'] == 0){
+                          $value = 'AdminLogged';
+                        }else{
+                          $value = 'Welcome';
+                        }
+                        break;
                     case 'CheckLogin':
                         include_once 'model/TestLoginModel.php';
                         $this->model = new TestLoginModel();
@@ -82,49 +85,42 @@ class AlreadyLoggedController extends AbstractController {
                           $value = 'Welcome';
                         }
                         break;
+                    case 'Logged':
+                        $value = 'Logged';
+                        break;
                     case 'ExpiredSession':
                         $value = 'ExpiredSession';
                         break;
-                    case 'SendSubject':
                     case 'CreateSubject':
                         $value = 'CreateSubject';
                         break;
+                    case 'SendSubject':
                     case 'DisplayMultipleSubjects':
                         $value = 'DisplayMultipleSubjects';
-                        include_once 'model/MultipleSubjectsModel.php';
-                        $this->model = new MultipleSubjectsModel();
+                        require_once("model/SelectModel.php");
+                        $this->model = new SelectModel();
                         $this->subject_list = $this->model->checkSubjects($post);
                         break;
                     case 'Profile':
                         $value = 'Profile';
                         break;
 
-                    case 'Logged':
-                        $value = 'Logged';
-                        break;
-
                     case 'ChangePseudo':
-                        include_once 'model/ChangePseudoModel.php';
-                        include_once 'model/GetIDFromBDModel.php';
-
-                        $this->modelGetID = new GetIDFromBDModel();
-                        $this->USERID = $this->modelGetID->GetUSERID($post);
-
-                        $this->model = new ChangePseudoModel();
+                        require_once("model/SelectModel.php");
+                        $this->modelGetID = new SelectModel();
+                        require_once("model/UpdateModel.php");
+                        $this->model = new UpdateModel();
                         $this->model->getUserId($this->USERID);
                         $this->result = $this->model->changePseudo($post);
-
                         $value = 'ChangePseudo';
                         break;
 
                     case 'ChangePwd':
-                        include_once 'model/ChangePwdModel.php';
-                        include_once 'model/GetIDFromBDModel.php';
-
-                        $this->modelGetID = new GetIDFromBDModel();
+                        require_once("model/SelectModel.php");
+                        $this->modelGetID = new SelectModel();
+                        require_once("model/UpdateModel.php");
+                        $this->model = new UpdateModel();
                         $this->USERID = $this->modelGetID->GetUSERID($post);
-
-                        $this->model = new ChangePwdModel();
                         $this->model->getUserId($this->USERID);
                         $this->result = $this->model->changePwd($post);
                         $value = 'ChangePwd';
@@ -151,18 +147,31 @@ class AlreadyLoggedController extends AbstractController {
           $this->view -> setSubjectList($this->subject_list);
 
         }
+
         if(isset($value)){
-          $this -> view -> setValueToSwitch($value);
-          if($value == 'Welcome' && isset($this->tabCheckLogin['checkLogin'])){
-            //On donne le message d'erreur à afficher à la vue
-            $this->view->setMessageNumberLogin($this->tabCheckLogin['checkLogin']);
+          if($value == 'AdminLogged'){
+              include_once 'view/AdminCheckLoginView.php';
+              $this->view= new AdminCheckLoginView();
+              if(isset($this->result)){
+                $this->view->setMessageNumberSignup($this->result);
+              }
+          }else{
+              $this->view = new BasicView();
+              $this->view->setValueToSwitch($value);
+              if(isset($this->subject_list)){
+                $this->view->setSubjectList($this->subject_list);
+              }
+              if($value == 'Welcome' && isset($this->tabCheckLogin['checkLogin'])){
+                //On donne le message d'erreur à afficher à la vue
+                $this->view->setMessageNumberLogin($this->tabCheckLogin['checkLogin']);
+              }
+              if($value == 'DisplayMultipleSubjects'){
+                $this->view -> setSubjectList($this->subject_list);
+              }
+              if(isset($this->result) && $this->result != 0){
+                  $this->view->setMessageNumber($this->result);
+              }
           }
-          if($value == 'DisplayMultipleSubjects'){
-            $this->view -> setSubjectList($this->subject_list);
-          }
-        }
-        if(isset($this->result) && $this->result != 0){
-            $this->view->setMessageNumber($this->result);
         }
 
     }

@@ -1,13 +1,13 @@
 <?php
 
-include_once 'DBConnection.php';
+require_once("DBConnection.php");
 
 class SendMessagePythonModel{
 
     public function sendMessagePython($post){
 
       $message= $post['MESSAGE'];
-      
+
       $monfichier = fopen('texte_test.txt', 'w+');
       //file_put_contents('texte_test.txt', $message);
       fputs($monfichier, $message);
