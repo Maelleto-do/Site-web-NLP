@@ -102,7 +102,9 @@ class AlreadyLoggedController extends AbstractController {
                     case 'Logged':
                         $value = 'Logged';
                         break;
-
+                    case 'AlreadyLogged':
+                        $value = 'AlreadLogged';
+                        break;
                     case 'ChangePseudo':
                         include_once 'model/ChangePseudoModel.php';
                         include_once 'model/GetIDFromBDModel.php';

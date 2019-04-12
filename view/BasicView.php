@@ -122,14 +122,23 @@ VIEW;
 VIEW;
       break;
 
+      case 'AlreadLogged':
       case 'Logged':
+
+
           echo <<<VIEW
           <div class="container-fluid text-center">
           <div class="row content">
           <div class="col-sm-8 text-left">
           <h1>Bienvenue sur le forum</h1>
-          Connexion réussie.
-          </div>
+VIEW;
+
+        if($this->switch == 'Logged'){
+
+          echo  'Connexion réussie.';
+
+        }
+          echo <<<VIEW
           </div>
           </div>
           <form id="Main_Form" action="index.php" method="POST">
