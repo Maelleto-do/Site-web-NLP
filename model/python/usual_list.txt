@@ -3,3 +3,5 @@ chien
 vache
 baleine
 thon
+de
+pédé

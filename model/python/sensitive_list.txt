@@ -7,4 +7,5 @@ petit
 petite
 tete
 tronche
-de
+fils
+espèce

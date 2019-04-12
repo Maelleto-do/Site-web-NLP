@@ -4,7 +4,6 @@ import sys
 import nltk
 
 nltk.data.path.append('nltk_data')
-# nltk.download('nltk_data/tokenizers/punkt')
 from nltk import word_tokenize
 from nltk.tokenize import TreebankWordTokenizer
 from nltk.corpus import stopwords
@@ -41,24 +40,22 @@ def find_word():
 
     #Ouverture de la blacklist
     #On met la black list en minuscule pour éviter les problèmes de casse
-    f1 = open("model/python/black_list.txt",'rU')
+    f1 = open("model/python/black_list.txt",'r', encoding='utf-8')
     text_black_list = f1.read()
     text_black_list = text_black_list.lower()
 
-    f2 = open("model/python/sensitive_list.txt",'rU')
+    f2 = open("model/python/sensitive_list.txt",'r', encoding='utf-8')
     text_sensitive_list = f2.read()
     text_sensitive_list = text_sensitive_list.lower()
 
-    f3 = open("model/python/usual_list.txt",'rU')
+    f3 = open("model/python/usual_list.txt",'r', encoding='utf-8')
     text_usual_list = f3.read()
     text_usual_list = text_usual_list.lower()
 
     #On met le texte saisit par l'utilisateur en minuscule pour éviter les problèmes de casse
-    f = open("texte_test.txt",'rU', encoding='utf-8')
+    f = open("texte_test.txt",'r', encoding='utf-8')
     text = f.read()
     text = text.lower()
-    # text = unicode(s,'utf-8')
-    # text = unicodedata.normalize('NFD', text).encode('ascii', 'ignore')
 
     text_linearized1 = filter(text)
     black_list_token = tokenizer.tokenize(text_black_list)
@@ -67,17 +64,27 @@ def find_word():
     #Intersection des deux listes pour voir s'il y a des mots en commun
     common1 = set(text_linearized1).intersection(black_list_token)
 
-
-    text_linearized2 = two_group(text)
-    for w in text_linearized2 :
-        #print(w)
-        common2 = set(w).intersection(sensitive_list_token)
-
-
-    #S'il y a des mots interdits dans le message
-    if ((len(common1) > 0)  or (len(common1) > 0 and len(common2) > 0)) :
+    if(len(common1) > 0) :
         return 0
-    #Si pas de mots interdits dans le message
+    else :
+        text_linearized2 = two_group(text)
+        cpt=0
+        for w1, w2 in text_linearized2:
+            if w1 in sensitive_list_token :
+                cpt = cpt + 1
+            if w1 in usual_list_token :
+                cpt = cpt + 1
+            if w2 in sensitive_list_token :
+                cpt = cpt + 1
+            if w2 in usual_list_token :
+                cpt = cpt + 1
+
+            if (cpt >= 2 ) :
+                return 0
+
+            cpt = 0
+        #S'il y a des mots interdits dans le message
+            #Si pas de mots interdits dans le message
 
     return 1
 
