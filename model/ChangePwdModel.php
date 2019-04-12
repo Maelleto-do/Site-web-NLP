@@ -22,6 +22,7 @@ class ChangePwdModel
         $DBConnection = new DBConnection();
         $db = $DBConnection->getDB();
 
+		//Vérification si le mot de passe est bien entre 3 et 20 caractères et avec des caractères autorisés
 
         if (empty($NEWPWD)){
             return 7; 
@@ -42,7 +43,7 @@ class ChangePwdModel
         ];
         $this->PW_HASH = password_hash($NEWPWD, PASSWORD_BCRYPT, $options);
 
-        //Modification de la BD
+        //Modification du mot de passe dans la BD (0 si réussie, 6 si échouée)
         $req = $db->prepare("UPDATE users SET PWD=? WHERE ID=?");
         if($req){
             //$req->execute(array('USERNAME' => $PW_HASH, 'ID' => $USERID));

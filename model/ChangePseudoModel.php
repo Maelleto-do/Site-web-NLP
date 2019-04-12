@@ -30,6 +30,9 @@ class ChangePseudoModel
                 exit(); 
             }
         }
+		
+		
+		//Vérification si le pseudo est bien entre 3 et 20 caractères et avec des caractères autorisés
 
         if (empty($NEWPSEUDO)){
             return 2; 
@@ -47,7 +50,7 @@ class ChangePseudoModel
         //On remet le nom de l'utilisateur à jour
         $_SESSION['USERNAME'] = $NEWPSEUDO;
 
-        //Modification de la BD
+        //Modification du pseudo dans la BD (0 si réussie, 6 si échouée)
         $req = $db->prepare("UPDATE users SET USERNAME=? WHERE ID=?");
         if($req){
             $req->execute([$NEWPSEUDO, $this->userId]);
