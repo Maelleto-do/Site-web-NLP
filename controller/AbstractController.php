@@ -5,9 +5,8 @@
  * différents controller à une vue et
  * un model.
  */
-abstract class AbstractController
-{
 
+abstract class AbstractController{
     /*
      * Vue du controller
      */
@@ -17,7 +16,6 @@ abstract class AbstractController
      * Model du controller
      */
     protected $model;
-
     /**
      * @param $post lance la vue
      */

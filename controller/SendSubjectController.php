@@ -1,9 +1,8 @@
 <?php
 include_once 'controller/AbstractController.php';
-include_once 'model/MultipleSubjectsModel.php';
-include_once 'model/SendSubjectModel.php';
-include_once 'model/SubjectModel.php';
 include_once 'view/BasicView.php';
+require_once("model/SelectModel.php");
+require_once("model/InsertModel.php");
 
 class SendSubjectController extends AbstractController {
 
@@ -12,10 +11,10 @@ class SendSubjectController extends AbstractController {
     private $subject_list;
 
     function __construct($post){
-        $this->model = new SendSubjectModel();
+        $this->model = new InsertModel();
         $this->checkSubjectSent = $this->model->sendSubject($post);
 
-        $this->model2 = new MultipleSubjectsModel();
+        $this->model2 = new SelectModel();
         $this->subject_list = $this->model2->checkSubjects($post);
 
         $this -> view = new BasicView();
